@@ -42,7 +42,7 @@ jobs:
         run: ls -la
 
       - name: Run tests
-        run: pytest
+        run: DISPLAY="" pytest
 
       - name: Upload geckodriver artifact
         if: ${{ always() }}
