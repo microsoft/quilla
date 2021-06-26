@@ -1,0 +1,5 @@
+msedge-selenium-tools==3.141.3
+pluggy==0.13.1
+pydeepmerge==0.3.2
+selenium==3.141.0
+urllib3==1.26.6

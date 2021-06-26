@@ -1,0 +1,19 @@
+{
+    "markers": ["integration", "quilla", "slow"],
+    "targetBrowsers": ["Firefox"],
+    "path": "https://techstepacademy.com/trial-of-the-stones",
+    "steps": [
+        {
+            "action": "SendKeys",
+            "target": "//input[@id='r1Input']",
+            "parameters": {
+                "data": "rock"
+            }
+        },
+        {
+            "action": "Click",
+            "target": "//button[@id='r1Btn']"
+        }
+    ]
+
+}

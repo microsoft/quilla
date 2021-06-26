@@ -1,0 +1,22 @@
+{
+    "markers": ["integration", "slow"],
+    "definitions": {
+        "WelcomePage": {
+            "SignInButtonDiv": "//div[@class='position-relative mr-3']"
+        }
+    },
+    "targetBrowsers": ["Firefox"],
+    "path": "https://github.com",
+    "steps": [
+        {
+            "action": "Validate",
+            "type": "XPath",
+            "state": "PropertyHasValue",
+            "target": "${{ Definitions.WelcomePage.SignInButtonDiv }}",
+            "parameters": {
+                "name": "className",
+                "value": "position-relative mr-3"
+            }
+        }
+    ]
+}
