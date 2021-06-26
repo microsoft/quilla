@@ -58,7 +58,7 @@ class ValidationReport(BaseReport):
         if 'msg' in params:
             msg = params['msg']
         return ValidationReport(
-            type_=params['type'],
+            validation_type=params['type'],
             target=params['target'],
             state=params['state'],
             browser_name=params['targetBrowser'],
