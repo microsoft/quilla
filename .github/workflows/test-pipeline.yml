@@ -43,3 +43,9 @@ jobs:
 
       - name: Run tests
         run: pytest
+
+      - name: Upload geckodriver artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: geckodriver-log
+          path: geckodriver.log
