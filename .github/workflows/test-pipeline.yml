@@ -38,15 +38,15 @@ jobs:
       - name: Run static type checker
         run: mypy
 
-      - name: Echo files in directory
-        run: ls -la
+      - name: Set filename for xml output
+        run: echo "JUNIT_XML_OUT=quilla-pytest-junit-$(date +'%Y-%m-%d').xml" >> $env:GITHUB_ENV
 
       - name: Run tests
-        run: DISPLAY="" pytest
+        run: pytest --junit-xml="${{ env.JUNIT_XML_OUT }}"
 
       - name: Upload geckodriver artifact
         if: ${{ always() }}
         uses: actions/upload-artifact@v2
         with:
-          name: geckodriver-log
-          path: geckodriver.log
+          name: junit_xml
+          path: ${{ env.JUNIT_XML_OUT }}

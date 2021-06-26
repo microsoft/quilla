@@ -16,27 +16,27 @@ class _DummyHooks:
     '''
 
     @_hookimpl
-    def quilla_addopts(self):
+    def quilla_addopts():  # type: ignore
         pass
 
     @_hookimpl
-    def quilla_context_obj(self):
+    def quilla_context_obj():  # type: ignore
         pass
 
     @_hookimpl
-    def quilla_configure(self):
+    def quilla_configure():  # type: ignore
         pass
 
     @_hookimpl
-    def quilla_prevalidate(self):
+    def quilla_prevalidate():  # type: ignore
         pass
 
     @_hookimpl
-    def quilla_postvalidate(self):
+    def quilla_postvalidate():  # type: ignore
         pass
 
     @_hookimpl
-    def quilla_step_factory_selector(self):
+    def quilla_step_factory_selector():  # type: ignore
         pass
 
 
