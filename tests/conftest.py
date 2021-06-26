@@ -1,9 +1,7 @@
 from unittest.mock import Mock
-from typing import List
 
 import pytest
 from _pytest.config import PytestPluginManager
-from _pytest.nodes import Item
 from _pytest.config import Config
 from selenium.webdriver.remote.webdriver import WebDriver
 
@@ -28,9 +26,10 @@ def ctx(driver: WebDriver, plugin_manager):
 @pytest.fixture()
 def plugin_manager(pytestconfig: Config):
 
-    pm = get_plugin_manager(pytestconfig.rootpath)
+    pm = get_plugin_manager(str(pytestconfig.rootpath))
 
     return pm
+
 
 @pytest.fixture()
 def driver():

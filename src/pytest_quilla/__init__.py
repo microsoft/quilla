@@ -5,7 +5,6 @@ from _pytest.config.argparsing import Parser
 from pytest_quilla.pytest_classes import collect_file
 
 
-
 def pytest_addoption(parser: Parser):
     '''
     Adds quilla INI option for enabling
@@ -35,6 +34,7 @@ def pytest_load_initial_conftests(early_config: Config, parser: Parser):
         default="",
         help="Options to be passed through to the quilla runtime for the scenario tests"
     )
+
 
 def pytest_collect_file(parent: pytest.Session, path):
     return collect_file(parent, path, parent.config.getini('quilla-prefix'))
