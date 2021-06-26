@@ -1,0 +1,13 @@
+{
+    "markers": ["integration", "quilla", "slow"],
+    "targetBrowsers": ["Firefox"],
+    "path": "https://bing.com",
+    "steps": [
+        {
+            "action": "Validate",
+            "type": "URL",
+            "state": "Contains",
+            "target": "bing"
+        }
+    ]
+}

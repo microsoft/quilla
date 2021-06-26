@@ -1,0 +1,21 @@
+{
+    "markers": ["integration", "quilla", "slow"],
+    "targetBrowsers": ["Firefox"],
+    "path": "https://bing.com",
+    "steps": [
+        {
+            "action": "OutputValue",
+            "target": "bing",
+            "parameters": {
+                "source": "Literal",
+                "outputName": "url_contains"
+            }
+        },
+        {
+            "action": "Validate",
+            "type": "URL",
+            "state": "Contains",
+            "target": "${{ Validation.url_contains }}"
+        }
+    ]
+}

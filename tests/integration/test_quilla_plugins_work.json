@@ -1,0 +1,21 @@
+{
+    "markers": ["integration", "quilla", "slow"],
+    "targetBrowsers": ["Firefox"],
+    "path": "https://bing.com",
+    "steps": [
+        {
+            "action": "OutputValue",
+            "target": "${{ Driver.title }}",
+            "parameters": {
+                "source": "Literal",
+                "outputName": "site_title"
+            }
+        },
+        {
+            "action": "Validate",
+            "target": "${{ Validation.site_title }}",
+            "type": "URL",
+            "state": "Contains"
+        }
+    ]
+}

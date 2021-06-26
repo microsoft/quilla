@@ -1,14 +1,105 @@
-# Project
+# Quilla
 
-> This repo has been populated by an initial template to help get you started. Please
-> make sure to update the content to build a great experience for community-building.
+<!-- THIS SECTION SHOULD BE COPY+PASTED INTO THE docs/intro.md FILE -->
+## Declarative UI Testing with JSON
 
-As the maintainer of this project, please make a few updates:
+Quilla is a framework that allows test-writers to perform UI testing using declarative syntax through JSON files. This enables test writers, owners, and maintainers to focus not on how to use code libraries, but on what steps a user would have to take to perform the actions being tested. In turn, this allows for more agile test writing and easier-to-understand test cases.
 
-- Improving this README.MD file to provide a great experience
-- Updating SUPPORT.MD with content about this project's support experience
-- Understanding the security reporting process in SECURITY.MD
-- Remove this section from the README
+Quilla was built to be run in CI/CD, in containers, and locally. It also comes with an optional integration with [pytest](https://pytest.org), so you can write your Quilla test cases as part of your regular testing environment for python-based projects. Check out the [quilla-pytest](docs/quilla_pytest.md) docs for more information on how to configure `pytest` to auto-discover Quilla files, adding markers, and more.
+
+Check out the [features](docs/features.md) docs for an overview of all quilla can do!
+
+## Quickstart
+
+1. Clone the repository
+2. `cd` into the `quilla` directory and run `make install`
+3. Ensure that you have the correct browser and drivers. Quilla will autodetect drivers that are in your PATH or in the directory it is called
+4. Write the following as `Validation.json`:
+
+    ```json
+    {
+      "targetBrowsers": ["Edge"],  // Or "Firefox" or "Chrome", depending on what you have installed
+      "path": "https://www.bing.com",
+      "steps": [
+        {
+          "action": "Validate",
+          "type": "URL",
+          "state": "Contains",
+          "target": "bing",
+        }
+      ]
+    }
+    ```
+
+5. Run `quilla -f Validation.json`
+
+## Installation
+
+> Note: It is **highly recommended** that you use a virtual environment whenever you install new python packages.
+You can install Quilla by cloning the repository and running `make install`.
+
+For more information on installation options and packaging Quilla for remote install, check out the documentation for it [here](docs/install.md)
+
+## Usage
+
+This module can be used both as a library, a runnable module, as well as as a command-line tool. The output of `quilla --help` is presented below:
+
+```text
+usage: quilla [-h] [-f] [-d] [--driver-dir DRIVERS_PATH] [-P] json
+
+Program to provide a report of UI validations given a json representation of the validations or given the filename
+containing a json document describing the validations
+
+positional arguments:
+  json                  The json file name or raw json string
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -f, --file            Whether to treat the argument as raw json or as a file
+  -d, --debug           Enable debug mode
+  --driver-dir DRIVERS_PATH
+                        The directory where browser drivers are stored
+  -P, --pretty          Set this flag to have the output be pretty-printed
+```
+
+## Writing Validation Files
+
+Check out the documentation for it [here](docs/validation_files.md)
+
+## Context Expressions
+
+This package is able to dynamically inject different values, exposed through context objects and expressions whenever the validation JSON would ordinarily require a regular string (instead of an enum). This can be used to grab values specified either at the command-line, or through environment variables.
+
+More discussion of context expressions and how to use them can be found in the documentation file [here](docs/context_expressions.md)
+
+## Generating Documentation
+
+Documentation can be generated through the `make` command `make docs`
+
+Check out the documentation for it [here](docs/README.md)
+
+## Make commands
+
+A Makefile is provided with several convenience commands. You can find usage instructions with `make help`, or below:
+
+```text
+Usage:
+  make [target]
+
+Targets:
+  help                            Print this help message and exit
+  package                         Create release packages
+  package-deps                    Create wheel files for all runtime dependencies
+  docs                            Build all the docs in the docs/_build directory
+  clean-python                    Cleans all the python cache & egg files files
+  clean-docs                      Clean the docs build directory
+  clean-build                     Cleans all code build and distribution directories
+  clean                           Cleans all build, docs, and cache files
+  install                         Installs the package
+  install-docs                    Install the package and docs dependencies
+  install-tests                   Install the package and test dependencies
+  install-all                     Install the package, docs, and test dependencies
+```
 
 ## Contributing
 

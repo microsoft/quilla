@@ -1,0 +1,50 @@
+{
+    "markers": ["integration", "quilla", "slow"],
+    "targetBrowsers": ["Firefox"],
+    "path": "https://techstepacademy.com/trial-of-the-stones",
+    "steps": [
+        {
+            "action": "Validate",
+            "type": "URL",
+            "state": "Equals",
+            "target": "https://techstepacademy.com/trial-of-the-stones"
+        },
+        {
+            "action": "NavigateTo",
+            "target": "https://bing.com"
+        },
+        {
+            "action": "Validate",
+            "type": "URL",
+            "state": "Contains",
+            "target": "bing.com"
+        },
+        {
+            "action": "NavigateBack"
+        },
+        {
+            "action": "Validate",
+            "type": "URL",
+            "state": "Equals",
+            "target": "https://techstepacademy.com/trial-of-the-stones"
+        },
+        {
+            "action": "NavigateForward"
+        },
+        {
+            "action": "Validate",
+            "type": "URL",
+            "state": "Contains",
+            "target": "bing.com"
+        },
+        {
+            "action": "Refresh"
+        },
+        {
+            "action": "Validate",
+            "type": "URL",
+            "state": "Contains",
+            "target": "bing.com"
+        }
+    ]
+}
