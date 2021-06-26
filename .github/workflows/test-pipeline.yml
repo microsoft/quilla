@@ -23,7 +23,7 @@ jobs:
       - name: Install firefox
         run: sudo apt install firefox
 
-      - name: Get chromedriver
+      - name: Get geckodriver
         run: ./scripts/get_geckodriver.sh
 
       - name: Install wheel
@@ -37,6 +37,9 @@ jobs:
 
       - name: Run static type checker
         run: mypy
+
+      - name: Echo files in directory
+        run: ls -la
 
       - name: Run tests
         run: pytest
