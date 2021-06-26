@@ -22,7 +22,7 @@ jobs:
         run: pip install -e .[all]
 
       - name: Install firefox
-        run: apt install firefox
+        run: sudo apt install firefox
 
       - name: Get chromedriver
         run: ./scripts/get_geckodriver.sh
