@@ -39,7 +39,7 @@ jobs:
         run: mypy
 
       - name: Set filename for xml output
-        run: echo "JUNIT_XML_OUT=quilla-pytest-junit-RUN:${{ env.GITHUB_RUN_NUMBER }}-$(date +'%Y-%m-%d').xml" >> $GITHUB_ENV
+        run: echo "JUNIT_XML_OUT=quilla-pytest-junit-RUN${{ env.GITHUB_RUN_NUMBER }}-$(date +'%Y-%m-%d').xml" >> $GITHUB_ENV
 
       - name: Run tests
         run: pytest --junit-xml="${{ env.JUNIT_XML_OUT }}"
