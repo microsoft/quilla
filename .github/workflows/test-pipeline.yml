@@ -18,14 +18,17 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
 
-      - name: Install all dependencies
-        run: pip install -e .[all]
-
       - name: Install firefox
         run: sudo apt install firefox
 
       - name: Get chromedriver
         run: ./scripts/get_geckodriver.sh
+
+      - name: Install wheel
+        run: pip install wheel
+
+      - name: Install all dependencies
+        run: pip install -e .[all]
 
       - name: Run linter
         run: flake8
