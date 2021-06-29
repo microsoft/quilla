@@ -16,27 +16,27 @@ class _DummyHooks:
     '''
 
     @_hookimpl
-    def quilla_addopts():
+    def quilla_addopts():  # type: ignore
         pass
 
     @_hookimpl
-    def quilla_context_obj():
+    def quilla_context_obj():  # type: ignore
         pass
 
     @_hookimpl
-    def quilla_configure():
+    def quilla_configure():  # type: ignore
         pass
 
     @_hookimpl
-    def quilla_prevalidate():
+    def quilla_prevalidate():  # type: ignore
         pass
 
     @_hookimpl
-    def quilla_postvalidate():
+    def quilla_postvalidate():  # type: ignore
         pass
 
     @_hookimpl
-    def quilla_step_factory_selector():
+    def quilla_step_factory_selector():  # type: ignore
         pass
 
 
@@ -87,7 +87,7 @@ def _load_entrypoint_plugins(pm: pluggy.PluginManager):
         try:
             entry_point.require()
             _load_hooks_from_module(pm, entry_point.load())
-        except pkg_resources.DistributionNotFound as e:
+        except pkg_resources.DistributionNotFound:
             # Skips package if it cannot load it
             pass
 

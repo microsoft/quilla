@@ -1,5 +1,4 @@
 import json
-from pathlib import Path
 
 import pytest
 from py._path.local import LocalPath
@@ -55,7 +54,10 @@ class QuillaItem(pytest.Item):
         Runs the quilla test by creating an isolated context and executing the test
         data retrieved from the JSON file.
         '''
-        ctx = setup_context([*self.config.getoption('--quilla-opts'), ''], str(self.config.rootpath))
+        ctx = setup_context(
+            [*self.config.getoption('--quilla-opts'), ''],
+            str(self.config.rootpath)
+        )
         results = UIValidation.from_dict(ctx, self.test_data).validate_all()
         self.results = results
         try:

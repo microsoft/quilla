@@ -5,7 +5,9 @@ the runtime context for the application, then executing the rest of the applicat
 import argparse
 import sys
 import json
-from typing import List
+from typing import (
+    List,
+)
 
 from quilla.ui_validation import UIValidation
 from quilla.ctx import (
@@ -65,7 +67,10 @@ def make_parser() -> argparse.ArgumentParser:  # pragma: no cover
         '--no-sandbox',
         dest='no_sandbox',
         action='store_true',
-        help='Adds \'--no-sandbox\' to the Chrome and Edge browsers. Useful for running in docker containers'
+        help='''
+        Adds \'--no-sandbox\' to the Chrome and Edge browsers.
+        Useful for running in docker containers'
+        '''
     )
     parser.add_argument(
         '-d',
@@ -131,31 +136,32 @@ def setup_context(args: List[str], plugin_root: str = '.') -> Context:
     parser = make_parser()
     pm.hook.quilla_addopts(parser=parser)  # type: ignore
 
-    args = parser.parse_args(args)
+    parsed_args = parser.parse_args(args)
 
     # Set to empty list since argparse defaults to None
-    if not args.definitions:
-        args.definitions = []
+    if not parsed_args.definitions:
+        parsed_args.definitions = []
 
-    if not args.is_file:
-        json_data = args.json
+    if not parsed_args.is_file:
+        json_data = parsed_args.json
     else:
-        with open(args.json) as f:
+        with open(parsed_args.json) as f:
             json_data = f.read()
     ctx = get_default_context(
         pm,
-        args.debug,
-        args.drivers_path,
-        args.pretty,
+        parsed_args.debug,
+        parsed_args.drivers_path,
+        parsed_args.pretty,
         json_data,
-        args.is_file,
-        args.no_sandbox,
-        args.definitions,
+        parsed_args.is_file,
+        parsed_args.no_sandbox,
+        parsed_args.definitions,
     )
 
     pm.hook.quilla_configure(ctx=ctx, args=args)
 
     return ctx
+
 
 def run():
     '''

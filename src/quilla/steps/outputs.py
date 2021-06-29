@@ -27,9 +27,9 @@ class OutputValueStep(BaseStep, BaseStepFactory):
     def from_dict(
         cls,
         ctx: Context,
-        action_dict,
+        action_dict: Dict,
         driver: Optional[WebDriver] = None
-    ) -> "OutputValueStep":
+    ) -> "BaseStep":
         '''
         Factory method to extract needed parameters from a dictionary
         '''
@@ -43,7 +43,6 @@ class OutputValueStep(BaseStep, BaseStepFactory):
             params[param] = action_dict[param]
 
         return OutputValueStep(ctx, **params, driver=driver)
-
 
     def __init__(
         self,
@@ -61,7 +60,6 @@ class OutputValueStep(BaseStep, BaseStepFactory):
             OutputSources.XPATH_TEXT: self._output_xpath_text,
             OutputSources.XPATH_PROPERTY: self._output_xpath_property,
         }
-
 
     def perform(self):
         value_producer = self.selector[self.parameters['source']]

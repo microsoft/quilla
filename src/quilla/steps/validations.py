@@ -91,7 +91,6 @@ class XPathValidation(BaseValidation):
 
         return re.search(pattern, element_text) is not None
 
-
     def _element_exists(self) -> bool:
         return len(self._find_all()) > 0
 
@@ -208,7 +207,6 @@ class XPathValidation(BaseValidation):
         return self._create_report(
             not self._element_attribute_has_value
         )
-
 
 
 class URLValidation(BaseValidation):
