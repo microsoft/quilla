@@ -48,7 +48,11 @@ extra_dependencies['all'] = all_dependencies
 setup(
     name='quilla',
     version=version,
-    description="Declarative UI testing with JSON",
+    description='Declarative UI testing with JSON',
+    author='Natalia Maximo',
+    author_email='tal.afp.max@gmail.com',
+    maintainer='CRE Avengers',
+    maintainer_email='cre-avengers@microsoft.com',
     long_description=long_description,
     long_description_content_type='text/markdown',
     url='https://github.com/microsoft/quilla',
