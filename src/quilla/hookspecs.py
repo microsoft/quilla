@@ -22,7 +22,7 @@ from quilla.ui_validation import UIValidation
 
 hookspec = pluggy.HookspecMarker('quilla')
 
-StepFactorySelector =  Dict[UITestActions, Type[BaseStepFactory]]
+StepFactorySelector = Dict[UITestActions, Type[BaseStepFactory]]
 T = TypeVar('T', bound=Enum)
 
 
@@ -111,6 +111,7 @@ def quilla_step_factory_selector(selector: StepFactorySelector):
     Args:
         selector: The factory selector dictionary.
     '''
+
 
 @hookspec(firstresult=True)
 def quilla_resolve_enum_from_name(name: str, enum: Type[T]) -> Optional[T]:

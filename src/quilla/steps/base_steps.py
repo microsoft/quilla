@@ -134,7 +134,7 @@ class BaseStep(DriverHolder, EnumResolver):
 
 class BaseStepFactory:
     @abstractclassmethod
-    def from_dict(ctx: Context, step: Dict, driver: Optional[WebDriver] = None) -> BaseStep:
+    def from_dict(cls, ctx: Context, step: Dict, driver: Optional[WebDriver] = None) -> BaseStep:
         '''
         Given a context, step dictionary, and optionally a driver, return an appropriate subclass
         of BaseStep
@@ -147,7 +147,6 @@ class BaseStepFactory:
         Returns:
             The resulting step object
         '''
-
 
 
 class BaseValidation(BaseStep):
@@ -171,10 +170,16 @@ class BaseValidation(BaseStep):
         target: str,
         state: ValidationStates,
         selector: Dict[ValidationStates, Callable[[], ValidationReport]],
-        parameters: Dict,
+        parameters: Optional[Dict],
         driver: Optional[WebDriver] = None,
     ) -> None:
-        super().__init__(ctx, UITestActions.VALIDATE, target=target, parameters=parameters, driver=driver)
+        super().__init__(
+            ctx,
+            UITestActions.VALIDATE,
+            target=target,
+            parameters=parameters,
+            driver=driver
+        )
         self._type = type_
         self._state = state
         self._driver = driver
@@ -187,7 +192,7 @@ class BaseValidation(BaseStep):
             self.ctx,  # type: ignore
             self._target,  # type: ignore
             self._state,  # type: ignore
-            self._parameters,
+            self._parameters,  # type: ignore
             self._driver  # type: ignore
         )
 

@@ -1,5 +1,4 @@
 from setuptools import setup, find_packages
-from itertools import chain
 
 
 with open('VERSION') as f:
@@ -28,7 +27,8 @@ extra_dependencies = {
         'pytest'
     ],
     'dev': [
-        'pre-commit'
+        'pre-commit',
+        'types-setuptools',  # Adds typing stubs
     ],
     'release': [
         'wheel',
@@ -37,10 +37,13 @@ extra_dependencies = {
     ]
 }
 
-extra_dependencies['all'] = list(
-    chain(dependencies for _, dependencies in extra_dependencies.items())
-)
+all_dependencies = []
 
+for _, dependencies in extra_dependencies.items():
+    all_dependencies.extend(dependencies)
+
+all_dependencies = list(set(all_dependencies))  # Convert to set to remove overlaps
+extra_dependencies['all'] = all_dependencies
 
 setup(
     name='quilla',
