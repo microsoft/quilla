@@ -14,11 +14,11 @@ Check out the [features](docs/features.md) docs for an overview of all quilla ca
 1. Clone the repository
 2. `cd` into the `quilla` directory and run `make install`
 3. Ensure that you have the correct browser and drivers. Quilla will autodetect drivers that are in your PATH or in the directory it is called
-4. Write the following as `Validation.json`:
+4. Write the following as `Validation.json`, substituting "Edge" for whatever browser you have installed and have the driver for:
 
     ```json
     {
-      "targetBrowsers": ["Edge"],  // Or "Firefox" or "Chrome", depending on what you have installed
+      "targetBrowsers": ["Edge"],
       "path": "https://www.bing.com",
       "steps": [
         {
