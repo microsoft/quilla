@@ -4,6 +4,8 @@ from functools import lru_cache
 from typing import (
     Optional,
     List,
+    Dict,
+    cast
 )
 from pathlib import Path
 import json
@@ -74,7 +76,7 @@ class Context(DriverHolder):
         path = Path(drivers_path)
 
         self.drivers_path = str(path.resolve())
-        self._context_data = {'Validation': {}, 'Outputs': {}, 'Definitions': {}}
+        self._context_data: Dict[str, dict] = {'Validation': {}, 'Outputs': {}, 'Definitions': {}}
         self._load_definition_files(definitions)
 
     @property
@@ -167,10 +169,15 @@ class Context(DriverHolder):
                 data = self._context_data[root]
                 data = self._walk_data_tree(data, path, object_expression)
 
-                repl_value = data
+                repl_value = cast(str, data)
             elif self.pm is not None:
                 # Pass it to the defined hooks
-                hook_results = self.pm.hook.quilla_context_obj(ctx=self, root=root, path=tuple(path))  # type: ignore
+                hook_results = self.pm.hook.quilla_context_obj(
+                    ctx=self,
+                    root=root,
+                    path=tuple(path)
+                )  # type: ignore
+
                 # Hook results will always be either size 1 or 0
                 if len(hook_results) == 0:
                     repl_value = ''
@@ -242,7 +249,7 @@ class Context(DriverHolder):
         for definition_file in definition_files:
             with open(definition_file) as fp:
                 data_dict = json.load(fp)
-            self._load_definitions(data_dict)
+            self.load_definitions(data_dict)
 
     def load_definitions(self, definitions_dict: dict):
         '''
@@ -271,7 +278,7 @@ def get_default_context(
         no_sandbox: bool = False,
         definitions: List[str] = [],
         recreate_context: bool = False,
-    ) -> Context:
+) -> Context:
     '''
     Gets the default context, creating a new one if necessary.
 

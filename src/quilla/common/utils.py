@@ -56,8 +56,10 @@ class EnumResolver:
     Utility class to define shared behaviour for classes that need to
     resolve string values into appropriate enums
     '''
+
+    # ctx type omitted due to circular import
     @classmethod
-    def _name_to_enum(cls, name: str, enum: Type[T], ctx = None) -> T:  # ctx type omitted due to circular import
+    def _name_to_enum(cls, name: str, enum: Type[T], ctx=None) -> T:
         '''
         Converts a string value into the appropriate enum type.
         Useful for inner representations of the data so we're not just working with strings

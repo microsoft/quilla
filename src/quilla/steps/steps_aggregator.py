@@ -47,12 +47,13 @@ class StepsAggregator(DriverHolder):
             UITestActions.OUTPUT_VALUE: OutputValueStep,
         }
 
-        ctx.pm.hook.quilla_step_factory_selector(selector=step_factory_selector)  # Allow plugins to add selectors
+        # Allow plugins to add selectors
+        ctx.pm.hook.quilla_step_factory_selector(selector=step_factory_selector)
 
         for step in steps:
             step_factory = step_factory_selector.get(step['action'], TestStep)
 
-            self._steps.append(step_factory.from_dict(ctx, step, driver=driver))
+            self._steps.append(step_factory.from_dict(ctx, step, driver=driver))  # type: ignore
 
     @property
     def driver(self) -> WebDriver:
