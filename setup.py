@@ -33,7 +33,8 @@ extra_dependencies = {
     'release': [
         'wheel',
         'twine',
-        'gitchangelog'
+        'gitchangelog',
+        'pystache',
     ]
 }
 

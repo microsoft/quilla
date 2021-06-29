@@ -1,0 +1,123 @@
+name: Release pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  version-check:
+    runs-on: ubuntu-latest
+    name: Verify version has been increased
+    outputs:
+      run_deploy: ${{ steps.verify.outputs.run_deploy }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: Install necessary package for scripts to run
+        run: pip install packaging
+
+      - name: Verify that the version has been increased
+        id: verify
+        run: echo "::set-output name=run_deploy::$(python scripts/version_verification.py $(python scripts/extract_version.py) $(cat VERSION))"
+
+  build:
+    needs: version-check
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ['3.8', '3.9']
+    name: Testing Quilla with python ${{ matrix.python }}
+    if: ${{ needs.version-check.outputs.run_deploy == 'yes' }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Install firefox
+        run: sudo apt install firefox
+
+      - name: Get geckodriver
+        run: ./scripts/get_geckodriver.sh
+
+      - name: Install wheel
+        run: pip install wheel
+
+      - name: Install all dependencies
+        run: pip install -e .[all]
+
+      - name: Run linter
+        run: flake8
+
+      - name: Run static type checker
+        run: mypy
+
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    name: Releasing package
+    env:
+      TWINE_USERNAME: ${{ secrets.TWINE_USERNAME }}
+      TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Needed for changelog generation
+      - name: Setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+
+      - name: Install release packages
+        run: pip install -e .[all]
+
+      - name: Ensure clean dist/ and build/ folders
+        run: rm -rf dist build
+        continue-on-error: true
+
+      - name: Build release
+        run: python setup.py sdist bdist_wheel
+
+      - name: Extract last version tag
+        run: echo "previous_tag=$(python scripts/extract_version.py)" >> $GITHUB_ENV
+
+      - name: Extract wheel artifact name
+        run: echo "wheel_name=$(echo dist/*.whl)" >> $GITHUB_ENV
+
+      - name: Extract tar.gz artifact name
+        run: echo "tar_name=$(echo dist/*.tar.gz)" >> $GITHUB_ENV
+
+      - name: Pull tags from the repo
+        run: git pull --tags
+
+      - name: Generate full changelog
+        run: gitchangelog | sed "s/(unreleased)/$(cat VERSION) ($(date +"%Y-%m-%d"))/" > CHANGELOG.md
+
+      - name: Make commit for auto-generated changelog
+        uses: EndBug/add-and-commit@v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          add: 'CHANGELOG.md'
+          message: '!gitchangelog'
+
+      - name: Generate version changelog for release
+        run: gitchangelog $previous_tag..HEAD | sed "s/## (unreleased)/Quilla v$(cat VERSION) ($(date +"%Y-%m-%d"))/" > version_changelog.md
+
+      - name:  Create Github release & upload files
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: hub release create -a $wheel_name -a $tar_name -F version_changelog.md $(cat VERSION)
+
+      - name: Install Twine
+        run: pip install twine
+
+      - name: Release package
+        run: twine upload dist/*
