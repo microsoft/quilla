@@ -1,0 +1,291 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>How does Quilla work? &mdash; Quilla  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="API Reference" href="source/modules.html" />
+    <link rel="prev" title="Running Quilla tests with Pytest" href="quilla_pytest.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Quilla
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Quilla</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Command-Line Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validation_files.html">Validation Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="context_expressions.html">Context Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hooks.html">Quilla Plugin Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quilla_pytest.html">Running Quilla tests with Pytest</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">How does Quilla work?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#code-execution-flow">Code execution flow</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="source/modules.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="makefile_vars.html">Makefile Variables</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Quilla</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>How does Quilla work?</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/how_it_works.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="tex2jax_ignore mathjax_ignore section" id="how-does-quilla-work">
+<h1>How does Quilla work?<a class="headerlink" href="#how-does-quilla-work" title="Permalink to this headline">¶</a></h1>
+<p>Quilla is a wrapper on Selenium to allow for test writers to create their testing scenarios focusing not on how Selenium works, but on how their tests are executed. As such, the goal was to create a testing syntax that focuses on legibility, and uses minimal required setup. For further information on the specifics of how Quilla translates the JSON test files into workable code and runs the validations, read on.</p>
+<div class="section" id="code-execution-flow">
+<h2>Code execution flow<a class="headerlink" href="#code-execution-flow" title="Permalink to this headline">¶</a></h2>
+<p>When Quilla is called, it will first create and initialize the plugin manager. This is done by first loading all the plugins that are exposed through python entrypoints, then attempting to discover a <code class="docutils literal notranslate"><span class="pre">uiconf.py</span></code> file in the plugin root directory (which is at this time just the calling directory).</p>
+<p>Next, Quilla will create the parser and pass it to the <code class="docutils literal notranslate"><span class="pre">quilla_addopts</span></code> hook to allow plugins to register new parser options. If the user has specified that they are passing in a filename, the file will then be read and the contents of the file will be saved as a string. It will then parse the CLI options and use them to create the default context.</p>
+<p>The context object is initialized as follows:</p>
+<ol class="simple">
+<li><p>A snapshot of the <code class="docutils literal notranslate"><span class="pre">PATH</span></code> variable is taken</p></li>
+<li><p>The debug configurations are set</p></li>
+<li><p>The driver path is added to the system <code class="docutils literal notranslate"><span class="pre">PATH</span></code> environment variable</p></li>
+<li><p>The definition files will be loaded and merged</p></li>
+</ol>
+<p>Once the context is initialized, it will be passed to the <code class="docutils literal notranslate"><span class="pre">quilla_configure</span></code> hook to allow plugins to alter the context.</p>
+<p>When the configuration is finalized, the contents of the file will be loaded with the default JSON loader from python into a dictionary. This dictionary will then be processed as follows:</p>
+<ol class="simple">
+<li><p>If the quilla test file has a ‘definitions’ key, it will be loaded and merged with the existing definitions</p></li>
+<li><p>All specified browser names will be resolved into a <code class="docutils literal notranslate"><span class="pre">BrowserTargets</span></code> enum.</p></li>
+<li><p>Each step will be processed as such:</p>
+<ol class="simple">
+<li><p>The action name for the step will be resolved into a <code class="docutils literal notranslate"><span class="pre">UITestActions</span></code> enum</p></li>
+<li><p>If the action is a <code class="docutils literal notranslate"><span class="pre">Validate</span></code> action, the type will be resolved into a <code class="docutils literal notranslate"><span class="pre">ValidationTypes</span></code> enum</p>
+<ol class="simple">
+<li><p>Based on the <code class="docutils literal notranslate"><span class="pre">ValidationTypes</span></code>, the appropriate <code class="docutils literal notranslate"><span class="pre">ValidationStates</span></code> subclass will be selected and the state will be resolved</p></li>
+</ol>
+</li>
+<li><p>If there are parameters specified, they will be checked:</p>
+<ol class="simple">
+<li><p>If the “source” parameter is specified, it will be resolved into a <code class="docutils literal notranslate"><span class="pre">OutputSources</span></code> enum</p></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">UIValidation</span></code> object is then created with the fully-resolved dictionary</p>
+<ol class="simple">
+<li><p>A <code class="docutils literal notranslate"><span class="pre">StepsAggregator</span></code> instance is created to manage the creation of all proper step objects</p>
+<ol class="simple">
+<li><p>Each step in the list of step dictionaries will be resolved into the appropriate type, either a <code class="docutils literal notranslate"><span class="pre">TestStep</span></code> or something that can be resolved by the <code class="docutils literal notranslate"><span class="pre">Validation</span></code> factory class</p></li>
+</ol>
+</li>
+<li><p>For each browser specified in the JSON file, a copy of the <code class="docutils literal notranslate"><span class="pre">StepsAggregator</span></code> object will be created and passed into a new <code class="docutils literal notranslate"><span class="pre">BrowserValidation</span></code> object</p></li>
+</ol>
+</li>
+</ol>
+<p>After the <code class="docutils literal notranslate"><span class="pre">UIValidation</span></code> object is created, it is passed to the <code class="docutils literal notranslate"><span class="pre">quilla_prevalidate</span></code> plugin hook. This hook is able to mutate the object however it sees fit, allowing end-users to manipulate steps dynamically.</p>
+<p>When the <code class="docutils literal notranslate"><span class="pre">UIValidation</span></code> object is finalized, it will then call <code class="docutils literal notranslate"><span class="pre">validate_all()</span></code> to execute all browser validations sequentially. The order in which the browsers will be validated is the same order in which they were specified. When calling the <code class="docutils literal notranslate"><span class="pre">validate_all</span></code> function, the following will occur for each browser target:</p>
+<ol class="simple">
+<li><p>An appropriate driver will be created and configured according to the runtime context, opening up a blank page</p></li>
+<li><p>The driver will navigate to the root path of the validation</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">BrowserValidation</span></code> object will bind the current driver to itself, to each of its steps (through the <code class="docutils literal notranslate"><span class="pre">StepsAggregator</span></code>), and to the runtime context</p></li>
+<li><p>Each step will be executed in order, performing the following:</p>
+<ol class="simple">
+<li><p>The action function is selected. For a <code class="docutils literal notranslate"><span class="pre">TestStep</span></code>, it is resolved based on the action associated to its <code class="docutils literal notranslate"><span class="pre">UITestActions</span></code> value through a dictionary selector. For a <code class="docutils literal notranslate"><span class="pre">Validation</span></code>, this is determined based on the <code class="docutils literal notranslate"><span class="pre">ValidationStates</span></code> subclass value (i.e. the <code class="docutils literal notranslate"><span class="pre">XPathValidationStates</span></code>, etc)</p></li>
+<li><p>If the action produces a report, add it to the list of resulting reports</p></li>
+<li><p>If the action produces an exception, a <code class="docutils literal notranslate"><span class="pre">StepFailureReport</span></code> will be generated and the rest of the steps will <em>not</em> be executed. This is substantially different from the <code class="docutils literal notranslate"><span class="pre">Validation</span></code> behaviour: the <code class="docutils literal notranslate"><span class="pre">Validate</span></code> action only describes the state of the page, so it does not necessarily mean that the steps following it are not able to be performed. Since almost every other action actually causes the state of the page to change, allowing the test to continue would mean allowing the execution of the next steps in an inconsistent state.</p></li>
+</ol>
+</li>
+<li><p>Once all steps have been executed, or an uncaught exception happens on the <code class="docutils literal notranslate"><span class="pre">StepsAggregator</span></code> (which will happen if the <code class="docutils literal notranslate"><span class="pre">suppress_exceptions</span></code> flag is set to <code class="docutils literal notranslate"><span class="pre">False</span></code> in the context object), the <code class="docutils literal notranslate"><span class="pre">BrowserValidation</span></code> will close the browser window, unbind the driver from itself, the steps, and the context.</p></li>
+<li><p>If no exception was raised, the list of report objects will be returned</p></li>
+</ol>
+<p>After each browser finishes executing, the returned reports are all aggregated and put into a <code class="docutils literal notranslate"><span class="pre">ReportSummary</span></code>, which is ultimately returned.</p>
+<p>Once the final <code class="docutils literal notranslate"><span class="pre">ReportSummary</span></code> has been generated, it is passed (along with the runtime context) to the <code class="docutils literal notranslate"><span class="pre">quilla_postvalidate</span></code> hook.</p>
+<p>Finally, the entire <code class="docutils literal notranslate"><span class="pre">ReportSummary</span></code> is converted into JSON alongside any outputs created by the test actions, which are then printed to the standard output. If the <code class="docutils literal notranslate"><span class="pre">ReportSummary</span></code> contains any failures, or critical failures, it will then return the exit code of 1, otherwise it will return an exit code of 0.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="source/modules.html" class="btn btn-neutral float-right" title="API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="quilla_pytest.html" class="btn btn-neutral float-left" title="Running Quilla tests with Pytest" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Microsoft.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

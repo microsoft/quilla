@@ -1,0 +1,372 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>quilla.browser package &mdash; Quilla  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="quilla.common package" href="quilla.common.html" />
+    <link rel="prev" title="quilla package" href="quilla.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Quilla
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Quilla</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Command-Line Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../validation_files.html">Validation Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../context_expressions.html">Context Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hooks.html">Quilla Plugin Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quilla_pytest.html">Running Quilla tests with Pytest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../how_it_works.html">How does Quilla work?</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="quilla.html">quilla package</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="quilla.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quilla.html#module-quilla.ctx">quilla.ctx module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quilla.html#module-quilla.ui_validation">quilla.ui_validation module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quilla.html#module-quilla.plugins">quilla.plugins module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quilla.html#module-quilla.hookspecs">quilla.hookspecs module</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="quilla.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">quilla.browser package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quilla.common.html">quilla.common package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quilla.reports.html">quilla.reports package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quilla.steps.html">quilla.steps package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pytest_quilla.html">pytest_quilla package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../README.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../makefile_vars.html">Makefile Variables</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Quilla</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">API Reference</a> &raquo;</li>
+        
+          <li><a href="quilla.html">quilla package</a> &raquo;</li>
+        
+      <li>quilla.browser package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/source/quilla.browser.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-quilla.browser">
+<span id="quilla-browser-package"></span><h1>quilla.browser package<a class="headerlink" href="#module-quilla.browser" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-quilla.browser.browser_validations">
+<span id="quilla-browser-browser-validations-module"></span><h2>quilla.browser.browser_validations module<a class="headerlink" href="#module-quilla.browser.browser_validations" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="quilla.browser.browser_validations.BrowserValidations">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">quilla.browser.browser_validations.</span></span><span class="sig-name descname"><span class="pre">BrowserValidations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url_root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">steps</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.browser.browser_validations.BrowserValidations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class that defines the behaviours for validating a set of steps
+for a specific browser target.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctx</strong> (<a class="reference internal" href="quilla.html#quilla.ctx.Context" title="quilla.ctx.Context"><code class="xref py py-class docutils literal notranslate"><span class="pre">Context</span></code></a>) – The runtime context for the application</p></li>
+<li><p><strong>target</strong> (<a class="reference internal" href="quilla.common.html#quilla.common.enums.BrowserTargets" title="quilla.common.enums.BrowserTargets"><code class="xref py py-class docutils literal notranslate"><span class="pre">BrowserTargets</span></code></a>) – An enum specifying the target browser that is desired</p></li>
+<li><p><strong>url_root</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The initial url for the browser to navigate to</p></li>
+<li><p><strong>steps</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">StepsAggregator</span></code>) – An aggregator class that manages all substeps</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="quilla.browser.browser_validations.BrowserValidations.ctx">
+<span class="sig-name descname"><span class="pre">ctx</span></span><a class="headerlink" href="#quilla.browser.browser_validations.BrowserValidations.ctx" title="Permalink to this definition">¶</a></dt>
+<dd><p>The runtime context for the application</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="quilla.browser.browser_validations.BrowserValidations.clean">
+<span class="sig-name descname"><span class="pre">clean</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#quilla.browser.browser_validations.BrowserValidations.clean" title="Permalink to this definition">¶</a></dt>
+<dd><p>Closes the browser instance and resets all the step drivers to None state</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="quilla.browser.browser_validations.BrowserValidations.driver_selector">
+<span class="sig-name descname"><span class="pre">driver_selector</span></span><em class="property"><span class="pre">:</span> <span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="quilla.common.html#quilla.common.enums.BrowserTargets" title="quilla.common.enums.BrowserTargets"><span class="pre">quilla.common.enums.BrowserTargets</span></a><span class="p"><span class="pre">,</span> </span><span class="pre">selenium.webdriver.remote.webdriver.WebDriver</span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">{&lt;BrowserTargets.FIREFOX:</span> <span class="pre">'Firefox'&gt;:</span> <span class="pre">&lt;class</span> <span class="pre">'quilla.browser.drivers.FirefoxBrowser'&gt;,</span> <span class="pre">&lt;BrowserTargets.CHROME:</span> <span class="pre">'Chrome'&gt;:</span> <span class="pre">&lt;class</span> <span class="pre">'quilla.browser.drivers.ChromeBrowser'&gt;,</span> <span class="pre">&lt;BrowserTargets.EDGE:</span> <span class="pre">'Edge'&gt;:</span> <span class="pre">&lt;class</span> <span class="pre">'quilla.browser.drivers.EdgeBrowser'&gt;}</span></em><a class="headerlink" href="#quilla.browser.browser_validations.BrowserValidations.driver_selector" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="quilla.browser.browser_validations.BrowserValidations.init">
+<span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#quilla.browser.browser_validations.BrowserValidations.init" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates the appropriate driver, sets the start URL to the specified root, and
+sets all steps to have the appropriate driver</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="quilla.browser.browser_validations.BrowserValidations.run_steps">
+<span class="sig-name descname"><span class="pre">run_steps</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#quilla.browser.browser_validations.BrowserValidations.run_steps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Executes all stored steps. Pass through method for the steps run_steps method</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<a class="reference internal" href="quilla.reports.html#quilla.reports.base_report.BaseReport" title="quilla.reports.base_report.BaseReport"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseReport</span></code></a>]</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of reports generated by the steps</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="quilla.browser.browser_validations.BrowserValidations.target">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">target</span></span><a class="headerlink" href="#quilla.browser.browser_validations.BrowserValidations.target" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="quilla.browser.browser_validations.BrowserValidations.validate">
+<span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#quilla.browser.browser_validations.BrowserValidations.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes the browser, runs the execution steps, and closes up the browser while
+ensuring that any exceptions still allow for cleanup of the browser</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<a class="reference internal" href="quilla.reports.html#quilla.reports.base_report.BaseReport" title="quilla.reports.base_report.BaseReport"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseReport</span></code></a>]</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of reports produced by the run_steps function</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>Exception</strong> – Any exception produced by the run_steps function</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-quilla.browser.drivers">
+<span id="quilla-browser-drivers-module"></span><h2>quilla.browser.drivers module<a class="headerlink" href="#module-quilla.browser.drivers" title="Permalink to this headline">¶</a></h2>
+<p>Module for webdriver subclasses that configure the browsers</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="quilla.browser.drivers.ChromeBrowser">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">quilla.browser.drivers.</span></span><span class="sig-name descname"><span class="pre">ChromeBrowser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.browser.drivers.ChromeBrowser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">selenium.webdriver.chrome.webdriver.WebDriver</span></code></p>
+<p>A class used to configure the Chrome browser driver for use in UIValidation module.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ctx</strong> (<a class="reference internal" href="quilla.html#quilla.ctx.Context" title="quilla.ctx.Context"><code class="xref py py-class docutils literal notranslate"><span class="pre">Context</span></code></a>) – The runtime context for the application</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="quilla.browser.drivers.EdgeBrowser">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">quilla.browser.drivers.</span></span><span class="sig-name descname"><span class="pre">EdgeBrowser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.browser.drivers.EdgeBrowser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">msedge.selenium_tools.webdriver.WebDriver</span></code></p>
+<p>A class used to configure the Edge browser driver for use in UIValidation module.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ctx</strong> (<a class="reference internal" href="quilla.html#quilla.ctx.Context" title="quilla.ctx.Context"><code class="xref py py-class docutils literal notranslate"><span class="pre">Context</span></code></a>) – The runtime context for the application</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="quilla.browser.drivers.FirefoxBrowser">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">quilla.browser.drivers.</span></span><span class="sig-name descname"><span class="pre">FirefoxBrowser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.browser.drivers.FirefoxBrowser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">selenium.webdriver.firefox.webdriver.WebDriver</span></code></p>
+<p>A class used to configure the Firefox browser driver for use in UIValidation module.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ctx</strong> (<a class="reference internal" href="quilla.html#quilla.ctx.Context" title="quilla.ctx.Context"><code class="xref py py-class docutils literal notranslate"><span class="pre">Context</span></code></a>) – The runtime context for the application</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="quilla.common.html" class="btn btn-neutral float-right" title="quilla.common package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="quilla.html" class="btn btn-neutral float-left" title="quilla package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Microsoft.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

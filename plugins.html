@@ -1,0 +1,437 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Plugins &mdash; Quilla  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Quilla Plugin Hooks" href="hooks.html" />
+    <link rel="prev" title="Context Expressions" href="context_expressions.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Quilla
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Quilla</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Command-Line Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validation_files.html">Validation Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="context_expressions.html">Context Expressions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Plugins</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#why-plugins">Why Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#plugin-discovery">Plugin discovery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#local-plugin-example-configuration">Local Plugin Example - Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#local-plugin-example-adding-cli-arguments">Local Plugin Example - Adding CLI Arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installed-plugin-example-packaging">Installed Plugin Example - Packaging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#local-plugin-example-context-expressions">Local Plugin Example - Context expressions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hooks.html">Quilla Plugin Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quilla_pytest.html">Running Quilla tests with Pytest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how_it_works.html">How does Quilla work?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/modules.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="makefile_vars.html">Makefile Variables</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Quilla</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Plugins</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/plugins.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="tex2jax_ignore mathjax_ignore section" id="plugins">
+<h1>Plugins<a class="headerlink" href="#plugins" title="Permalink to this headline">¶</a></h1>
+<p>The Quilla framework supports the use of both installed and local plugins. This is done to allow for
+maximum extensibility, while still only allowing for controlled access.</p>
+<div class="section" id="why-plugins">
+<h2>Why Plugins<a class="headerlink" href="#why-plugins" title="Permalink to this headline">¶</a></h2>
+<p>First and foremost, plugins allow the community to extend the behaviours of Quilla as well as for
+individual users to be able to have more granular configuration control over the module.</p>
+<p>Secondly, plugins allow for individual users of this project to decouple platform- and use-specific logic
+from the codebase of the entire project. For example, a user could use a specific secret store that
+they would like to retrieve data from and inject into their validations dynamically. Instead of having
+to find a way of doing so externally, they could write a plugin to add a ‘Secrets’ context object, connecting
+their own code to the right secret store without having to expose it.</p>
+<p>More examples of what can be done with plugins are found in the sections below.</p>
+</div>
+<div class="section" id="plugin-discovery">
+<h2>Plugin discovery<a class="headerlink" href="#plugin-discovery" title="Permalink to this headline">¶</a></h2>
+<p>Quilla discovers the plugins by searching the installed modules for ‘QuillaPlugins’ entrypoints,
+and by searching a local file (specifically, the <code class="docutils literal notranslate"><span class="pre">uiconf.py</span></code> file in the calling directory). The discovery
+process is done by searching for the predefined hook functions (as found in the <code class="docutils literal notranslate"><span class="pre">hookspec</span></code> module). If
+your module, or your <code class="docutils literal notranslate"><span class="pre">uiconf.py</span></code> file, provide a function with a hook name it will be automatically loaded
+and used at the appropriate times. See the <code class="docutils literal notranslate"><span class="pre">hookspec</span></code> documentation to see exactly which plugins are currently
+supported.</p>
+</div>
+<div class="section" id="local-plugin-example-configuration">
+<h2>Local Plugin Example - Configuration<a class="headerlink" href="#local-plugin-example-configuration" title="Permalink to this headline">¶</a></h2>
+<p>Consider the example of a programmer that does not want to enable all of the debugging configurations, but does not
+want the browser to run in headless mode. Without plugins, they would have to download the repository, make
+changes to the code, install it, make changes to the code, and then run.</p>
+<p>This is far too cumbersome for such a small change, but with plugins we can do it in just two lines!</p>
+<ol class="simple">
+<li><p>In the directory that includes your validations, add a <code class="docutils literal notranslate"><span class="pre">uiconf.py</span></code> file</p></li>
+<li><p>Add the following lines to <code class="docutils literal notranslate"><span class="pre">uiconf.py</span></code>:</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">quilla_configure</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run_headless</span> <span class="o">=</span> <span class="kc">False</span>
+</pre></div>
+</div>
+<p>And you are all done! No further steps are required, you can just run the <code class="docutils literal notranslate"><span class="pre">quilla</span></code> CLI from that directory
+and the configurations will be seamlessly picked up.</p>
+</div>
+<div class="section" id="local-plugin-example-adding-cli-arguments">
+<h2>Local Plugin Example - Adding CLI Arguments<a class="headerlink" href="#local-plugin-example-adding-cli-arguments" title="Permalink to this headline">¶</a></h2>
+<p>Using the plugin system one can also seamlessly add (and act on) different CLI arguments which can be used later
+on by your plugin, or maybe even by someone else’s plugin!</p>
+<p>As an example, consider the example from above of the programmer that wants to run the browser outside of headless
+mode. Perhaps they wish to keep the default behaviour as running without headless mode, but they don’t want to change
+code whenever they swap between modes. They would need to add a new CLI argument, and consume it for their configuration!</p>
+<ol class="simple">
+<li><p>In the validations directory, add a <code class="docutils literal notranslate"><span class="pre">uiconf.py</span></code> file</p></li>
+<li><p>Add the following lines to <code class="docutils literal notranslate"><span class="pre">uiconf.py</span></code>:</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">quilla_addopts</span><span class="p">(</span><span class="n">parser</span><span class="p">):</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s1">&#39;-H&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;--headless&#39;</span><span class="p">,</span>
+        <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Run the browsers in headless mode&#39;</span>
+    <span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">quilla_configure</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run_headless</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">headless</span>
+</pre></div>
+</div>
+<p>Now, whenever they run <code class="docutils literal notranslate"><span class="pre">quilla</span></code> it will run with the browsers not in headless mode,
+if they run <code class="docutils literal notranslate"><span class="pre">quilla</span> <span class="pre">--headless</span></code> it will run with the browsers in headless mode, and if they run
+<code class="docutils literal notranslate"><span class="pre">quilla</span> <span class="pre">--help</span></code>, they should see their CLI argument:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: quilla [-h] [-f] [-d] [--driver-dir DRIVERS_PATH] [-P] [-H] json
+
+Program to provide a report of UI validations given a json representation of the validations or given the filename
+containing a json document describing the validations
+
+positional arguments:
+  json                  The json file name or raw json string
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -f, --file            Whether to treat the argument as raw json or as a file
+  -d, --debug           Enable debug mode
+  --driver-dir DRIVERS_PATH
+                        The directory where browser drivers are stored
+  -P, --pretty          Set this flag to have the output be pretty-printed
+  -H, --headless        Run the browsers in headless mode
+</pre></div>
+</div>
+</div>
+<div class="section" id="installed-plugin-example-packaging">
+<h2>Installed Plugin Example - Packaging<a class="headerlink" href="#installed-plugin-example-packaging" title="Permalink to this headline">¶</a></h2>
+<p>As a final example with our previous programmer, suppose they now want to publish this new package
+to be used by others. They set up their package as follows:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>quilla-headless
++-- headless
+|   +-- __init__.py
+|   +-- cli_configs.py
++-- setup.py
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Inside headless/cli_configs.py</span>
+
+<span class="k">def</span> <span class="nf">quilla_addopts</span><span class="p">(</span><span class="n">parser</span><span class="p">):</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s1">&#39;-H&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;--headless&#39;</span><span class="p">,</span>
+        <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Run the browsers in headless mode&#39;</span>
+    <span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">quilla_configure</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run_headless</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">headless</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Inside setup.py</span>
+
+<span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span><span class="p">,</span> <span class="n">find_packages</span>
+
+<span class="n">setup</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;quilla-headless&#39;</span><span class="p">,</span>
+    <span class="n">version</span><span class="o">=</span><span class="s1">&#39;0.1&#39;</span><span class="p">,</span>
+    <span class="n">packages</span><span class="o">=</span><span class="n">find_packages</span><span class="p">(),</span>
+    <span class="n">entry_points</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;quillaPlugins&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;quilla-headless = headless.cli_configs&#39;</span><span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>And they run <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">.</span></code> in the <code class="docutils literal notranslate"><span class="pre">quilla-headless</span></code> directory. Their new CLI option and plugin will
+now be globally available to the programmer, no matter where they call it from. Anyone who installs their package
+will also be able to use this new CLI option!</p>
+</div>
+<div class="section" id="local-plugin-example-context-expressions">
+<h2>Local Plugin Example - Context expressions<a class="headerlink" href="#local-plugin-example-context-expressions" title="Permalink to this headline">¶</a></h2>
+<p>The Quilla framework includes the ability to use the <code class="docutils literal notranslate"><span class="pre">Validation</span></code> and <code class="docutils literal notranslate"><span class="pre">Environment</span></code> context objects
+(discussed in the <a class="reference internal" href="context_expressions.html"><span class="doc std std-doc">context expression documentation</span></a>) out-of-the-box, which allows
+validations to produce (and use) outputs, and use environment variables. However, it is also possible to add new context
+objects through the use of plugins. In this example, we’ll be creating a local plugin that will add the <code class="docutils literal notranslate"><span class="pre">Driver</span></code> context
+object, which will give us some basic information on the state of the current driver.</p>
+<ol>
+<li><p>Create a <code class="docutils literal notranslate"><span class="pre">uiconf.py</span></code> file in the directory</p></li>
+<li><p>Add the following to the <code class="docutils literal notranslate"><span class="pre">uiconf.py</span></code> file:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">quilla_context_obj</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+    <span class="c1"># We only handle &#39;Driver&#39; context objects, so return None</span>
+    <span class="c1"># to allow other plugins to handle the object</span>
+    <span class="k">if</span> <span class="n">root</span> <span class="o">!=</span> <span class="s1">&#39;Driver&#39;</span><span class="p">:</span>
+        <span class="k">return</span>
+
+    <span class="c1"># We only support &#39;name&#39; and &#39;title&#39; so any path of length</span>
+    <span class="c1"># longer than one cannot resolve with this plugin, but another</span>
+    <span class="c1"># plugin could support it so we&#39;ll still return None here</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span>
+
+    <span class="c1"># Now we handle the actual options that we support</span>
+    <span class="n">opt</span> <span class="o">=</span> <span class="n">path</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">opt</span> <span class="o">==</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">ctx</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">name</span>
+    <span class="k">if</span> <span class="n">opt</span> <span class="o">==</span> <span class="s1">&#39;title&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">ctx</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">title</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create the <code class="docutils literal notranslate"><span class="pre">Validation.json</span></code> file in the same directory</p></li>
+<li><p>Add the following to the <code class="docutils literal notranslate"><span class="pre">Validation.json</span></code> file:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;targetBrowsers&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Firefox&quot;</span><span class="p">],</span>
+    <span class="nt">&quot;path&quot;</span><span class="p">:</span> <span class="s2">&quot;https://bing.ca&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;steps&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;OutputValue&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Driver.name }}&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;source&quot;</span><span class="p">:</span> <span class="s2">&quot;Literal&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;outputName&quot;</span><span class="p">:</span> <span class="s2">&quot;browserName&quot;</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;OutputValue&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Driver.title }}&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;source&quot;</span><span class="p">:</span> <span class="s2">&quot;Literal&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;outputName&quot;</span><span class="p">:</span> <span class="s2">&quot;siteTitle&quot;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">UIValidation</span> <span class="pre">-f</span> <span class="pre">Validation.json</span> <span class="pre">--pretty</span></code>. You should receive the following output:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;Outputs&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;browserName&quot;</span><span class="p">:</span> <span class="s2">&quot;firefox&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;siteTitle&quot;</span><span class="p">:</span> <span class="s2">&quot;Bing&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;reportSummary&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;critical_failures&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="nt">&quot;failures&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="nt">&quot;reports&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="nt">&quot;successes&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="nt">&quot;total_reports&quot;</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="hooks.html" class="btn btn-neutral float-right" title="Quilla Plugin Hooks" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="context_expressions.html" class="btn btn-neutral float-left" title="Context Expressions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Microsoft.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

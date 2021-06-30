@@ -1,0 +1,352 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Quilla Plugin Hooks &mdash; Quilla  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Running Quilla tests with Pytest" href="quilla_pytest.html" />
+    <link rel="prev" title="Plugins" href="plugins.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Quilla
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Quilla</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Command-Line Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validation_files.html">Validation Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="context_expressions.html">Context Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins.html">Plugins</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quilla Plugin Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quilla_pytest.html">Running Quilla tests with Pytest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how_it_works.html">How does Quilla work?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/modules.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="makefile_vars.html">Makefile Variables</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Quilla</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Quilla Plugin Hooks</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/hooks.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-quilla.hookspecs">
+<span id="quilla-plugin-hooks"></span><h1>Quilla Plugin Hooks<a class="headerlink" href="#module-quilla.hookspecs" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="quilla.hookspecs.quilla_addopts">
+<span class="sig-prename descclassname"><span class="pre">quilla.hookspecs.</span></span><span class="sig-name descname"><span class="pre">quilla_addopts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parser</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.hookspecs.quilla_addopts" title="Permalink to this definition">¶</a></dt>
+<dd><p>A hook to allow plugins to add additional arguments to the argument parser.
+This can be used if a plugin requires additional parameters or data in some way.</p>
+<p>This is called after the initial argument parser setup</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>parser</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">ArgumentParser</span></code>) – The argparse Argument Parser instance used by the application</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="quilla.hookspecs.quilla_configure">
+<span class="sig-prename descclassname"><span class="pre">quilla.hookspecs.</span></span><span class="sig-name descname"><span class="pre">quilla_configure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.hookspecs.quilla_configure" title="Permalink to this definition">¶</a></dt>
+<dd><p>A hook to allow plugins to modify the context object, either changing its data
+or adding data to it.</p>
+<p>This is called after the initial setup of the context object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctx</strong> (<a class="reference internal" href="source/quilla.html#quilla.ctx.Context" title="quilla.ctx.Context"><code class="xref py py-class docutils literal notranslate"><span class="pre">Context</span></code></a>) – The runtime context for the application</p></li>
+<li><p><strong>args</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Namespace</span></code>) – Parsed CLI args, in case they are needed</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="quilla.hookspecs.quilla_context_obj">
+<span class="sig-prename descclassname"><span class="pre">quilla.hookspecs.</span></span><span class="sig-name descname"><span class="pre">quilla_context_obj</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.hookspecs.quilla_context_obj" title="Permalink to this definition">¶</a></dt>
+<dd><p>A hook to allow pluggins to resolve a context object given its root
+and a path. All plugins that implement this hook <em>must</em> return None if they cannot
+resolve the context object.</p>
+<p>It is not possible to override the default context object handlers</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctx</strong> (<a class="reference internal" href="source/quilla.html#quilla.ctx.Context" title="quilla.ctx.Context"><code class="xref py py-class docutils literal notranslate"><span class="pre">Context</span></code></a>) – The runtime context for the application</p></li>
+<li><p><strong>root</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The name of the context object, which is expressed as the root
+of a dot-separated path in the validation files</p></li>
+<li><p><strong>path</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – The remainder of the context object path, where data is being
+retrieved from</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Returns</dt><dd><p>the data stored at the context object if existing, None otherwise</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="quilla.hookspecs.quilla_postvalidate">
+<span class="sig-prename descclassname"><span class="pre">quilla.hookspecs.</span></span><span class="sig-name descname"><span class="pre">quilla_postvalidate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reports</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.hookspecs.quilla_postvalidate" title="Permalink to this definition">¶</a></dt>
+<dd><p>A hook called immediately after all validations are executed and the full
+ReportSummary is generated</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctx</strong> (<a class="reference internal" href="source/quilla.html#quilla.ctx.Context" title="quilla.ctx.Context"><code class="xref py py-class docutils literal notranslate"><span class="pre">Context</span></code></a>) – The runtime context for the application</p></li>
+<li><p><strong>reports</strong> (<a class="reference internal" href="source/quilla.reports.html#quilla.reports.report_summary.ReportSummary" title="quilla.reports.report_summary.ReportSummary"><code class="xref py py-class docutils literal notranslate"><span class="pre">ReportSummary</span></code></a>) – An object capturing all generated reports and giving summary data</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="quilla.hookspecs.quilla_prevalidate">
+<span class="sig-prename descclassname"><span class="pre">quilla.hookspecs.</span></span><span class="sig-name descname"><span class="pre">quilla_prevalidate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">validation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.hookspecs.quilla_prevalidate" title="Permalink to this definition">¶</a></dt>
+<dd><p>A hook called immediately before the validations attempt to be resolved
+(i.e. before <cite>validations.validate_all()</cite> is called)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>validation</strong> (<a class="reference internal" href="source/quilla.html#quilla.ui_validation.UIValidation" title="quilla.ui_validation.UIValidation"><code class="xref py py-class docutils literal notranslate"><span class="pre">UIValidation</span></code></a>) – The collected validations from the json passed to
+the application</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="quilla.hookspecs.quilla_resolve_enum_from_name">
+<span class="sig-prename descclassname"><span class="pre">quilla.hookspecs.</span></span><span class="sig-name descname"><span class="pre">quilla_resolve_enum_from_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enum</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.hookspecs.quilla_resolve_enum_from_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>A hook called when a value specified by the quilla test should be resolved to an
+enum, but no enum has been found. This is to allow plugins to register custom
+enum values for quilla, such as new step actions, validation types, validation states,
+output sources, etc.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – the string value specified in the quilla test</p></li>
+<li><p><strong>enum</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Type</span></code>[~T]) – The enum subclass type that is being attempted to be resolved. This
+should give an indication as to what is being resolved. For example,
+UITestActions is the enum type being resolved for the ‘actions’ field.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[~T]</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The resolved enum, if it can be resolved. None if the plugin can’t resolve
+the value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="quilla.hookspecs.quilla_step_factory_selector">
+<span class="sig-prename descclassname"><span class="pre">quilla.hookspecs.</span></span><span class="sig-name descname"><span class="pre">quilla_step_factory_selector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">selector</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.hookspecs.quilla_step_factory_selector" title="Permalink to this definition">¶</a></dt>
+<dd><p>A hook called immediately before resolving the step factory for a given step definition.
+This is used to register new step factories for custom step objects.</p>
+<p>Most custom steps should just add themselves to the <cite>quilla_step_selector</cite> hook, but if
+a custom step requires complex logic it might be beneficial to register a factory to
+have more fine-grained control over the logic</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>selector</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<a class="reference internal" href="source/quilla.common.html#quilla.common.enums.UITestActions" title="quilla.common.enums.UITestActions"><code class="xref py py-class docutils literal notranslate"><span class="pre">UITestActions</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Type</span></code>[<a class="reference internal" href="source/quilla.steps.html#quilla.steps.base_steps.BaseStepFactory" title="quilla.steps.base_steps.BaseStepFactory"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseStepFactory</span></code></a>]]) – The factory selector dictionary.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="quilla_pytest.html" class="btn btn-neutral float-right" title="Running Quilla tests with Pytest" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="plugins.html" class="btn btn-neutral float-left" title="Plugins" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Microsoft.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

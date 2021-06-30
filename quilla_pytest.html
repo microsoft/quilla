@@ -1,0 +1,283 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Running Quilla tests with Pytest &mdash; Quilla  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="How does Quilla work?" href="how_it_works.html" />
+    <link rel="prev" title="Quilla Plugin Hooks" href="hooks.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Quilla
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Quilla</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Command-Line Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validation_files.html">Validation Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="context_expressions.html">Context Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hooks.html">Quilla Plugin Hooks</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Running Quilla tests with Pytest</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#why-pytest">Why Pytest?</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#automatic-test-discovery">Automatic test discovery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fail-only-reporting">Fail-only Reporting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rich-plugin-support">Rich plugin support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dynamic-test-suite-creation">Dynamic test suite creation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#adding-quilla-cli-options-when-running-in-pytest">Adding Quilla CLI options when running in Pytest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#changing-quilla-test-prefix">Changing Quilla test prefix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-pytest-with-uiconf-py-plugins-file">Using Pytest with uiconf.py plugins file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#adding-test-markers-to-quilla-tests">Adding test markers to Quilla tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#quilla-and-pytest-xdist">Quilla and pytest-xdist</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="how_it_works.html">How does Quilla work?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/modules.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="makefile_vars.html">Makefile Variables</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Quilla</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Running Quilla tests with Pytest</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/quilla_pytest.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="tex2jax_ignore mathjax_ignore section" id="running-quilla-tests-with-pytest">
+<h1>Running Quilla tests with Pytest<a class="headerlink" href="#running-quilla-tests-with-pytest" title="Permalink to this headline">¶</a></h1>
+<p>Quilla is bundled with the <code class="docutils literal notranslate"><span class="pre">pytest-quilla</span></code> plugin, but it is disabled by default to prevent unexpected behaviour. To start using Quilla with Pytest, add the line <code class="docutils literal notranslate"><span class="pre">use-quilla</span> <span class="pre">=</span> <span class="pre">True</span></code> to the project’s pytest configuration (i.e. pytest.ini, setup.cfg, etc). Setting this flag will allow any JSON file with a specific prefix (by default, files that match <code class="docutils literal notranslate"><span class="pre">quilla*.json</span></code>) to be discovered by Pytest as a Quilla test.</p>
+<div class="section" id="why-pytest">
+<h2>Why Pytest?<a class="headerlink" href="#why-pytest" title="Permalink to this headline">¶</a></h2>
+<p>There are many test frameworks available, even if limiting only to those that are available for Python. Pytest, however, offers some unique features that Quilla benefits greatly from, and in turn Quilla enhances the features of Pytest. These are discussed below.</p>
+<div class="section" id="automatic-test-discovery">
+<h3>Automatic test discovery<a class="headerlink" href="#automatic-test-discovery" title="Permalink to this headline">¶</a></h3>
+<p>Quilla was originally designed to execute a single file’s tests, which simplified the execution logic and the CLI. Pytest’s test discovery feature then makes it incredibly easy to extend Quilla to an arbitrary number of files without having to write a new test discovery functionality</p>
+</div>
+<div class="section" id="fail-only-reporting">
+<h3>Fail-only Reporting<a class="headerlink" href="#fail-only-reporting" title="Permalink to this headline">¶</a></h3>
+<p>Quilla provides robust reporting for its tests, and will output the full report (and the test outputs) regardless of the test’s success or failure status. This enables advanced users to chain multiple Quilla tests together using the various outputs that they produce. However, most users do not need this, and likely will not concern themselves with checking the output unless the tests have failed. Pytest’s reporting tool will only show the output of a test when it fails, which covers most of the basic usecase</p>
+</div>
+<div class="section" id="rich-plugin-support">
+<h3>Rich plugin support<a class="headerlink" href="#rich-plugin-support" title="Permalink to this headline">¶</a></h3>
+<p>It is incredibly easy to write a Pytest plugin, and the logic for the <code class="docutils literal notranslate"><span class="pre">pytest-quilla</span></code> plugin is kept completely separate from the <code class="docutils literal notranslate"><span class="pre">quilla</span></code> logic. This allows Quilla to distribute both packages easily, and lets the <code class="docutils literal notranslate"><span class="pre">pytest-quilla</span></code> plugin automatically inherit features from the <code class="docutils literal notranslate"><span class="pre">quilla</span></code> plugin without having to re-write any of the plugin code, provided that the basic interface it uses remains unchanged.</p>
+<p>Pytest’s rich plugin support also means Quilla can already leverage the community. A great example of this is using Quilla with the <code class="docutils literal notranslate"><span class="pre">pytest-xdist</span></code> plugin, which enables Quilla to leverage multi-processing without having to add in multiprocessing features to Quilla.</p>
+</div>
+<div class="section" id="dynamic-test-suite-creation">
+<h3>Dynamic test suite creation<a class="headerlink" href="#dynamic-test-suite-creation" title="Permalink to this headline">¶</a></h3>
+<p>Using Pytest markers, Quilla can leverage existing functionality to make it easy for users to create entire test suites on the fly. By properly labelling their Quilla tests with custom markers, users can opt to only run some tests, and keeping track of which test suite a given test belongs to happens at the test-level, as opposed to traditional methods which require different inventory files to keep track of tests.</p>
+<p>Read more about the use of custom markers on the <a class="reference external" href="https://docs.pytest.org/en/6.2.x/example/markers.html">pytest documentation</a></p>
+</div>
+</div>
+<div class="section" id="adding-quilla-cli-options-when-running-in-pytest">
+<h2>Adding Quilla CLI options when running in Pytest<a class="headerlink" href="#adding-quilla-cli-options-when-running-in-pytest" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">pytest-quilla</span></code> plugin adds a CLI option to Pytest, allowing it to pass those specified options to the Quilla contexts. To specify a definition file named ‘Definitions.json’, for example, run pytest with the following command: <code class="docutils literal notranslate"><span class="pre">pytest</span> <span class="pre">--quilla-opts=&quot;--definitions</span> <span class="pre">test/definitions/Definitions.json&quot;</span></code></p>
+</div>
+<div class="section" id="changing-quilla-test-prefix">
+<h2>Changing Quilla test prefix<a class="headerlink" href="#changing-quilla-test-prefix" title="Permalink to this headline">¶</a></h2>
+<p>Setting the ini option <code class="docutils literal notranslate"><span class="pre">quilla-prefix</span></code> will allow custom prefix options. For example, to have pytest register all JSON files matching <code class="docutils literal notranslate"><span class="pre">test_*.json</span></code> as Quilla tests, set <code class="docutils literal notranslate"><span class="pre">quilla-prefix</span> <span class="pre">=</span> <span class="pre">test_</span></code> in the project’s pytest configuration</p>
+</div>
+<div class="section" id="using-pytest-with-uiconf-py-plugins-file">
+<h2>Using Pytest with uiconf.py plugins file<a class="headerlink" href="#using-pytest-with-uiconf-py-plugins-file" title="Permalink to this headline">¶</a></h2>
+<p>Plugins will still be discovered when running Quilla, and must be installed or placed in the same directory that the project’s pytest configuration is in. Simply add a <code class="docutils literal notranslate"><span class="pre">uiconf.py</span></code> file in the same directory as the setup.cfg (or pytest.ini, tox.ini, etc), and Quilla will take care of the rest</p>
+</div>
+<div class="section" id="adding-test-markers-to-quilla-tests">
+<h2>Adding test markers to Quilla tests<a class="headerlink" href="#adding-test-markers-to-quilla-tests" title="Permalink to this headline">¶</a></h2>
+<p>Quilla tests support static markers in the JSON files. Add a ‘markers’ key to the top level of the JSON document. Examples of this can be found within the <code class="docutils literal notranslate"><span class="pre">tests/integration</span></code> directory of the Quilla repository, since all these tests are marked with the <code class="docutils literal notranslate"><span class="pre">integration</span></code> and <code class="docutils literal notranslate"><span class="pre">slow</span></code> markers.</p>
+<p>It is not however possible to add markers that require additional parameters at this time to individual quilla tests through the JSON document. For example, the <code class="docutils literal notranslate"><span class="pre">skipif</span></code> marker requires a boolean to determine whether the test should be skipped or not, and it is not possible to do so at this time. The <code class="docutils literal notranslate"><span class="pre">skip</span></code> marker, however, does indeed work: the <code class="docutils literal notranslate"><span class="pre">reason</span></code> field can be omitted.</p>
+</div>
+<div class="section" id="quilla-and-pytest-xdist">
+<h2>Quilla and pytest-xdist<a class="headerlink" href="#quilla-and-pytest-xdist" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">pytest-xdist</span></code> plugin is fully compatible with Quilla! Quilla uses the <code class="docutils literal notranslate"><span class="pre">pytest-xdist</span></code> to parallelize the tests, since all integration tests are written as Quilla tests and each test has an isolated context. It is encouraged, given how browser tests are usually slow, to use <code class="docutils literal notranslate"><span class="pre">pytest-xdist</span></code> to speed up the testing suite.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="how_it_works.html" class="btn btn-neutral float-right" title="How does Quilla work?" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="hooks.html" class="btn btn-neutral float-left" title="Quilla Plugin Hooks" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Microsoft.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

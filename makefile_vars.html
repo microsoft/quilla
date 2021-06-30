@@ -1,0 +1,318 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Makefile Variables &mdash; Quilla  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Documentation" href="README.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Quilla
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Quilla</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Command-Line Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validation_files.html">Validation Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="context_expressions.html">Context Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hooks.html">Quilla Plugin Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quilla_pytest.html">Running Quilla tests with Pytest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how_it_works.html">How does Quilla work?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/modules.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html">Documentation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Makefile Variables</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#changing-the-distribution-directory">Changing the distribution directory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#only-build-wheel-packages">Only build wheel packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#build-html-man-latexpdf-and-epub-docs-targets">Build html, man, latexpdf, and epub docs targets</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Quilla</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Makefile Variables</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/makefile_vars.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="tex2jax_ignore mathjax_ignore section" id="makefile-variables">
+<h1>Makefile Variables<a class="headerlink" href="#makefile-variables" title="Permalink to this headline">¶</a></h1>
+<p>The following are all the makefile variables used</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable Name</p></th>
+<th class="head"><p>Use</p></th>
+<th class="head"><p>Defaults</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PYTHON_EXECUTABLE</span></code></p></td>
+<td><p>The python version to use for any targets that use python commands. If you are using virtual environments, this will auto-detect it, and only should be set if you have a specific need to change the executable used for the make commands</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">python3</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CLEAN_CMDS</span></code></p></td>
+<td><p>The <code class="docutils literal notranslate"><span class="pre">make</span></code> targets to be executed when running <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">clean</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">clean-python</span> <span class="pre">clean-docs</span> <span class="pre">clean-build</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DOC_TARGETS</span></code></p></td>
+<td><p>The <code class="docutils literal notranslate"><span class="pre">make</span></code> targets to build docs for. For more info on possible targets, run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">help</span></code> in the <code class="docutils literal notranslate"><span class="pre">quilla/docs</span></code> directory</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">html</span> <span class="pre">man</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DOCS_BUILD_DIR</span></code></p></td>
+<td><p>The directory to output the docs artifacts in. This will output in <code class="docutils literal notranslate"><span class="pre">quilla/docs/$(DOCS_BUILD_DIR)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">_build</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DIST_DIR</span></code></p></td>
+<td><p>The directory in which distribution artifacts (<code class="docutils literal notranslate"><span class="pre">.whl</span></code> files, source distributions, etc) will be output to</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">dist</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SDIST</span></code></p></td>
+<td><p>The configurations for the source distribution target</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sdist</span> <span class="pre">--dist-dir</span> <span class="pre">$(DIST_DIR)</span> <span class="pre">$(SDIST_OPTS)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SDIST_OPTS</span></code></p></td>
+<td><p>Additional options for <code class="docutils literal notranslate"><span class="pre">SDIST</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">BDIST_WHEEL</span></code></p></td>
+<td><p>The configurations for the wheel binary distribution target</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bdist_wheel</span> <span class="pre">--dist-dir</span> <span class="pre">$(DIST_DIR)</span> <span class="pre">$(BDIST_OPTS)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">BDIST_OPTS</span></code></p></td>
+<td><p>Additional options for <code class="docutils literal notranslate"><span class="pre">BDIST_WHEEL</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PACKAGE_TARGETS</span></code></p></td>
+<td><p>The distribution targets for the <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">package</span></code> command</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">$(SDIST)</span> <span class="pre">$(BDIST_WHEEL)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PACKAGE_OPTS</span></code></p></td>
+<td><p>Additional options for the <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">package</span></code> and <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">package-deps</span></code> targets</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="changing-the-distribution-directory">
+<h3>Changing the distribution directory<a class="headerlink" href="#changing-the-distribution-directory" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># Using options</span>
+    $ make package <span class="nv">DIST_DIR</span><span class="o">=</span><span class="s2">&quot;_dist&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># Using environment variables</span>
+    $ <span class="nv">DIST_DIR</span><span class="o">=</span><span class="s2">&quot;_dist&quot;</span> make package
+</pre></div>
+</div>
+</div>
+<div class="section" id="only-build-wheel-packages">
+<h3>Only build wheel packages<a class="headerlink" href="#only-build-wheel-packages" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># Using environment variables</span>
+    $ <span class="nv">SDIST</span><span class="o">=</span><span class="s2">&quot;&quot;</span> make package
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># Using options</span>
+    $ make package <span class="nv">SDIST</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="build-html-man-latexpdf-and-epub-docs-targets">
+<h3>Build html, man, latexpdf, and epub docs targets<a class="headerlink" href="#build-html-man-latexpdf-and-epub-docs-targets" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># Using environment variables</span>
+    $ <span class="nv">DOC_TARGETS</span><span class="o">=</span><span class="s2">&quot;html man latexpdf epub&quot;</span> make docs
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="README.html" class="btn btn-neutral float-left" title="Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Microsoft.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

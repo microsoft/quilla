@@ -1,0 +1,641 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Validation Files &mdash; Quilla  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Context Expressions" href="context_expressions.html" />
+    <link rel="prev" title="Installation" href="install.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Quilla
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Quilla</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Command-Line Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Validation Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#supported-actions">Supported actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#output-values">Output Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#validations">Validations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#xpath-validation">XPath Validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#url-validation">URL Validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#searching-bing-for-puppies">Searching Bing for puppies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#signing-in-to-github">Signing In to Github</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="context_expressions.html">Context Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hooks.html">Quilla Plugin Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quilla_pytest.html">Running Quilla tests with Pytest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how_it_works.html">How does Quilla work?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/modules.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="makefile_vars.html">Makefile Variables</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Quilla</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Validation Files</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/validation_files.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="tex2jax_ignore mathjax_ignore section" id="validation-files">
+<h1>Validation Files<a class="headerlink" href="#validation-files" title="Permalink to this headline">¶</a></h1>
+<p>Quilla operates through validation files, which are <code class="docutils literal notranslate"><span class="pre">JSON</span></code> files that define the environment and process for performing a validation in a declarative way. Each validation file requires the following:</p>
+<ul class="simple">
+<li><p>One or more target browsers (Firefox, Chrome, Edge)</p></li>
+<li><p>A starting URL path</p></li>
+<li><p>A list of steps</p></li>
+</ul>
+<p>Each step can be either a setup step, or a validation step. Setup steps do not ordinarily provide any reports if they are successful, and Quilla will abort the test if any steps cause an error, as it will assume that the error is not recoverable. In this case, a <code class="docutils literal notranslate"><span class="pre">StepFailureReport</span></code> will be produced, and the <code class="docutils literal notranslate"><span class="pre">ReportSummary</span></code> will indicate that there is a critical failure.</p>
+<p>Validation steps will produce a <code class="docutils literal notranslate"><span class="pre">ValidationReport</span></code>, which can result in either a success or a failure. Although the hope is that every test you write will result in a success, Quilla will not abort if a validation fails, and will continue the test until it is finished or otherwise aborted. However, if in attempting to perform the validation some unrecoverable error occurs, Quilla will instead produce a <code class="docutils literal notranslate"><span class="pre">StepFailureReport</span></code> with the exception that occurred and abort the execution.</p>
+<p>All Quilla integration tests are written as quilla tests and therefore can be referenced as examples when writing new Quilla tests.</p>
+<div class="section" id="supported-actions">
+<h2>Supported actions<a class="headerlink" href="#supported-actions" title="Permalink to this headline">¶</a></h2>
+<p>The table below summarizes all the supported actions, what they do, and what they require. The <code class="docutils literal notranslate"><span class="pre">Validate</span></code> and <code class="docutils literal notranslate"><span class="pre">OutputValue</span></code> actions are omitted from this table and are shown in later sections.</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Action</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Target</p></th>
+<th class="head"><p>Parameters</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Refresh</span></code></p></td>
+<td><p>Refreshes the current page</p></td>
+<td><p>None</p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">NavigateBack</span></code></p></td>
+<td><p>Navigates back to the last page</p></td>
+<td><p>None</p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">NavigateForward</span></code></p></td>
+<td><p>Navigates forward to the next page</p></td>
+<td><p>None</p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">NavigateTo</span></code></p></td>
+<td><p>Navigates to the target URL</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">URL</span></code></p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Click</span></code></p></td>
+<td><p>Clicks an element on the page</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">XPath</span></code></p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Clear</span></code></p></td>
+<td><p>Clears the text from an element on the page</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">XPath</span></code></p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Hover</span></code></p></td>
+<td><p>Hovers the cursor over the target element on the page</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">XPath</span></code></p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SendKeys</span></code></p></td>
+<td><p>Types the specified keys onto the target element on the page</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">XPath</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">data</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">WaitForExistence</span></code></p></td>
+<td><p>Waits until a target element exists on the page</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">XPath</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">timeoutInSeconds</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">WaitForVisibility</span></code></p></td>
+<td><p>Waits until a target element is visible on the page</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">XPath</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">timeoutInSeconds</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SetBrowserSize</span></code></p></td>
+<td><p>Sets the browser size to a specific width &amp; height</p></td>
+<td><p>None</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">width</span></code>, <code class="docutils literal notranslate"><span class="pre">height</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="output-values">
+<h2>Output Values<a class="headerlink" href="#output-values" title="Permalink to this headline">¶</a></h2>
+<p>Quilla is able to create ‘outputs’, which allows users to use values from the page within their own validations. This can come in handy when you need to react to the data on the page. A classic example is an application that displays some text that it requires the user to then type into a text field: instead of hardcoding the value for the UI tests (which may be impossible if the values are dynamically generated), a Quilla test could instead read the value from the XPath and use it in the same validation.</p>
+<p>Below is a table displaying the supported output sources, the targets they support, and the parameters they require. Every single output requires an <code class="docutils literal notranslate"><span class="pre">outputName</span></code> parameter.</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Source</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Target type</p></th>
+<th class="head"><p>Parameters</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Literal</span></code></p></td>
+<td><p>Creates an output from the literal value of the target</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">XPathText</span></code></p></td>
+<td><p>Creates an output from the inner text value of the target</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">XPath</span></code></p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">XPathProperty</span></code></p></td>
+<td><p>Creates an output from the value of the specified property name of the target</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">XPath</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">parameterName</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="validations">
+<h2>Validations<a class="headerlink" href="#validations" title="Permalink to this headline">¶</a></h2>
+<p>Each validation is performed when the <code class="docutils literal notranslate"><span class="pre">&quot;action&quot;</span></code> is set to <code class="docutils literal notranslate"><span class="pre">Validate</span></code>. The kind of validation is provided by the <code class="docutils literal notranslate"><span class="pre">&quot;type&quot;</span></code> key, and by default Quilla currently supports the <code class="docutils literal notranslate"><span class="pre">URL</span></code> and <code class="docutils literal notranslate"><span class="pre">XPath</span></code> types.</p>
+<p>Each validation type supports a series of states provided by the <code class="docutils literal notranslate"><span class="pre">&quot;state&quot;</span></code> key, and requires some form of target to specify what is being validated.</p>
+<div class="section" id="xpath-validation">
+<h3>XPath Validation<a class="headerlink" href="#xpath-validation" title="Permalink to this headline">¶</a></h3>
+<p>Each <code class="docutils literal notranslate"><span class="pre">XPath</span></code> validation requires a <code class="docutils literal notranslate"><span class="pre">&quot;target&quot;</span></code> key with an <code class="docutils literal notranslate"><span class="pre">XPath</span></code> that describes an element on the page. The state of this <code class="docutils literal notranslate"><span class="pre">XPath</span></code> will then be validated, according to the valid states.</p>
+<p>Some <code class="docutils literal notranslate"><span class="pre">XPath</span></code> validations also require parameters, such as the Attribute and Parameter-based validations of web elements.</p>
+<p>The table below describes what the supported states are, and what they are validating</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>State</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Parameters</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Exists</span></code></p></td>
+<td><p>The specified target exists on the page</p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">NotExists</span></code></p></td>
+<td><p>The specified target does <em>not</em> exist on the page</p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Visible</span></code></p></td>
+<td><p>The specified target is visible on the page</p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">NotVisible</span></code></p></td>
+<td><p>The specified target is not visible on the page</p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">TextMatches</span></code></p></td>
+<td><p>Validates that the element text matches a regular expression pattern</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">pattern</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">NotTextMatches</span></code></p></td>
+<td><p>Validates that the element text does not match a regular expression pattern</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">pattern</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">HasProperty</span></code></p></td>
+<td><p>Ensures that the element has a property with a matching name</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">name</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">NotHasProperty</span></code></p></td>
+<td><p>Ensures that the element does not have a property with a matching name</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">name</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">HasAttribute</span></code></p></td>
+<td><p>Ensures that the element has an attribute with a matching name</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">name</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">NotHasAttribute</span></code></p></td>
+<td><p>Ensures that the element does not have an attribute with a matching name</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">name</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PropertyHasValue</span></code></p></td>
+<td><p>Ensures that the property has a value matching the one specified</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">name</span></code>, <code class="docutils literal notranslate"><span class="pre">value</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">NotPropertyHasValue</span></code></p></td>
+<td><p>Ensures that the property does not have a value matching the one specified</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">name</span></code>, <code class="docutils literal notranslate"><span class="pre">value</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">AttributeHasValue</span></code></p></td>
+<td><p>Ensures that the attribute has a value matching the one specified</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">name</span></code>, <code class="docutils literal notranslate"><span class="pre">value</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">AttributeHasValue</span></code></p></td>
+<td><p>Ensures that the attribute does not have a value matching the one specified</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">name</span></code>, <code class="docutils literal notranslate"><span class="pre">value</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-validation">
+<h3>URL Validation<a class="headerlink" href="#url-validation" title="Permalink to this headline">¶</a></h3>
+<p>Each <code class="docutils literal notranslate"><span class="pre">URL</span></code> validation requires a <code class="docutils literal notranslate"><span class="pre">&quot;target&quot;</span></code> key with a string. The precise target will be defined by the <code class="docutils literal notranslate"><span class="pre">&quot;state&quot;</span></code> property.</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>State</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Equals</span></code></p></td>
+<td><p>The specified target is exactly equal to the URL of the page at the time the validation runs</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">NotEquals</span></code></p></td>
+<td><p>The specified target is not equal to the URL of the page at the time the validation runs</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Contains</span></code></p></td>
+<td><p>The specified target is a substring of the URL of the page at the time the validation runs</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">NotContains</span></code></p></td>
+<td><p>The specified target is not a substring of the URL of the page at the time the validation runs</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="searching-bing-for-puppies">
+<h3>Searching Bing for puppies<a class="headerlink" href="#searching-bing-for-puppies" title="Permalink to this headline">¶</a></h3>
+<p>Example written in 2021-06-16</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;definitions&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;HomePage&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;SearchTextBox&quot;</span><span class="p">:</span> <span class="s2">&quot;//input[@id=&#39;sb_form_q&#39;]&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;SearchButton&quot;</span><span class="p">:</span> <span class="s2">&quot;//label[@for=&#39;sb_form_go&#39;]&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;ResultsPage&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;MainInfoCard&quot;</span><span class="p">:</span> <span class="s2">&quot;//div[@class=&#39;lite-entcard-main&#39;]&quot;</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;targetBrowsers&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Firefox&quot;</span><span class="p">],</span>
+    <span class="nt">&quot;path&quot;</span><span class="p">:</span> <span class="s2">&quot;https://www.bing.com&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;steps&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Validate&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;URL&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;Contains&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;bing&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Validate&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;XPath&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;Exists&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.HomePage.SearchTextBox }}&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Validate&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;XPath&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;Exists&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.HomePage.SearchButton }}&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;SendKeys&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.HomePage.SearchTextBox }}&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;data&quot;</span><span class="p">:</span> <span class="s2">&quot;Puppies&quot;</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Click&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.HomePage.SearchButton }}&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;WaitForExistence&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.ResultsPage.MainInfoCard }}&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;timeoutInSeconds&quot;</span><span class="p">:</span> <span class="mi">10</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Validate&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;URL&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;Contains&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;search?q=Puppies&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="signing-in-to-github">
+<h2>Signing In to Github<a class="headerlink" href="#signing-in-to-github" title="Permalink to this headline">¶</a></h2>
+<p>Example written on 2021-06-24</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;definitions&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;Username&quot;</span><span class="p">:</span> <span class="s2">&quot;validation-example-user&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;Password&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Environment.GITHUB_EXAMPLE_USER_PASSWORD }}&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;WelcomePage&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;SignInButton&quot;</span><span class="p">:</span> <span class="s2">&quot;//div[@class=&#39;position-relative mr-3&#39;]/a&quot;</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;SignInPage&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;UsernameInputField&quot;</span><span class="p">:</span> <span class="s2">&quot;//input[@id=&#39;login_field&#39;]&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;PasswordInputField&quot;</span><span class="p">:</span> <span class="s2">&quot;//input[@id=&#39;password&#39;]&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;SubmitButton&quot;</span><span class="p">:</span> <span class="s2">&quot;//input[@class=&#39;btn btn-primary btn-block&#39;]&quot;</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;HomePage&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;UserMenuIcon&quot;</span><span class="p">:</span> <span class="s2">&quot;//div[@class=&#39;Header-item position-relative mr-0 d-none d-md-flex&#39;]&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;YourProfileDropdown&quot;</span><span class="p">:</span> <span class="s2">&quot;//details-menu/a[@href=&#39;/${{ Definitions.Username }}&#39;]&quot;</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;targetBrowsers&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Firefox&quot;</span><span class="p">],</span>
+    <span class="nt">&quot;path&quot;</span><span class="p">:</span> <span class="s2">&quot;https://github.com&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;steps&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Validate&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;URL&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;Contains&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;github&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Validate&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;XPath&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;Exists&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.WelcomePage.SignInButton }}&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Validate&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;XPath&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.WelcomePage.SignInButton }}&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;NotTextMatches&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;pattern&quot;</span><span class="p">:</span> <span class="s2">&quot;[Ss]ign[ -]?[Ii]n&quot;</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Click&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.WelcomePage.SignInButton }}&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Validate&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;URL&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;Contains&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;/login&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Clear&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.SignInPage.UsernameInputField }}&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Clear&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.SignInPage.PasswordInputField }}&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;SendKeys&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;target&quot;</span><span class="p">:</span><span class="s2">&quot;${{ Definitions.SignInPage.UsernameInputField }}&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;data&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.Username }}&quot;</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;SendKeys&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.SignInPage.PasswordInputField }}&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;data&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.Password }}&quot;</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Validate&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;XPath&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.SignInPage.PasswordInputField }}&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;HasAttribute&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;id&quot;</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Validate&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;XPath&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.SignInPage.PasswordInputField }}&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;AttributeHasValue&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;id&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;password&quot;</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Click&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.SignInPage.SubmitButton }}&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Validate&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;URL&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;Equals&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;https://github.com/&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Click&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.HomePage.UserMenuIcon }}&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Click&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.HomePage.YourProfileDropdown }}&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Validate&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;URL&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;Contains&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.Username }}&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="context_expressions.html" class="btn btn-neutral float-right" title="Context Expressions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="install.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Microsoft.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

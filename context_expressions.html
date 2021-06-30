@@ -1,0 +1,372 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Context Expressions &mdash; Quilla  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Plugins" href="plugins.html" />
+    <link rel="prev" title="Validation Files" href="validation_files.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Quilla
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Quilla</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Command-Line Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validation_files.html">Validation Files</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Context Expressions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#context-objects">Context Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#definitions">Definitions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#environment">Environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#validation">Validation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hooks.html">Quilla Plugin Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quilla_pytest.html">Running Quilla tests with Pytest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how_it_works.html">How does Quilla work?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/modules.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="makefile_vars.html">Makefile Variables</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Quilla</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Context Expressions</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/context_expressions.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="tex2jax_ignore mathjax_ignore section" id="context-expressions">
+<h1>Context Expressions<a class="headerlink" href="#context-expressions" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>Quilla enables test writers to dynamically create their tests using context expressions and context objects. This allows test writers to write validations that might require sensitive data that should not be committed to files (such as passwords for logging in), as well as reacting appropriately to potentially dynamic components of their applications. Beyond that, context expressions can be extended through plugins to incorporate more advanced behaviours such as retrieving secrets from a keystore.</p>
+<p>Context expressions can be used whenever Quilla expects a non-enumerated value. This means that, while you can control the target of your <code class="docutils literal notranslate"><span class="pre">Click</span></code> action through a context expression, you cannot control the action itself through a context expression. This is because Quilla must be able to ensure at “compile time” (i.e. when the file is first loaded in to Quilla) that all the actions being performed are supported actions.</p>
+<p>The syntax for context expressions is <code class="docutils literal notranslate"><span class="pre">${{</span> <span class="pre">&lt;CONTEXT_OBJECT_NAME&gt;.&lt;PATH_TO_VALUE&gt;</span> <span class="pre">}}</span></code>. For the <code class="docutils literal notranslate"><span class="pre">Validation</span></code> and <code class="docutils literal notranslate"><span class="pre">Definitions</span></code> context objects, this is represented as a dot-separated path of a dictionary (i.e. to get the value <code class="docutils literal notranslate"><span class="pre">&quot;ham&quot;</span></code> from <code class="docutils literal notranslate"><span class="pre">{&quot;spam&quot;:</span> <span class="pre">{&quot;eggs&quot;:</span> <span class="pre">&quot;ham&quot;}}</span></code>, it would be accessed by <code class="docutils literal notranslate"><span class="pre">${{</span> <span class="pre">Validation.spam.eggs</span> <span class="pre">}}</span></code>).</p>
+<p>At this time, Quilla does not run <code class="docutils literal notranslate"><span class="pre">eval</span></code> on the context expression. This means that, while context expressions allow you to replace the values, you cannot write pure python code inside the context expression.</p>
+<p>Below is a table that describes the included context objects.</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>Context Object Name</p></th>
+<th class="text-align:center head"><p>Description</p></th>
+<th class="text-align:center head"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p>Definitions</p></td>
+<td class="text-align:center"><p>Resolves a name from the passed-in definition files or local definitions</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">${{</span> <span class="pre">Definitions.MyService.HomePage.SubmitButton</span> <span class="pre">}}</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>Environment</p></td>
+<td class="text-align:center"><p>Accesses environment variables, where <code class="docutils literal notranslate"><span class="pre">&lt;PATH_TO_VALUE&gt;</span></code> matches exactly the name of an environment variable</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">${{</span> <span class="pre">Environment.PATH</span> <span class="pre">}}</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>Validation</p></td>
+<td class="text-align:center"><p>Accesses previous outputs created by the validation</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">${{</span> <span class="pre">Validation.my.output</span> <span class="pre">}}</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="context-objects">
+<h2>Context Objects<a class="headerlink" href="#context-objects" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="definitions">
+<h3>Definitions<a class="headerlink" href="#definitions" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">Definitions</span></code> context object is a way to use an external file to hold any text data that is better stored with additional context. This is particularly useful for maintaining a definitions file for all XPaths used. Since most XPaths contain paths, IDs, and other element identifying information, they are not normally easy to understand at a glance. By using definitions files, each XPath used in a validation file can have a proper name associated with it, making validation files easier to read.</p>
+<p>As an additional benefit, definition files allow test writers to quickly adapt to changes in how elements are identified on a page. If, for example, a developer changes the ID of a ‘Submit’ button, test writers can ensure that all tests that require the use of that submit button are using the new, correct identifier by changing it in just one place.</p>
+<p>Below is an example definitions file:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>// Definitions.json
+{
+    &quot;HomePage&quot;: {
+        &quot;SearchTextField&quot;: &quot;//input[@id=&#39;search&#39;]&quot;,
+        &quot;SearchSubmitButton&quot;: &quot;//button[@id=&#39;form_submit&#39;]&quot;
+    }
+}
+</pre></div>
+</div>
+<p>We can then use these directly inside of our validation</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>// HomePageSearchTest.json
+{
+    &quot;targetBrowsers&quot;: [&quot;Edge&quot;],
+    &quot;path&quot;: &quot;https://example.com&quot;,
+    &quot;steps&quot;: [
+        {
+            &quot;action&quot;: &quot;SendKeys&quot;,
+            &quot;target&quot;: &quot;${{ Definitions.HomePage.SearchTextField }}&quot;,
+            &quot;parameters&quot;: {
+                &quot;data&quot;: &quot;puppies&quot;
+            }
+        },
+        {
+            &quot;action&quot;: &quot;Click&quot;,
+            &quot;target&quot;: &quot;${{ Definitions.HomePage.SearchSubmitButton }}&quot;
+        },
+        {
+            &quot;action&quot;: &quot;Validate&quot;,
+            &quot;type&quot;: &quot;URL&quot;,
+            &quot;state&quot;: &quot;Contains&quot;,
+            &quot;target&quot;: &quot;puppies&quot;
+        }
+    ]
+}
+</pre></div>
+</div>
+<p>When calling quilla, we pass in the definitions file: <code class="docutils literal notranslate"><span class="pre">quilla</span> <span class="pre">-d</span> <span class="pre">Definitions.json</span> <span class="pre">-f</span> <span class="pre">HomePageSearchTest.json</span></code>.</p>
+<p>If we wanted there to be better legibility but not use the definitions anywhere else, we could also specify them inside the quilla test file itself. We see an example of that below:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>// HomePageSearchTest.json
+{
+    &quot;definitions&quot;: {
+        &quot;HomePage&quot;: {
+            &quot;SearchTextField&quot;: &quot;//input[@id=&#39;search&#39;]&quot;,
+            &quot;SearchSubmitButton&quot;: &quot;//button[@id=&#39;form_submit&#39;]&quot;
+        }
+    },
+    &quot;targetBrowsers&quot;: [&quot;Edge&quot;],
+    &quot;path&quot;: &quot;https://example.com&quot;,
+    &quot;steps&quot;: [
+        {
+            &quot;action&quot;: &quot;SendKeys&quot;,
+            &quot;target&quot;: &quot;${{ Definitions.HomePage.SearchTextField }}&quot;,
+            &quot;parameters&quot;: {
+                &quot;data&quot;: &quot;puppies&quot;
+            }
+        },
+        {
+            &quot;action&quot;: &quot;Click&quot;,
+            &quot;target&quot;: &quot;${{ Definitions.HomePage.SearchSubmitButton }}&quot;
+        },
+        {
+            &quot;action&quot;: &quot;Validate&quot;,
+            &quot;type&quot;: &quot;URL&quot;,
+            &quot;state&quot;: &quot;Contains&quot;,
+            &quot;target&quot;: &quot;puppies&quot;
+        }
+    ]
+}
+</pre></div>
+</div>
+<p>Quilla will accept multiple definition files by adding multiple <code class="docutils literal notranslate"><span class="pre">-d</span> <span class="pre">&lt;FILENAME&gt;</span></code> groups to the CLI. It will attempt to resolve any duplicates by performing a deep merge operation between the multiple definition files, as well as any definitions specified in the quilla test file. The load order for the definition files is provided below:</p>
+<ol class="simple">
+<li><p>First definition file specified to the CLI</p></li>
+<li><p>Second definition file specified to the CLI</p></li>
+<li><p>(…)</p></li>
+<li><p>The last definition file specified to the CLI</p></li>
+<li><p>Local definitions in the Quilla test file</p></li>
+</ol>
+<p>If there are conflicts encountered, Quilla will favour the newer configs (i.e. second definition file overrides first, etc).</p>
+<p>Quilla definitions can also be defined recursively. Quilla will attempt to evaluate the context expression iteratively until it has exhausted the context expressions in the string, so definitions do not have a limit to the recursive depth. This is useful when a definition is in part determined by other definitions, and reduces the amount of repetition in the Quilla files.</p>
+<p>Below is an example definition file that uses recursive definitions:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>// Definitions.json
+{
+    &quot;HomePage&quot;: {
+        &quot;HeaderSection&quot;: &quot;//div[@id=&#39;header&#39;]&quot;,
+        &quot;SignInButton&quot;: &quot;${{ Definitions.HomePage.HeaderSection }}/a[@id=&#39;login&#39;]&quot;
+    }
+}
+</pre></div>
+</div>
+<p>When calling <code class="docutils literal notranslate"><span class="pre">${{</span> <span class="pre">Definitions.HomePage.SignInButton</span> <span class="pre">}}</span></code>, Quilla will expand it to <code class="docutils literal notranslate"><span class="pre">&quot;//div[&#64;id='header']/a[&#64;id='login']&quot;</span></code>.</p>
+</div>
+<div class="section" id="environment">
+<h3>Environment<a class="headerlink" href="#environment" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">Environment</span></code> context object works as a pass-through to <code class="docutils literal notranslate"><span class="pre">os.environ.get(&lt;PATH_TO_VALUE&gt;,</span> <span class="pre">'')</span></code>. This means that Quilla will fail silently if the variable that you attempt to extract from the environment does not exist. Most likely, this will result in other failures of the ui validation. If you use this context object and are getting unexpected errors, check to make sure that the variable is set and that you have not made a typo on the variable name!</p>
+</div>
+<div class="section" id="validation">
+<h3>Validation<a class="headerlink" href="#validation" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">Validation</span></code> context object will attempt to access a data store represented by a dictionary. This data store is populated at runtime through the <code class="docutils literal notranslate"><span class="pre">OutputValue</span></code> action, enabling any value that was created through the validations to be used inline.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="plugins.html" class="btn btn-neutral float-right" title="Plugins" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="validation_files.html" class="btn btn-neutral float-left" title="Validation Files" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Microsoft.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
