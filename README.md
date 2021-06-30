@@ -3,11 +3,11 @@
 [![CodeQL Code Analysis](https://img.shields.io/github/workflow/status/microsoft/quilla/CodeQL?label=CodeQL&logo=Github)](https://github.com/microsoft/quilla/actions/workflows/codeql-analysis.yml)
 [![Test pipeline](https://img.shields.io/github/workflow/status/microsoft/quilla/Test%20pipeline?label=Tests&logo=Github)](https://github.com/microsoft/quilla/actions/workflows/test-pipeline.yml)
 [![Release pipeline](https://img.shields.io/github/workflow/status/microsoft/quilla/Release%20pipeline?label=Release&logo=Github)](https://github.com/microsoft/quilla/actions/workflows/release-pipeline.yml)
+[![Documentation publish](https://img.shields.io/github/deployments/microsoft/quilla/github-pages?label=Documentation&logo=Github)](https://microsoft.github.io/quilla)
 
 [![License](https://img.shields.io/pypi/l/quilla?logo=github&logoColor=white&label=License)](https://github.com/microsoft/quilla/blob/main/LICENSE)
 [![Package Version](https://img.shields.io/pypi/v/quilla?logo=pypi&logoColor=white&label=PyPI)](https://pypi.org/project/quilla/)
 [![Supported Python Versions](https://img.shields.io/pypi/pyversions/quilla?logo=pypi&logoColor=white&label=Python)](https://github.com/microsoft/quilla)
-[![Documentation publish](https://img.shields.io/github/deployments/microsoft/quilla/github-pages?label=Documentation&logo=Github)](https://microsoft.github.io/quilla)
 [![Pypi Downloads](https://img.shields.io/pypi/dm/quilla?logo=pypi&logoColor=white&label=Downloads)](https://pypi.org/project/quilla/)
 
 <!-- THIS SECTION SHOULD BE COPY+PASTED INTO THE docs/intro.md FILE -->
