@@ -150,14 +150,14 @@ Example written in 2021-06-16
 }
 ```
 
-## Signing In to Github
+### Signing In to Github
 
 Example written on 2021-06-24
 
 ```json
 {
     "definitions": {
-        "Username": "validation-example-user",
+        "Username": "${{ Environment.GITHUB_EXAMPLE_USER_USERNAME }}",
         "Password": "${{ Environment.GITHUB_EXAMPLE_USER_PASSWORD }}",
         "WelcomePage": {
             "SignInButton": "//div[@class='position-relative mr-3']/a"

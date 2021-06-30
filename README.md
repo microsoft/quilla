@@ -11,10 +11,9 @@ Check out the [features](docs/features.md) docs for an overview of all quilla ca
 
 ## Quickstart
 
-1. Clone the repository
-2. `cd` into the `quilla` directory and run `make install`
-3. Ensure that you have the correct browser and drivers. Quilla will autodetect drivers that are in your PATH or in the directory it is called
-4. Write the following as `Validation.json`, substituting "Edge" for whatever browser you have installed and have the driver for:
+1. Run `pip install quilla`
+1. Ensure that you have the correct browser and drivers. Quilla will autodetect drivers that are in your PATH or in the directory it is called
+1. Write the following as `Validation.json`, substituting "Edge" for whatever browser you have installed and have the driver for:
 
     ```json
     {
@@ -31,21 +30,23 @@ Check out the [features](docs/features.md) docs for an overview of all quilla ca
     }
     ```
 
-5. Run `quilla -f Validation.json`
+1. Run `quilla -f Validation.json`
 
 ## Installation
 
 > Note: It is **highly recommended** that you use a virtual environment whenever you install new python packages.
 You can install Quilla by cloning the repository and running `make install`.
 
-For more information on installation options and packaging Quilla for remote install, check out the documentation for it [here](docs/install.md)
+Quilla is available on [PyPI](https://pypi.org/project/quilla/), and can be installed by running `pip install quilla`.
+
+For more information on installation options (such as installing from source) and packaging Quilla for remote install, check out the documentation for it [here](docs/install.md)
 
 ## Usage
 
 This module can be used both as a library, a runnable module, as well as as a command-line tool. The output of `quilla --help` is presented below:
 
 ```text
-usage: quilla [-h] [-f] [-d] [--driver-dir DRIVERS_PATH] [-P] json
+usage: quilla [-h] [-f] [--debug] [--driver-dir DRIVERS_PATH] [-P] [--no-sandbox] [-d file] json
 
 Program to provide a report of UI validations given a json representation of the validations or given the filename
 containing a json document describing the validations
@@ -56,10 +57,13 @@ positional arguments:
 optional arguments:
   -h, --help            show this help message and exit
   -f, --file            Whether to treat the argument as raw json or as a file
-  -d, --debug           Enable debug mode
+  --debug               Enable debug mode
   --driver-dir DRIVERS_PATH
                         The directory where browser drivers are stored
   -P, --pretty          Set this flag to have the output be pretty-printed
+  --no-sandbox          Adds '--no-sandbox' to the Chrome and Edge browsers. Useful for running in docker containers'
+  -d file, --definitions file
+                        A file with definitions for the 'Definitions' context object
 ```
 
 ## Writing Validation Files

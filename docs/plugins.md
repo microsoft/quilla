@@ -130,7 +130,7 @@ setup(
     version='0.1',
     packages=find_packages(),
     entry_points={
-        'quillaPlugins': ['quilla-headless = headless.cli_configs']
+        'QuillaPlugins': ['quilla-headless = headless.cli_configs']
     }
 )
 ```
