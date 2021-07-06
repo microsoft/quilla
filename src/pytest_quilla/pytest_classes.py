@@ -37,15 +37,16 @@ class QuillaFile(pytest.File):
         Yields:
             A quilla item configured from the JSON data
         '''
-        test_data = json.load(self.fspath.open())
+        test_data = self.fspath.open().read()
         yield QuillaItem.from_parent(self, name=self.fspath.purebasename, test_data=test_data)
 
 
 class QuillaItem(pytest.Item):
-    def __init__(self, name: str, parent: QuillaFile, test_data: dict):
+    def __init__(self, name: str, parent: QuillaFile, test_data: str):
         super(QuillaItem, self).__init__(name, parent)
         self.test_data = test_data
-        markers = test_data.get('markers', [])
+        json_data = json.loads(test_data)
+        markers = json_data.get('markers', [])
         for marker in markers:
             self.add_marker(marker)
 
@@ -55,7 +56,7 @@ class QuillaItem(pytest.Item):
         data retrieved from the JSON file.
         '''
         ctx = setup_context(
-            [*self.config.getoption('--quilla-opts'), ''],
+            [*self.config.getoption('--quilla-opts').split(), ''],
             str(self.config.rootpath)
         )
         ctx.json = self.test_data
