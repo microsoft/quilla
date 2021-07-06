@@ -16,7 +16,6 @@ from typing import (
 
 from quilla.hookspecs import hookspec
 from quilla.ctx import Context
-from quilla.reports.report_summary import ReportSummary
 from quilla.ui_validation import QuillaTest
 
 
@@ -78,33 +77,6 @@ def quilla_prevalidate(validation: QuillaTest):
     '''
 
 
-@hookspec
-def quilla_postvalidate(ctx: Context, reports: ReportSummary):
-    '''
-    A hook called immediately after all validations are executed and the full
-    ReportSummary is generated
-
-    Args:
-        ctx: The runtime context for the application
-        reports: An object capturing all generated reports and giving summary data
-    '''
-
-
-@hookspec
-def quilla_step_factory_selector(selector: StepFactorySelector):
-    '''
-    A hook called immediately before resolving the step factory for a given step definition.
-    This is used to register new step factories for custom step objects.
-
-    Most custom steps should just add themselves to the `quilla_step_selector` hook, but if
-    a custom step requires complex logic it might be beneficial to register a factory to
-    have more fine-grained control over the logic
-
-    Args:
-        selector: The factory selector dictionary.
-    '''
-
-
 @hookspec(firstresult=True)
 def quilla_resolve_enum_from_name(name: str, enum: Type[T]) -> Optional[T]:
     '''
@@ -122,18 +94,4 @@ def quilla_resolve_enum_from_name(name: str, enum: Type[T]) -> Optional[T]:
     Returns:
         The resolved enum, if it can be resolved. None if the plugin can't resolve
         the value.
-    '''
-
-
-@hookspec
-def quilla_prevalidate(validation: UIValidation):
-    '''
-    A hook called immediately before the validations attempt to be resolved
-    (i.e. before `validations.validate_all()` is called).
-
-    If the Context object is needed, it is available through ``validations.ctx``.
-
-    Args:
-        validation: The collected validations from the json passed to
-            the application
     '''
