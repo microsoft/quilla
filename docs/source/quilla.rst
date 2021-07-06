@@ -33,14 +33,6 @@ quilla.plugins module
    :undoc-members:
    :show-inheritance:
 
-quilla.hookspecs module
------------------------
-
-.. automodule:: quilla.hookspecs
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 Subpackages
 -----------
 
@@ -51,3 +43,4 @@ Subpackages
    quilla.common
    quilla.reports
    quilla.steps
+   quilla.hookspecs
