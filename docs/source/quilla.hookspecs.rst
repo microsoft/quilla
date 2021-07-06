@@ -1,7 +1,10 @@
-Quilla Plugin Hooks
+quilla.hookspecs package
 ========================
 
-Configuration hooks
+Submodules
+----------
+
+quilla.hookspecs.configuration module
 -------------------------------------
 
 .. automodule:: quilla.hookspecs.configuration
@@ -9,7 +12,8 @@ Configuration hooks
    :undoc-members:
    :show-inheritance:
 
-Steps hooks
+
+quilla.hookspecs.steps module
 -----------------------------
 
 .. automodule:: quilla.hookspecs.steps
@@ -17,7 +21,7 @@ Steps hooks
    :undoc-members:
    :show-inheritance:
 
-Report hooks
+quilla.hookspecs.reports module
 -------------------------------
 
 .. automodule:: quilla.hookspecs.reports
