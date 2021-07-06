@@ -25,9 +25,9 @@ from quilla.common.utils import EnumResolver
 
 
 # All UI Validations
-class UIValidation(EnumResolver):
+class QuillaTest(EnumResolver):
     '''
-    A class to convert data into a valid UIValidation instance, which is able to resolve
+    A class to convert data into a valid QuillaTest instance, which is able to resolve
     raw text data into the appropriate enums to be used by the internal classes.
 
     Creates shallow copies of all the steps to ensure independence
@@ -49,31 +49,31 @@ class UIValidation(EnumResolver):
     }
 
     @classmethod
-    def from_json(cls, ctx: Context, validation_json: str) -> "UIValidation":  # pragma: no cover
+    def from_json(cls, ctx: Context, validation_json: str) -> "QuillaTest":  # pragma: no cover
         '''
         Converts a json string into a UIValidation object
         '''
-        return UIValidation.from_dict(ctx, json.loads(validation_json))
+        return QuillaTest.from_dict(ctx, json.loads(validation_json))
 
     @classmethod
-    def from_file(cls, ctx: Context, fp) -> "UIValidation":  # pragma: no cover
+    def from_file(cls, ctx: Context, fp) -> "QuillaTest":  # pragma: no cover
         '''
         Converts an fp (a .read() supporting file-like object) containing a json
         document into a UIValidation object
         '''
-        return UIValidation.from_dict(ctx, json.load(fp))
+        return QuillaTest.from_dict(ctx, json.load(fp))
 
     @classmethod
-    def from_filename(cls, ctx: Context, path: str) -> "UIValidation":  # pragma: no cover
+    def from_filename(cls, ctx: Context, path: str) -> "QuillaTest":  # pragma: no cover
         '''
         Reads a file at the specified path and attempts to convert it into a
         UIValidation object
         '''
         with open(path) as fp:
-            return UIValidation.from_file(ctx, fp)
+            return QuillaTest.from_file(ctx, fp)
 
     @classmethod
-    def from_dict(cls, ctx: Context, validation_parameters: dict) -> "UIValidation":
+    def from_dict(cls, ctx: Context, validation_parameters: dict) -> "QuillaTest":
         '''
         Converts a dictionary that represents a single UIValidation test case into
         the appropriate validation object.
@@ -121,7 +121,7 @@ class UIValidation(EnumResolver):
                     params['source'] = cls._name_to_enum(source, OutputSources, ctx=ctx)
                 step['parameters'] = params
 
-        return UIValidation(
+        return QuillaTest(
             ctx,
             browsers,
             root_path,

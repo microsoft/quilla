@@ -4,9 +4,9 @@ import pytest
 from py._path.local import LocalPath
 
 from quilla import (
-    setup_context
+    setup_context,
+    execute
 )
-from quilla.ui_validation import UIValidation
 from quilla.reports.report_summary import ReportSummary
 
 
@@ -58,7 +58,8 @@ class QuillaItem(pytest.Item):
             [*self.config.getoption('--quilla-opts'), ''],
             str(self.config.rootpath)
         )
-        results = UIValidation.from_dict(ctx, self.test_data).validate_all()
+        ctx.json = self.test_data
+        results = execute(ctx)
         self.results = results
         try:
             assert results.fails == 0

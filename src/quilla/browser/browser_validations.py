@@ -119,7 +119,7 @@ class BrowserValidations:
         except Exception as e:
             # Catch exception and crash the program, but clean up
             # the browser first
-            self.ctx.logger.debug(
+            self.ctx.logger.error(
                 'Exception %s raised for browser %s while running steps',
                 e,
                 self._target.value,

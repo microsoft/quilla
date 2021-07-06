@@ -10,7 +10,7 @@ from typing import (
 )
 import logging
 
-from quilla.ui_validation import UIValidation
+from quilla.ui_validation import QuillaTest
 from quilla.ctx import (
     Context,
     get_default_context
@@ -177,18 +177,17 @@ def execute(ctx: Context) -> ReportSummary:
         json: The json string describing the validation
 
     Returns:
-        Status code for the execution of the UIValidation module, determined by whether or not
-        there were any reports that were flagged as failed
+        A summary of all reports produced by Quilla
     '''
 
     ctx.logger.debug('Building UIValidation object from JSON')
-    ui_validation = UIValidation.from_json(ctx, ctx.json)
+    quilla_test = QuillaTest.from_json(ctx, ctx.json)
 
     ctx.logger.info('Passing UIValidation instance to "quilla_prevalidate" hook')
-    ctx.pm.hook.quilla_prevalidate(validation=ui_validation)
+    ctx.pm.hook.quilla_prevalidate(validation=quilla_test)
 
     ctx.logger.debug('Running all validations')
-    reports = ui_validation.validate_all()
+    reports = quilla_test.validate_all()
 
     ctx.logger.info('Running "quilla_postvalidate" hooks')
     ctx.pm.hook.quilla_postvalidate(ctx=ctx, reports=reports)
