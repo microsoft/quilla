@@ -1,0 +1,22 @@
+repos:
+  - repo: https://gitlab.com/pycqa/flake8
+    rev: '3.8.3'
+    hooks:
+      - id: flake8
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.1.0
+    hooks:
+      - id: check-ast
+      - id: check-case-conflict
+      - id: check-docstring-first
+      - id: check-merge-conflict
+      - id: check-executables-have-shebangs
+      - id: check-json
+      - id: pretty-format-json
+      - id: debug-statements
+      - id: detect-private-key
+      - id: double-quote-string-fixer
+      - id: end-of-file-fixer
+      - id: fix-encoding-pragma
+      - id: name-tests-test
+      - id: trailing-whitespace
