@@ -17,8 +17,10 @@ from quilla.common.enums import (
 )
 from quilla.steps.steps_aggregator import StepsAggregator
 from quilla.browser.browser_validations import BrowserValidations
-from quilla.reports.base_report import BaseReport
-from quilla.reports.report_summary import ReportSummary
+from quilla.reports import (
+    BaseReport,
+    ReportSummary,
+)
 from quilla.common.utils import EnumResolver
 
 
@@ -39,6 +41,7 @@ class UIValidation(EnumResolver):
     Attributes:
         browsers: A list of instantiated browser validations, each containing an
             independent steps aggregator
+        ctx: The runtime context for the application
     '''
     validation_type_selector: Dict[ValidationTypes, Type[ValidationStates]] = {
         ValidationTypes.XPATH: XPathValidationStates,
@@ -82,6 +85,8 @@ class UIValidation(EnumResolver):
 
         definitions = validation_parameters.get('definitions', {})
 
+        ctx.logger.debug('Validation included definitions: %s', definitions)
+
         ctx.load_definitions(definitions)
 
         browsers: List[BrowserTargets] = []
@@ -91,6 +96,8 @@ class UIValidation(EnumResolver):
         steps = validation_parameters['steps']
 
         for step in steps:
+            ctx.logger.debug('Processing step %s', step)
+
             action = step['action']
             action = cls._name_to_enum(action, UITestActions)
             step['action'] = action
@@ -128,6 +135,7 @@ class UIValidation(EnumResolver):
         root: str,
         setup_steps: list,
     ):
+        self.ctx = ctx
         self._steps = steps = StepsAggregator(ctx, setup_steps)
 
         self.browsers: List[BrowserValidations] = []
