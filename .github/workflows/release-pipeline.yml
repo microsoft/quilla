@@ -117,6 +117,8 @@ jobs:
     name: Generating Changelog
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Needed for changelog generation
 
       - name: Create new branch
         run: git checkout -b actions/changelog
@@ -133,7 +135,7 @@ jobs:
         run: gitchangelog $(cat VERSION) > CHANGELOG.md
 
       - name: Make commit for auto-generated changelog
-        uses: EndBug/add-and-commit@v4
+        uses: EndBug/add-and-commit@v7
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -201,7 +203,7 @@ jobs:
           path: ./docs
 
       - name: Release gh-pages
-        uses: EndBug/add-and-commit@v4
+        uses: EndBug/add-and-commit@v7
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
