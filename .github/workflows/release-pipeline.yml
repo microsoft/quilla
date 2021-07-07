@@ -153,7 +153,6 @@ jobs:
           echo "PR_URL=$(gh pr create \
             --title "Auto-generated changelog for release $(cat VERSION)" \
             --body "This is an auto-generated PR" \
-            --reviewer microsoft/quilla-admin \
             --label documentation)" >> $GITHUB_ENV
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
