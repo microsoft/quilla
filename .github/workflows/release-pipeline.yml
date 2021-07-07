@@ -2,8 +2,8 @@ name: Release pipeline
 
 on:
   push:
-    # branches:
-    #   - main
+    branches:
+      - main
 
 jobs:
   version-check:
@@ -97,19 +97,19 @@ jobs:
       - name: Pull tags from the repo
         run: git pull --tags
 
-      # - name: Generate version changelog for release
-      #   run: gitchangelog $previous_tag..HEAD | sed "s/## (unreleased)/Quilla v$(cat VERSION) ($(date +"%Y-%m-%d"))/" > version_changelog.md
+      - name: Generate version changelog for release
+        run: gitchangelog $previous_tag..HEAD | sed "s/## (unreleased)/Quilla v$(cat VERSION) ($(date +"%Y-%m-%d"))/" > version_changelog.md
 
-      # - name:  Create Github release & upload files
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   run: hub release create -a $wheel_name -a $tar_name -F version_changelog.md $(cat VERSION)
+      - name:  Create Github release & upload files
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: hub release create -a $wheel_name -a $tar_name -F version_changelog.md $(cat VERSION)
 
-      # - name: Install Twine
-      #   run: pip install twine
+      - name: Install Twine
+        run: pip install twine
 
-      # - name: Release package
-      #   run: twine upload dist/*
+      - name: Release package
+        run: twine upload dist/*
 
   changelog-result:
     needs: release
