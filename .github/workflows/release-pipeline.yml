@@ -123,6 +123,11 @@ jobs:
       - name: Create new branch
         run: git checkout -b actions/changelog
 
+      - name: Set branch upstream
+        run: git push -u origin actions/changelog
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Setup python
         uses: actions/setup-python@v2
         with:
@@ -161,9 +166,6 @@ jobs:
             --rebase
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-
-
 
   docs-build:
     needs: release
