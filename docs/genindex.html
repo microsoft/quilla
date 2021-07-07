@@ -224,7 +224,7 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="source/quilla.reports.html#quilla.reports.report_summary.ReportSummary.FilterTypes.browser">browser() (quilla.reports.report_summary.ReportSummary.FilterTypes method)</a>
 </li>
-      <li><a href="source/quilla.html#quilla.ui_validation.UIValidation.browsers">browsers (quilla.ui_validation.UIValidation attribute)</a>
+      <li><a href="source/quilla.html#quilla.ui_validation.QuillaTest.browsers">browsers (quilla.ui_validation.QuillaTest attribute)</a>
 </li>
       <li><a href="source/quilla.common.html#quilla.common.enums.BrowserTargets">BrowserTargets (class in quilla.common.enums)</a>
 </li>
@@ -250,22 +250,12 @@
 </li>
       <li><a href="source/quilla.html#quilla.ctx.Context.close_browser">close_browser (quilla.ctx.Context attribute)</a>
 </li>
-      <li><a href="source/pytest_quilla.html#pytest_quilla.pytest_classes.QuillaFile.collect">collect() (pytest_quilla.pytest_classes.QuillaFile method)</a>
-</li>
-      <li><a href="source/pytest_quilla.html#pytest_quilla.pytest_classes.collect_file">collect_file() (in module pytest_quilla.pytest_classes)</a>
-</li>
-      <li><a href="source/pytest_quilla.html#pytest_quilla.pytest_classes.QuillaFile.config">config (pytest_quilla.pytest_classes.QuillaFile attribute)</a>
-
-      <ul>
-        <li><a href="source/pytest_quilla.html#pytest_quilla.pytest_classes.QuillaItem.config">(pytest_quilla.pytest_classes.QuillaItem attribute)</a>
-</li>
-      </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="source/quilla.common.html#quilla.common.enums.URLValidationStates.CONTAINS">CONTAINS (quilla.common.enums.URLValidationStates attribute)</a>
 </li>
       <li><a href="source/quilla.html#quilla.ctx.Context">Context (class in quilla.ctx)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="source/quilla.steps.html#quilla.steps.base_steps.BaseStep.copy">copy() (quilla.steps.base_steps.BaseStep method)</a>
 
       <ul>
@@ -284,6 +274,8 @@
 
       <ul>
         <li><a href="source/quilla.steps.html#quilla.steps.base_steps.BaseStep.ctx">(quilla.steps.base_steps.BaseStep attribute)</a>
+</li>
+        <li><a href="source/quilla.html#quilla.ui_validation.QuillaTest.ctx">(quilla.ui_validation.QuillaTest attribute)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -361,7 +353,7 @@
 </li>
         <li><a href="source/quilla.steps.html#quilla.steps.validations.Validation.from_dict">(quilla.steps.validations.Validation class method)</a>
 </li>
-        <li><a href="source/quilla.html#quilla.ui_validation.UIValidation.from_dict">(quilla.ui_validation.UIValidation class method)</a>
+        <li><a href="source/quilla.html#quilla.ui_validation.QuillaTest.from_dict">(quilla.ui_validation.QuillaTest class method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -369,23 +361,17 @@
       <li><a href="source/quilla.reports.html#quilla.reports.base_report.BaseReport.from_file">from_file() (quilla.reports.base_report.BaseReport class method)</a>
 
       <ul>
-        <li><a href="source/quilla.html#quilla.ui_validation.UIValidation.from_file">(quilla.ui_validation.UIValidation class method)</a>
+        <li><a href="source/quilla.html#quilla.ui_validation.QuillaTest.from_file">(quilla.ui_validation.QuillaTest class method)</a>
 </li>
       </ul></li>
-      <li><a href="source/quilla.html#quilla.ui_validation.UIValidation.from_filename">from_filename() (quilla.ui_validation.UIValidation class method)</a>
+      <li><a href="source/quilla.html#quilla.ui_validation.QuillaTest.from_filename">from_filename() (quilla.ui_validation.QuillaTest class method)</a>
 </li>
       <li><a href="source/quilla.reports.html#quilla.reports.base_report.BaseReport.from_json">from_json() (quilla.reports.base_report.BaseReport class method)</a>
 
       <ul>
         <li><a href="source/quilla.reports.html#quilla.reports.report_summary.ReportSummary.from_json">(quilla.reports.report_summary.ReportSummary class method)</a>
 </li>
-        <li><a href="source/quilla.html#quilla.ui_validation.UIValidation.from_json">(quilla.ui_validation.UIValidation class method)</a>
-</li>
-      </ul></li>
-      <li><a href="source/pytest_quilla.html#pytest_quilla.pytest_classes.QuillaFile.fspath">fspath (pytest_quilla.pytest_classes.QuillaFile attribute)</a>
-
-      <ul>
-        <li><a href="source/pytest_quilla.html#pytest_quilla.pytest_classes.QuillaItem.fspath">(pytest_quilla.pytest_classes.QuillaItem attribute)</a>
+        <li><a href="source/quilla.html#quilla.ui_validation.QuillaTest.from_json">(quilla.ui_validation.QuillaTest class method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -398,6 +384,8 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="source/quilla.html#quilla.get_early_configs">get_early_configs() (in module quilla)</a>
+</li>
       <li><a href="source/quilla.html#quilla.plugins.get_plugin_manager">get_plugin_manager() (in module quilla.plugins)</a>
 </li>
   </ul></td>
@@ -452,11 +440,13 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="source/quilla.common.html#quilla.common.enums.OutputSources.LITERAL">LITERAL (quilla.common.enums.OutputSources attribute)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="source/quilla.html#quilla.ctx.Context.load_definitions">load_definitions() (quilla.ctx.Context method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="source/quilla.steps.html#quilla.steps.base_steps.BaseStep.locator">locator (quilla.steps.base_steps.BaseStep property)</a>
+</li>
+      <li><a href="source/quilla.html#quilla.ctx.Context.logger">logger (quilla.ctx.Context attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -464,6 +454,8 @@
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="source/quilla.html#quilla.make_default_logger">make_default_logger() (in module quilla)</a>
+</li>
       <li><a href="source/quilla.html#quilla.make_parser">make_parser() (in module quilla)</a>
 </li>
       <li><a href="source/quilla.common.html#quilla.common.enums.URLValidationStates.MATCHES">MATCHES (quilla.common.enums.URLValidationStates attribute)</a>
@@ -472,10 +464,6 @@
     module
 
       <ul>
-        <li><a href="source/pytest_quilla.html#module-pytest_quilla">pytest_quilla</a>
-</li>
-        <li><a href="source/pytest_quilla.html#module-pytest_quilla.pytest_classes">pytest_quilla.pytest_classes</a>
-</li>
         <li><a href="source/quilla.html#module-quilla">quilla</a>
 </li>
         <li><a href="source/quilla.browser.html#module-quilla.browser">quilla.browser</a>
@@ -494,7 +482,11 @@
 </li>
         <li><a href="source/quilla.html#module-quilla.ctx">quilla.ctx</a>
 </li>
-        <li><a href="hooks.html#module-quilla.hookspecs">quilla.hookspecs</a>, <a href="source/quilla.html#module-quilla.hookspecs">[1]</a>
+        <li><a href="hooks.html#module-quilla.hookspecs.configuration">quilla.hookspecs.configuration</a>, <a href="source/quilla.hookspecs.html#module-quilla.hookspecs.configuration">[1]</a>
+</li>
+        <li><a href="hooks.html#module-quilla.hookspecs.reports">quilla.hookspecs.reports</a>, <a href="source/quilla.hookspecs.html#module-quilla.hookspecs.reports">[1]</a>
+</li>
+        <li><a href="hooks.html#module-quilla.hookspecs.steps">quilla.hookspecs.steps</a>, <a href="source/quilla.hookspecs.html#module-quilla.hookspecs.steps">[1]</a>
 </li>
         <li><a href="source/quilla.html#module-quilla.plugins">quilla.plugins</a>
 </li>
@@ -529,12 +521,6 @@
 <h2 id="N">N</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="source/pytest_quilla.html#pytest_quilla.pytest_classes.QuillaFile.name">name (pytest_quilla.pytest_classes.QuillaFile attribute)</a>
-
-      <ul>
-        <li><a href="source/pytest_quilla.html#pytest_quilla.pytest_classes.QuillaItem.name">(pytest_quilla.pytest_classes.QuillaItem attribute)</a>
-</li>
-      </ul></li>
       <li><a href="source/quilla.common.html#quilla.common.enums.UITestActions.NAVIGATE_BACK">NAVIGATE_BACK (quilla.common.enums.UITestActions attribute)</a>
 </li>
       <li><a href="source/quilla.common.html#quilla.common.enums.UITestActions.NAVIGATE_FORWARD">NAVIGATE_FORWARD (quilla.common.enums.UITestActions attribute)</a>
@@ -547,10 +533,10 @@
 </li>
       <li><a href="source/quilla.common.html#quilla.common.enums.XPathValidationStates.NOT_ATTRIBUTE_HAS_VALUE">NOT_ATTRIBUTE_HAS_VALUE (quilla.common.enums.XPathValidationStates attribute)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="source/quilla.common.html#quilla.common.enums.URLValidationStates.NOT_CONTAINS">NOT_CONTAINS (quilla.common.enums.URLValidationStates attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="source/quilla.common.html#quilla.common.enums.URLValidationStates.NOT_EQUALS">NOT_EQUALS (quilla.common.enums.URLValidationStates attribute)</a>
 </li>
       <li><a href="source/quilla.common.html#quilla.common.enums.XPathValidationStates.NOT_EXISTS">NOT_EXISTS (quilla.common.enums.XPathValidationStates attribute)</a>
@@ -589,12 +575,6 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="source/quilla.steps.html#quilla.steps.base_steps.BaseStep.parameters">parameters (quilla.steps.base_steps.BaseStep property)</a>
 </li>
-      <li><a href="source/pytest_quilla.html#pytest_quilla.pytest_classes.QuillaFile.parent">parent (pytest_quilla.pytest_classes.QuillaFile attribute)</a>
-
-      <ul>
-        <li><a href="source/pytest_quilla.html#pytest_quilla.pytest_classes.QuillaItem.parent">(pytest_quilla.pytest_classes.QuillaItem attribute)</a>
-</li>
-      </ul></li>
       <li><a href="source/quilla.steps.html#quilla.steps.base_steps.BaseStep.perform">perform() (quilla.steps.base_steps.BaseStep method)</a>
 
       <ul>
@@ -605,38 +585,18 @@
         <li><a href="source/quilla.steps.html#quilla.steps.validations.URLValidation.perform">(quilla.steps.validations.URLValidation method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="source/quilla.html#quilla.ctx.Context.perform_replacements">perform_replacements() (quilla.ctx.Context method)</a>
 </li>
       <li><a href="source/quilla.html#quilla.ctx.Context.pm">pm (quilla.ctx.Context attribute)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="source/quilla.html#quilla.ctx.Context.pretty">pretty (quilla.ctx.Context attribute)</a>
 </li>
       <li><a href="source/quilla.html#quilla.ctx.Context.pretty_print_indent">pretty_print_indent (quilla.ctx.Context attribute)</a>
 </li>
       <li><a href="source/quilla.common.html#quilla.common.enums.XPathValidationStates.PROPERTY_HAS_VALUE">PROPERTY_HAS_VALUE (quilla.common.enums.XPathValidationStates attribute)</a>
 </li>
-      <li><a href="source/pytest_quilla.html#pytest_quilla.pytest_addoption">pytest_addoption() (in module pytest_quilla)</a>
-</li>
-      <li><a href="source/pytest_quilla.html#pytest_quilla.pytest_collect_file">pytest_collect_file() (in module pytest_quilla)</a>
-</li>
-      <li><a href="source/pytest_quilla.html#pytest_quilla.pytest_load_initial_conftests">pytest_load_initial_conftests() (in module pytest_quilla)</a>
-</li>
-      <li>
-    pytest_quilla
-
-      <ul>
-        <li><a href="source/pytest_quilla.html#module-pytest_quilla">module</a>
-</li>
-      </ul></li>
-      <li>
-    pytest_quilla.pytest_classes
-
-      <ul>
-        <li><a href="source/pytest_quilla.html#module-pytest_quilla.pytest_classes">module</a>
-</li>
-      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -707,10 +667,24 @@
 </li>
       </ul></li>
       <li>
-    quilla.hookspecs
+    quilla.hookspecs.configuration
 
       <ul>
-        <li><a href="hooks.html#module-quilla.hookspecs">module</a>, <a href="source/quilla.html#module-quilla.hookspecs">[1]</a>
+        <li><a href="hooks.html#module-quilla.hookspecs.configuration">module</a>, <a href="source/quilla.hookspecs.html#module-quilla.hookspecs.configuration">[1]</a>
+</li>
+      </ul></li>
+      <li>
+    quilla.hookspecs.reports
+
+      <ul>
+        <li><a href="hooks.html#module-quilla.hookspecs.reports">module</a>, <a href="source/quilla.hookspecs.html#module-quilla.hookspecs.reports">[1]</a>
+</li>
+      </ul></li>
+      <li>
+    quilla.hookspecs.steps
+
+      <ul>
+        <li><a href="hooks.html#module-quilla.hookspecs.steps">module</a>, <a href="source/quilla.hookspecs.html#module-quilla.hookspecs.steps">[1]</a>
 </li>
       </ul></li>
       <li>
@@ -727,6 +701,8 @@
         <li><a href="source/quilla.reports.html#module-quilla.reports">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     quilla.reports.base_report
 
@@ -734,8 +710,6 @@
         <li><a href="source/quilla.reports.html#module-quilla.reports.base_report">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     quilla.reports.report_summary
 
@@ -792,25 +766,23 @@
         <li><a href="source/quilla.html#module-quilla.ui_validation">module</a>
 </li>
       </ul></li>
-      <li><a href="hooks.html#quilla.hookspecs.quilla_addopts">quilla_addopts() (in module quilla.hookspecs)</a>, <a href="source/quilla.html#quilla.hookspecs.quilla_addopts">[1]</a>
+      <li><a href="hooks.html#quilla.hookspecs.configuration.quilla_addopts">quilla_addopts() (in module quilla.hookspecs.configuration)</a>, <a href="source/quilla.hookspecs.html#quilla.hookspecs.configuration.quilla_addopts">[1]</a>
 </li>
-      <li><a href="hooks.html#quilla.hookspecs.quilla_configure">quilla_configure() (in module quilla.hookspecs)</a>, <a href="source/quilla.html#quilla.hookspecs.quilla_configure">[1]</a>
+      <li><a href="hooks.html#quilla.hookspecs.configuration.quilla_configure">quilla_configure() (in module quilla.hookspecs.configuration)</a>, <a href="source/quilla.hookspecs.html#quilla.hookspecs.configuration.quilla_configure">[1]</a>
 </li>
-      <li><a href="hooks.html#quilla.hookspecs.quilla_context_obj">quilla_context_obj() (in module quilla.hookspecs)</a>, <a href="source/quilla.html#quilla.hookspecs.quilla_context_obj">[1]</a>
+      <li><a href="hooks.html#quilla.hookspecs.configuration.quilla_configure_logger">quilla_configure_logger() (in module quilla.hookspecs.configuration)</a>, <a href="source/quilla.hookspecs.html#quilla.hookspecs.configuration.quilla_configure_logger">[1]</a>
 </li>
-      <li><a href="hooks.html#quilla.hookspecs.quilla_postvalidate">quilla_postvalidate() (in module quilla.hookspecs)</a>, <a href="source/quilla.html#quilla.hookspecs.quilla_postvalidate">[1]</a>
+      <li><a href="hooks.html#quilla.hookspecs.steps.quilla_context_obj">quilla_context_obj() (in module quilla.hookspecs.steps)</a>, <a href="source/quilla.hookspecs.html#quilla.hookspecs.steps.quilla_context_obj">[1]</a>
 </li>
-      <li><a href="hooks.html#quilla.hookspecs.quilla_prevalidate">quilla_prevalidate() (in module quilla.hookspecs)</a>, <a href="source/quilla.html#quilla.hookspecs.quilla_prevalidate">[1]</a>
+      <li><a href="hooks.html#quilla.hookspecs.reports.quilla_postvalidate">quilla_postvalidate() (in module quilla.hookspecs.reports)</a>, <a href="source/quilla.hookspecs.html#quilla.hookspecs.reports.quilla_postvalidate">[1]</a>
 </li>
-      <li><a href="hooks.html#quilla.hookspecs.quilla_resolve_enum_from_name">quilla_resolve_enum_from_name() (in module quilla.hookspecs)</a>, <a href="source/quilla.html#quilla.hookspecs.quilla_resolve_enum_from_name">[1]</a>
+      <li><a href="hooks.html#quilla.hookspecs.configuration.quilla_prevalidate">quilla_prevalidate() (in module quilla.hookspecs.configuration)</a>, <a href="source/quilla.hookspecs.html#quilla.hookspecs.configuration.quilla_prevalidate">[1]</a>
 </li>
-      <li><a href="hooks.html#quilla.hookspecs.quilla_step_factory_selector">quilla_step_factory_selector() (in module quilla.hookspecs)</a>, <a href="source/quilla.html#quilla.hookspecs.quilla_step_factory_selector">[1]</a>
+      <li><a href="hooks.html#quilla.hookspecs.configuration.quilla_resolve_enum_from_name">quilla_resolve_enum_from_name() (in module quilla.hookspecs.configuration)</a>, <a href="source/quilla.hookspecs.html#quilla.hookspecs.configuration.quilla_resolve_enum_from_name">[1]</a>
 </li>
-      <li><a href="source/pytest_quilla.html#pytest_quilla.pytest_classes.QuillaFile">QuillaFile (class in pytest_quilla.pytest_classes)</a>
+      <li><a href="hooks.html#quilla.hookspecs.steps.quilla_step_factory_selector">quilla_step_factory_selector() (in module quilla.hookspecs.steps)</a>, <a href="source/quilla.hookspecs.html#quilla.hookspecs.steps.quilla_step_factory_selector">[1]</a>
 </li>
-      <li><a href="source/pytest_quilla.html#pytest_quilla.pytest_classes.QuillaItem">QuillaItem (class in pytest_quilla.pytest_classes)</a>
-</li>
-      <li><a href="source/pytest_quilla.html#pytest_quilla.pytest_classes.QuillaJsonException">QuillaJsonException</a>
+      <li><a href="source/quilla.html#quilla.ui_validation.QuillaTest">QuillaTest (class in quilla.ui_validation)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -822,8 +794,6 @@
 </li>
       <li><a href="source/quilla.common.html#quilla.common.enums.UITestActions.REMOVE_COOKIE">REMOVE_COOKIE (quilla.common.enums.UITestActions attribute)</a>
 </li>
-      <li><a href="source/pytest_quilla.html#pytest_quilla.pytest_classes.QuillaItem.reportinfo">reportinfo() (pytest_quilla.pytest_classes.QuillaItem method)</a>
-</li>
       <li><a href="source/quilla.reports.html#quilla.reports.report_summary.ReportSummary.reports">reports (quilla.reports.report_summary.ReportSummary attribute)</a>
 </li>
       <li><a href="source/quilla.reports.html#quilla.reports.report_summary.ReportSummary">ReportSummary (class in quilla.reports.report_summary)</a>
@@ -834,8 +804,6 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="source/quilla.common.html#quilla.common.enums.ReportType">ReportType (class in quilla.common.enums)</a>
 </li>
-      <li><a href="source/pytest_quilla.html#pytest_quilla.pytest_classes.QuillaItem.repr_failure">repr_failure() (pytest_quilla.pytest_classes.QuillaItem method)</a>
-</li>
       <li><a href="source/quilla.steps.html#quilla.steps.steps.TestStep.required_params">required_params (quilla.steps.steps.TestStep attribute)</a>
 </li>
       <li><a href="source/quilla.html#quilla.run">run() (in module quilla)</a>
@@ -843,8 +811,6 @@
       <li><a href="source/quilla.html#quilla.ctx.Context.run_headless">run_headless (quilla.ctx.Context attribute)</a>
 </li>
       <li><a href="source/quilla.browser.html#quilla.browser.browser_validations.BrowserValidations.run_steps">run_steps() (quilla.browser.browser_validations.BrowserValidations method)</a>
-</li>
-      <li><a href="source/pytest_quilla.html#pytest_quilla.pytest_classes.QuillaItem.runtest">runtest() (pytest_quilla.pytest_classes.QuillaItem method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -860,22 +826,16 @@
       </ul></li>
       <li><a href="source/quilla.common.html#quilla.common.enums.UITestActions.SEND_KEYS">SEND_KEYS (quilla.common.enums.UITestActions attribute)</a>
 </li>
-      <li><a href="source/pytest_quilla.html#pytest_quilla.pytest_classes.QuillaFile.session">session (pytest_quilla.pytest_classes.QuillaFile attribute)</a>
-
-      <ul>
-        <li><a href="source/pytest_quilla.html#pytest_quilla.pytest_classes.QuillaItem.session">(pytest_quilla.pytest_classes.QuillaItem attribute)</a>
-</li>
-      </ul></li>
       <li><a href="source/quilla.common.html#quilla.common.enums.UITestActions.SET_BROWSER_SIZE">SET_BROWSER_SIZE (quilla.common.enums.UITestActions attribute)</a>
 </li>
       <li><a href="source/quilla.common.html#quilla.common.enums.UITestActions.SET_COOKIES">SET_COOKIES (quilla.common.enums.UITestActions attribute)</a>
 </li>
       <li><a href="source/quilla.html#quilla.setup_context">setup_context() (in module quilla)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="source/quilla.reports.html#quilla.reports.validation_report.ValidationReport.state">state (quilla.reports.validation_report.ValidationReport attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="source/quilla.reports.html#quilla.reports.report_summary.ReportSummary.FilterTypes.state">state() (quilla.reports.report_summary.ReportSummary.FilterTypes method)</a>
 </li>
       <li><a href="source/quilla.common.html#quilla.common.enums.ReportType.STEP_FAILURE">STEP_FAILURE (quilla.common.enums.ReportType attribute)</a>
@@ -938,14 +898,12 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="source/quilla.common.html#quilla.common.enums.UITestActions">UITestActions (class in quilla.common.enums)</a>
 </li>
-      <li><a href="source/quilla.html#quilla.ui_validation.UIValidation">UIValidation (class in quilla.ui_validation)</a>
-</li>
       <li><a href="source/quilla.common.html#quilla.common.exceptions.UIValidationException">UIValidationException</a>
+</li>
+      <li><a href="source/quilla.common.html#quilla.common.enums.ValidationTypes.URL">URL (quilla.common.enums.ValidationTypes attribute)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="source/quilla.common.html#quilla.common.enums.ValidationTypes.URL">URL (quilla.common.enums.ValidationTypes attribute)</a>
-</li>
       <li><a href="source/quilla.steps.html#quilla.steps.validations.URLValidation.url">url (quilla.steps.validations.URLValidation property)</a>
 </li>
       <li><a href="source/quilla.steps.html#quilla.steps.validations.URLValidation">URLValidation (class in quilla.steps.validations)</a>
@@ -962,7 +920,7 @@
 </li>
       <li><a href="source/quilla.browser.html#quilla.browser.browser_validations.BrowserValidations.validate">validate() (quilla.browser.browser_validations.BrowserValidations method)</a>
 </li>
-      <li><a href="source/quilla.html#quilla.ui_validation.UIValidation.validate_all">validate_all() (quilla.ui_validation.UIValidation method)</a>
+      <li><a href="source/quilla.html#quilla.ui_validation.QuillaTest.validate_all">validate_all() (quilla.ui_validation.QuillaTest method)</a>
 </li>
       <li><a href="source/quilla.steps.html#quilla.steps.validations.Validation">Validation (class in quilla.steps.validations)</a>
 </li>
@@ -974,7 +932,7 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="source/quilla.reports.html#quilla.reports.validation_report.ValidationReport.validation_type">validation_type (quilla.reports.validation_report.ValidationReport attribute)</a>
 </li>
-      <li><a href="source/quilla.html#quilla.ui_validation.UIValidation.validation_type_selector">validation_type_selector (quilla.ui_validation.UIValidation attribute)</a>
+      <li><a href="source/quilla.html#quilla.ui_validation.QuillaTest.validation_type_selector">validation_type_selector (quilla.ui_validation.QuillaTest attribute)</a>
 </li>
       <li><a href="source/quilla.reports.html#quilla.reports.validation_report.ValidationReport">ValidationReport (class in quilla.reports.validation_report)</a>
 </li>

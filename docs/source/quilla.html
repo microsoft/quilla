@@ -106,12 +106,12 @@
 <li class="toctree-l3"><a class="reference internal" href="#module-quilla.ctx">quilla.ctx module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-quilla.ui_validation">quilla.ui_validation module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-quilla.plugins">quilla.plugins module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-quilla.hookspecs">quilla.hookspecs module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="quilla.browser.html">quilla.browser package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="quilla.common.html">quilla.common package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="quilla.reports.html">quilla.reports package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="quilla.steps.html">quilla.steps package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quilla.hookspecs.html">quilla.hookspecs package</a></li>
 </ul>
 </li>
 </ul>
@@ -196,7 +196,7 @@
 the runtime context for the application, then executing the rest of the application</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="quilla.execute">
-<span class="sig-prename descclassname"><span class="pre">quilla.</span></span><span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">json_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.execute" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">quilla.</span></span><span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.execute" title="Permalink to this definition">¶</a></dt>
 <dd><p>Runs all defined UI validations from the json, either from file or from raw json text, and
 prints all the resulting reports to the console</p>
 <dl class="field-list simple">
@@ -204,11 +204,50 @@ prints all the resulting reports to the console</p>
 <dd class="field-odd"><p><strong>json</strong> – The json string describing the validation</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></p>
+<dd class="field-even"><p><a class="reference internal" href="quilla.reports.html#quilla.reports.report_summary.ReportSummary" title="quilla.reports.report_summary.ReportSummary"><code class="xref py py-class docutils literal notranslate"><span class="pre">ReportSummary</span></code></a></p>
 </dd>
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>Status code for the execution of the UIValidation module, determined by whether or not
-there were any reports that were flagged as failed</p>
+<dd class="field-odd"><p>A summary of all reports produced by Quilla</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="quilla.get_early_configs">
+<span class="sig-prename descclassname"><span class="pre">quilla.</span></span><span class="sig-name descname"><span class="pre">get_early_configs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.get_early_configs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extracts known configs early on. This will disable help/usage printing and prevent
+exiting on failure, since it potentially needs to ignore errors to collect the early configs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parser</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">ArgumentParser</span></code>) – A parser instance, such as the one returned by <cite>make parser</cite></p></li>
+<li><p><strong>args</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – A list of strings containing the arguments to be consumed</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Namespace</span></code></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A namespace object containing the early configurations for Quilla</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="quilla.make_default_logger">
+<span class="sig-prename descclassname"><span class="pre">quilla.</span></span><span class="sig-name descname"><span class="pre">make_default_logger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">early_configs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.make_default_logger" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a default logger class for Quilla. All internal logger setup logic
+is done in this function</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>early_configs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Namespace</span></code>) – The extracted configurations from an early pass-through
+of the parse_known_intermixed_args function, before plugins run</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Logger</span></code></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A configured <code class="docutils literal notranslate"><span class="pre">Logger</span></code></p>
 </dd>
 </dl>
 </dd></dl>
@@ -216,7 +255,7 @@ there were any reports that were flagged as failed</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="quilla.make_parser">
 <span class="sig-prename descclassname"><span class="pre">quilla.</span></span><span class="sig-name descname"><span class="pre">make_parser</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#quilla.make_parser" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates the required parser to run UIValidation from the command line</p>
+<dd><p>Creates the required parser to run Quilla from the command line</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ArgumentParser</span></code></p>
@@ -261,16 +300,21 @@ appropriate exit code.</p>
 <span id="quilla-ctx-module"></span><h2>quilla.ctx module<a class="headerlink" href="#module-quilla.ctx" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="quilla.ctx.Context">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">quilla.ctx.</span></span><span class="sig-name descname"><span class="pre">Context</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plugin_manager</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drivers_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pretty</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">json_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_sandbox</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">definitions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.ctx.Context" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">quilla.ctx.</span></span><span class="sig-name descname"><span class="pre">Context</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plugin_manager</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drivers_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pretty</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">json_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_sandbox</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">definitions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.ctx.Context" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="quilla.common.html#quilla.common.utils.DriverHolder" title="quilla.common.utils.DriverHolder"><code class="xref py py-class docutils literal notranslate"><span class="pre">quilla.common.utils.DriverHolder</span></code></a></p>
 <p>Class defining configurations for the runtime context. This object
 should not be created directly but retrieved with “get_default_context”</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
+<li><p><strong>plugin_manager</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PluginManager</span></code>) – A configured PluginManager instance</p></li>
 <li><p><strong>debug</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Whether the configurations should be run as debug mode.</p></li>
 <li><p><strong>drivers_path</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The directory where the different browser drivers are stored</p></li>
-<li><p><strong>context_data</strong> – Data to be stored to the Validation namespace for context expressions</p></li>
+<li><p><strong>pretty</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – If the output should be pretty-printed</p></li>
+<li><p><strong>json_data</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The json describing the validations</p></li>
+<li><p><strong>is_file</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Whether a file was originally passed in or if the raw json was passed in</p></li>
+<li><p><strong>no_sandbox</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Whether to pass the ‘–no-sandbox’ arg to Chrome and Edge</p></li>
+<li><p><strong>logger</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Logger</span></code>]) – An optional configured logger instance.</p></li>
 </ul>
 </dd>
 </dl>
@@ -322,6 +366,13 @@ session open</p>
 <dt class="sig sig-object py" id="quilla.ctx.Context.no_sandbox">
 <span class="sig-name descname"><span class="pre">no_sandbox</span></span><a class="headerlink" href="#quilla.ctx.Context.no_sandbox" title="Permalink to this definition">¶</a></dt>
 <dd><p>Whether to pass the ‘–no-sandbox’ arg to Chrome and Edge</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="quilla.ctx.Context.logger">
+<span class="sig-name descname"><span class="pre">logger</span></span><a class="headerlink" href="#quilla.ctx.Context.logger" title="Permalink to this definition">¶</a></dt>
+<dd><p>A logger instance. If None was passed in for the ‘logger’ argument, will create
+one with the default logger.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -425,7 +476,7 @@ making suitable replacements for the context objects</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="quilla.ctx.get_default_context">
-<span class="sig-prename descclassname"><span class="pre">quilla.ctx.</span></span><span class="sig-name descname"><span class="pre">get_default_context</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plugin_manager</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drivers_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pretty</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">json</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_sandbox</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">definitions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recreate_context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.ctx.get_default_context" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">quilla.ctx.</span></span><span class="sig-name descname"><span class="pre">get_default_context</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plugin_manager</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drivers_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pretty</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">json</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_sandbox</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">definitions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recreate_context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.ctx.get_default_context" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the default context, creating a new one if necessary.</p>
 <p>If a context object already exists, all of the arguments passed into this function
 are ignored.</p>
@@ -442,6 +493,8 @@ as a string</p></li>
 <li><p><strong>no_sandbox</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Specifies that Chrome and Edge should start with the –no-sandbox flag</p></li>
 <li><p><strong>definitions</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – A list file names that contain definitions for Quilla</p></li>
 <li><p><strong>recreate_context</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Whether a new context object should be created or not</p></li>
+<li><p><strong>logger</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Logger</span></code>]) – An optional logger instance. If None, one will be created
+with the NullHandler.</p></li>
 </ul>
 </dd>
 </dl>
@@ -460,10 +513,10 @@ as a string</p></li>
 <div class="section" id="module-quilla.ui_validation">
 <span id="quilla-ui-validation-module"></span><h2>quilla.ui_validation module<a class="headerlink" href="#module-quilla.ui_validation" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
-<dt class="sig sig-object py" id="quilla.ui_validation.UIValidation">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">quilla.ui_validation.</span></span><span class="sig-name descname"><span class="pre">UIValidation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">browsers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">setup_steps</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.ui_validation.UIValidation" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="quilla.ui_validation.QuillaTest">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">quilla.ui_validation.</span></span><span class="sig-name descname"><span class="pre">QuillaTest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">browsers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">setup_steps</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.ui_validation.QuillaTest" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="quilla.common.html#quilla.common.utils.EnumResolver" title="quilla.common.utils.EnumResolver"><code class="xref py py-class docutils literal notranslate"><span class="pre">quilla.common.utils.EnumResolver</span></code></a></p>
-<p>A class to convert data into a valid UIValidation instance, which is able to resolve
+<p>A class to convert data into a valid QuillaTest instance, which is able to resolve
 raw text data into the appropriate enums to be used by the internal classes.</p>
 <p>Creates shallow copies of all the steps to ensure independence</p>
 <dl class="field-list simple">
@@ -477,15 +530,21 @@ raw text data into the appropriate enums to be used by the internal classes.</p>
 </dd>
 </dl>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="quilla.ui_validation.UIValidation.browsers">
-<span class="sig-name descname"><span class="pre">browsers</span></span><a class="headerlink" href="#quilla.ui_validation.UIValidation.browsers" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="quilla.ui_validation.QuillaTest.browsers">
+<span class="sig-name descname"><span class="pre">browsers</span></span><a class="headerlink" href="#quilla.ui_validation.QuillaTest.browsers" title="Permalink to this definition">¶</a></dt>
 <dd><p>A list of instantiated browser validations, each containing an
 independent steps aggregator</p>
 </dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="quilla.ui_validation.QuillaTest.ctx">
+<span class="sig-name descname"><span class="pre">ctx</span></span><a class="headerlink" href="#quilla.ui_validation.QuillaTest.ctx" title="Permalink to this definition">¶</a></dt>
+<dd><p>The runtime context for the application</p>
+</dd></dl>
+
 <dl class="py method">
-<dt class="sig sig-object py" id="quilla.ui_validation.UIValidation.from_dict">
-<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.ui_validation.UIValidation.from_dict" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="quilla.ui_validation.QuillaTest.from_dict">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.ui_validation.QuillaTest.from_dict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Converts a dictionary that represents a single UIValidation test case into
 the appropriate validation object.</p>
 <div class="admonition note">
@@ -494,49 +553,49 @@ the appropriate validation object.</p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="#quilla.ui_validation.UIValidation" title="quilla.ui_validation.UIValidation"><code class="xref py py-class docutils literal notranslate"><span class="pre">UIValidation</span></code></a></p>
+<dd class="field-odd"><p><a class="reference internal" href="#quilla.ui_validation.QuillaTest" title="quilla.ui_validation.QuillaTest"><code class="xref py py-class docutils literal notranslate"><span class="pre">QuillaTest</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="quilla.ui_validation.UIValidation.from_file">
-<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fp</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.ui_validation.UIValidation.from_file" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="quilla.ui_validation.QuillaTest.from_file">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fp</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.ui_validation.QuillaTest.from_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Converts an fp (a .read() supporting file-like object) containing a json
 document into a UIValidation object</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="#quilla.ui_validation.UIValidation" title="quilla.ui_validation.UIValidation"><code class="xref py py-class docutils literal notranslate"><span class="pre">UIValidation</span></code></a></p>
+<dd class="field-odd"><p><a class="reference internal" href="#quilla.ui_validation.QuillaTest" title="quilla.ui_validation.QuillaTest"><code class="xref py py-class docutils literal notranslate"><span class="pre">QuillaTest</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="quilla.ui_validation.UIValidation.from_filename">
-<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">from_filename</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.ui_validation.UIValidation.from_filename" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="quilla.ui_validation.QuillaTest.from_filename">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">from_filename</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.ui_validation.QuillaTest.from_filename" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reads a file at the specified path and attempts to convert it into a
 UIValidation object</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="#quilla.ui_validation.UIValidation" title="quilla.ui_validation.UIValidation"><code class="xref py py-class docutils literal notranslate"><span class="pre">UIValidation</span></code></a></p>
+<dd class="field-odd"><p><a class="reference internal" href="#quilla.ui_validation.QuillaTest" title="quilla.ui_validation.QuillaTest"><code class="xref py py-class docutils literal notranslate"><span class="pre">QuillaTest</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="quilla.ui_validation.UIValidation.from_json">
-<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation_json</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.ui_validation.UIValidation.from_json" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="quilla.ui_validation.QuillaTest.from_json">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation_json</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.ui_validation.QuillaTest.from_json" title="Permalink to this definition">¶</a></dt>
 <dd><p>Converts a json string into a UIValidation object</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="#quilla.ui_validation.UIValidation" title="quilla.ui_validation.UIValidation"><code class="xref py py-class docutils literal notranslate"><span class="pre">UIValidation</span></code></a></p>
+<dd class="field-odd"><p><a class="reference internal" href="#quilla.ui_validation.QuillaTest" title="quilla.ui_validation.QuillaTest"><code class="xref py py-class docutils literal notranslate"><span class="pre">QuillaTest</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="quilla.ui_validation.UIValidation.validate_all">
-<span class="sig-name descname"><span class="pre">validate_all</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#quilla.ui_validation.UIValidation.validate_all" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="quilla.ui_validation.QuillaTest.validate_all">
+<span class="sig-name descname"><span class="pre">validate_all</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#quilla.ui_validation.QuillaTest.validate_all" title="Permalink to this definition">¶</a></dt>
 <dd><p>Performs all the setup test steps required for each test case
 and executes the validations, producing a set of validation
 reports.</p>
@@ -548,8 +607,8 @@ reports.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="quilla.ui_validation.UIValidation.validation_type_selector">
-<span class="sig-name descname"><span class="pre">validation_type_selector</span></span><em class="property"><span class="pre">:</span> <span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="quilla.common.html#quilla.common.enums.ValidationTypes" title="quilla.common.enums.ValidationTypes"><span class="pre">quilla.common.enums.ValidationTypes</span></a><span class="p"><span class="pre">,</span> </span><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="quilla.common.html#quilla.common.enums.ValidationStates" title="quilla.common.enums.ValidationStates"><span class="pre">quilla.common.enums.ValidationStates</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">{&lt;ValidationTypes.XPATH:</span> <span class="pre">'XPath'&gt;:</span> <span class="pre">&lt;enum</span> <span class="pre">'XPathValidationStates'&gt;,</span> <span class="pre">&lt;ValidationTypes.URL:</span> <span class="pre">'URL'&gt;:</span> <span class="pre">&lt;enum</span> <span class="pre">'URLValidationStates'&gt;}</span></em><a class="headerlink" href="#quilla.ui_validation.UIValidation.validation_type_selector" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="quilla.ui_validation.QuillaTest.validation_type_selector">
+<span class="sig-name descname"><span class="pre">validation_type_selector</span></span><em class="property"><span class="pre">:</span> <span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="quilla.common.html#quilla.common.enums.ValidationTypes" title="quilla.common.enums.ValidationTypes"><span class="pre">quilla.common.enums.ValidationTypes</span></a><span class="p"><span class="pre">,</span> </span><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="quilla.common.html#quilla.common.enums.ValidationStates" title="quilla.common.enums.ValidationStates"><span class="pre">quilla.common.enums.ValidationStates</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">{&lt;ValidationTypes.XPATH:</span> <span class="pre">'XPath'&gt;:</span> <span class="pre">&lt;enum</span> <span class="pre">'XPathValidationStates'&gt;,</span> <span class="pre">&lt;ValidationTypes.URL:</span> <span class="pre">'URL'&gt;:</span> <span class="pre">&lt;enum</span> <span class="pre">'URLValidationStates'&gt;}</span></em><a class="headerlink" href="#quilla.ui_validation.QuillaTest.validation_type_selector" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -559,7 +618,7 @@ reports.</p>
 <span id="quilla-plugins-module"></span><h2>quilla.plugins module<a class="headerlink" href="#module-quilla.plugins" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="quilla.plugins.get_plugin_manager">
-<span class="sig-prename descclassname"><span class="pre">quilla.plugins.</span></span><span class="sig-name descname"><span class="pre">get_plugin_manager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.plugins.get_plugin_manager" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">quilla.plugins.</span></span><span class="sig-name descname"><span class="pre">get_plugin_manager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.plugins.get_plugin_manager" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates and configures a plugin manager by loading all the plugins defined
 through entrypoints or through a <cite>uiconf.py</cite> file found at the <cite>path</cite> location</p>
 <dl class="field-list simple">
@@ -571,136 +630,6 @@ through entrypoints or through a <cite>uiconf.py</cite> file found at the <cite>
 </dd>
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>a configured PluginManager instance with all plugins already loaded</p>
-</dd>
-</dl>
-</dd></dl>
-
-</div>
-<div class="section" id="module-quilla.hookspecs">
-<span id="quilla-hookspecs-module"></span><h2>quilla.hookspecs module<a class="headerlink" href="#module-quilla.hookspecs" title="Permalink to this headline">¶</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="quilla.hookspecs.quilla_addopts">
-<span class="sig-prename descclassname"><span class="pre">quilla.hookspecs.</span></span><span class="sig-name descname"><span class="pre">quilla_addopts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parser</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.hookspecs.quilla_addopts" title="Permalink to this definition">¶</a></dt>
-<dd><p>A hook to allow plugins to add additional arguments to the argument parser.
-This can be used if a plugin requires additional parameters or data in some way.</p>
-<p>This is called after the initial argument parser setup</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>parser</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">ArgumentParser</span></code>) – The argparse Argument Parser instance used by the application</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="quilla.hookspecs.quilla_configure">
-<span class="sig-prename descclassname"><span class="pre">quilla.hookspecs.</span></span><span class="sig-name descname"><span class="pre">quilla_configure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.hookspecs.quilla_configure" title="Permalink to this definition">¶</a></dt>
-<dd><p>A hook to allow plugins to modify the context object, either changing its data
-or adding data to it.</p>
-<p>This is called after the initial setup of the context object</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>ctx</strong> (<a class="reference internal" href="#quilla.ctx.Context" title="quilla.ctx.Context"><code class="xref py py-class docutils literal notranslate"><span class="pre">Context</span></code></a>) – The runtime context for the application</p></li>
-<li><p><strong>args</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Namespace</span></code>) – Parsed CLI args, in case they are needed</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="quilla.hookspecs.quilla_context_obj">
-<span class="sig-prename descclassname"><span class="pre">quilla.hookspecs.</span></span><span class="sig-name descname"><span class="pre">quilla_context_obj</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.hookspecs.quilla_context_obj" title="Permalink to this definition">¶</a></dt>
-<dd><p>A hook to allow pluggins to resolve a context object given its root
-and a path. All plugins that implement this hook <em>must</em> return None if they cannot
-resolve the context object.</p>
-<p>It is not possible to override the default context object handlers</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>ctx</strong> (<a class="reference internal" href="#quilla.ctx.Context" title="quilla.ctx.Context"><code class="xref py py-class docutils literal notranslate"><span class="pre">Context</span></code></a>) – The runtime context for the application</p></li>
-<li><p><strong>root</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The name of the context object, which is expressed as the root
-of a dot-separated path in the validation files</p></li>
-<li><p><strong>path</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – The remainder of the context object path, where data is being
-retrieved from</p></li>
-</ul>
-</dd>
-</dl>
-<dl class="simple">
-<dt>Returns</dt><dd><p>the data stored at the context object if existing, None otherwise</p>
-</dd>
-</dl>
-<dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="quilla.hookspecs.quilla_postvalidate">
-<span class="sig-prename descclassname"><span class="pre">quilla.hookspecs.</span></span><span class="sig-name descname"><span class="pre">quilla_postvalidate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reports</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.hookspecs.quilla_postvalidate" title="Permalink to this definition">¶</a></dt>
-<dd><p>A hook called immediately after all validations are executed and the full
-ReportSummary is generated</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>ctx</strong> (<a class="reference internal" href="#quilla.ctx.Context" title="quilla.ctx.Context"><code class="xref py py-class docutils literal notranslate"><span class="pre">Context</span></code></a>) – The runtime context for the application</p></li>
-<li><p><strong>reports</strong> (<a class="reference internal" href="quilla.reports.html#quilla.reports.report_summary.ReportSummary" title="quilla.reports.report_summary.ReportSummary"><code class="xref py py-class docutils literal notranslate"><span class="pre">ReportSummary</span></code></a>) – An object capturing all generated reports and giving summary data</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="quilla.hookspecs.quilla_prevalidate">
-<span class="sig-prename descclassname"><span class="pre">quilla.hookspecs.</span></span><span class="sig-name descname"><span class="pre">quilla_prevalidate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">validation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.hookspecs.quilla_prevalidate" title="Permalink to this definition">¶</a></dt>
-<dd><p>A hook called immediately before the validations attempt to be resolved
-(i.e. before <cite>validations.validate_all()</cite> is called)</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>validation</strong> (<a class="reference internal" href="#quilla.ui_validation.UIValidation" title="quilla.ui_validation.UIValidation"><code class="xref py py-class docutils literal notranslate"><span class="pre">UIValidation</span></code></a>) – The collected validations from the json passed to
-the application</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="quilla.hookspecs.quilla_resolve_enum_from_name">
-<span class="sig-prename descclassname"><span class="pre">quilla.hookspecs.</span></span><span class="sig-name descname"><span class="pre">quilla_resolve_enum_from_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enum</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.hookspecs.quilla_resolve_enum_from_name" title="Permalink to this definition">¶</a></dt>
-<dd><p>A hook called when a value specified by the quilla test should be resolved to an
-enum, but no enum has been found. This is to allow plugins to register custom
-enum values for quilla, such as new step actions, validation types, validation states,
-output sources, etc.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – the string value specified in the quilla test</p></li>
-<li><p><strong>enum</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Type</span></code>[~T]) – The enum subclass type that is being attempted to be resolved. This
-should give an indication as to what is being resolved. For example,
-UITestActions is the enum type being resolved for the ‘actions’ field.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[~T]</p>
-</dd>
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>The resolved enum, if it can be resolved. None if the plugin can’t resolve
-the value.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="quilla.hookspecs.quilla_step_factory_selector">
-<span class="sig-prename descclassname"><span class="pre">quilla.hookspecs.</span></span><span class="sig-name descname"><span class="pre">quilla_step_factory_selector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">selector</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.hookspecs.quilla_step_factory_selector" title="Permalink to this definition">¶</a></dt>
-<dd><p>A hook called immediately before resolving the step factory for a given step definition.
-This is used to register new step factories for custom step objects.</p>
-<p>Most custom steps should just add themselves to the <cite>quilla_step_selector</cite> hook, but if
-a custom step requires complex logic it might be beneficial to register a factory to
-have more fine-grained control over the logic</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>selector</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<a class="reference internal" href="quilla.common.html#quilla.common.enums.UITestActions" title="quilla.common.enums.UITestActions"><code class="xref py py-class docutils literal notranslate"><span class="pre">UITestActions</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Type</span></code>[<a class="reference internal" href="quilla.steps.html#quilla.steps.base_steps.BaseStepFactory" title="quilla.steps.base_steps.BaseStepFactory"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseStepFactory</span></code></a>]]) – The factory selector dictionary.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -739,6 +668,13 @@ have more fine-grained control over the logic</p>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="quilla.steps.html#module-quilla.steps.validations">quilla.steps.validations module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quilla.hookspecs.html">quilla.hookspecs package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quilla.hookspecs.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quilla.hookspecs.html#module-quilla.hookspecs.configuration">quilla.hookspecs.configuration module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quilla.hookspecs.html#module-quilla.hookspecs.steps">quilla.hookspecs.steps module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quilla.hookspecs.html#module-quilla.hookspecs.reports">quilla.hookspecs.reports module</a></li>
 </ul>
 </li>
 </ul>

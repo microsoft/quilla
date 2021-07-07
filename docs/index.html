@@ -189,9 +189,14 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="install.html#recommended-python-version">Recommended Python Version</a></li>
-<li class="toctree-l2"><a class="reference internal" href="install.html#installing-quilla">Installing Quilla</a></li>
-<li class="toctree-l2"><a class="reference internal" href="install.html#packaging-the-python-code">Packaging the Python Code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="install.html#customizing-install-build">Customizing install &amp; build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#installing-quilla-with-pip">Installing Quilla with pip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#installing-quilla-from-source">Installing Quilla from source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#installing-quilla-from-wheel-files">Installing Quilla from wheel files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="install.html#use-pip-to-create-the-required-wheel-files">Use pip to create the required wheel files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#package-quilla-from-source">Package Quilla from source</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#customizing-source-install-build">Customizing source install &amp; build</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="validation_files.html">Validation Files</a><ul>
@@ -204,9 +209,9 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="validation_files.html#examples">Examples</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="validation_files.html#searching-bing-for-puppies">Searching Bing for puppies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="validation_files.html#signing-in-to-github">Signing In to Github</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="validation_files.html#signing-in-to-github">Signing In to Github</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="context_expressions.html">Context Expressions</a><ul>
@@ -228,7 +233,12 @@
 <li class="toctree-l2"><a class="reference internal" href="plugins.html#local-plugin-example-context-expressions">Local Plugin Example - Context expressions</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="hooks.html">Quilla Plugin Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hooks.html">Quilla Plugin Hooks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="hooks.html#module-quilla.hookspecs.configuration">Configuration hooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hooks.html#module-quilla.hookspecs.steps">Steps hooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hooks.html#module-quilla.hookspecs.reports">Report hooks</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="quilla_pytest.html">Running Quilla tests with Pytest</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="quilla_pytest.html#why-pytest">Why Pytest?</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="quilla_pytest.html#automatic-test-discovery">Automatic test discovery</a></li>
@@ -254,13 +264,12 @@
 <li class="toctree-l3"><a class="reference internal" href="source/quilla.html#module-quilla.ctx">quilla.ctx module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="source/quilla.html#module-quilla.ui_validation">quilla.ui_validation module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="source/quilla.html#module-quilla.plugins">quilla.plugins module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="source/quilla.html#module-quilla.hookspecs">quilla.hookspecs module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="source/quilla.html#subpackages">Subpackages</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="source/pytest_quilla.html">pytest_quilla package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="source/pytest_quilla.html#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="source/pytest_quilla.html#module-pytest_quilla.pytest_classes">pytest_quilla.pytest_classes module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="source/pytest_quilla.html#pytest-quilla-pytest-classes-module">pytest_quilla.pytest_classes module</a></li>
 </ul>
 </li>
 </ul>

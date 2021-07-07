@@ -130,7 +130,7 @@ setup(
     version='0.1',
     packages=find_packages(),
     entry_points={
-        'quillaPlugins': ['quilla-headless = headless.cli_configs']
+        'QuillaPlugins': ['quilla-headless = headless.cli_configs']
     }
 )
 ```
@@ -199,7 +199,7 @@ object, which will give us some basic information on the state of the current dr
     }
     ```
 
-5. Run `UIValidation -f Validation.json --pretty`. You should receive the following output:
+5. Run `quilla -f Validation.json --pretty`. You should receive the following output:
 
     ```json
     {

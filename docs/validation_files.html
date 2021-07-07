@@ -104,9 +104,9 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#searching-bing-for-puppies">Searching Bing for puppies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#signing-in-to-github">Signing In to Github</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#signing-in-to-github">Signing In to Github</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="context_expressions.html">Context Expressions</a></li>
@@ -463,13 +463,12 @@
 </pre></div>
 </div>
 </div>
-</div>
 <div class="section" id="signing-in-to-github">
-<h2>Signing In to Github<a class="headerlink" href="#signing-in-to-github" title="Permalink to this headline">¶</a></h2>
+<h3>Signing In to Github<a class="headerlink" href="#signing-in-to-github" title="Permalink to this headline">¶</a></h3>
 <p>Example written on 2021-06-24</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
     <span class="nt">&quot;definitions&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&quot;Username&quot;</span><span class="p">:</span> <span class="s2">&quot;validation-example-user&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;Username&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Environment.GITHUB_EXAMPLE_USER_USERNAME }}&quot;</span><span class="p">,</span>
         <span class="nt">&quot;Password&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Environment.GITHUB_EXAMPLE_USER_PASSWORD }}&quot;</span><span class="p">,</span>
         <span class="nt">&quot;WelcomePage&quot;</span><span class="p">:</span> <span class="p">{</span>
             <span class="nt">&quot;SignInButton&quot;</span><span class="p">:</span> <span class="s2">&quot;//div[@class=&#39;position-relative mr-3&#39;]/a&quot;</span>
@@ -586,6 +585,7 @@
     <span class="p">]</span>
 <span class="p">}</span>
 </pre></div>
+</div>
 </div>
 </div>
 </div>

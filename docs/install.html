@@ -95,9 +95,14 @@
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Command-Line Usage</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#recommended-python-version">Recommended Python Version</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#installing-quilla">Installing Quilla</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#packaging-the-python-code">Packaging the Python Code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#customizing-install-build">Customizing install &amp; build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-quilla-with-pip">Installing Quilla with pip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-quilla-from-source">Installing Quilla from source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-quilla-from-wheel-files">Installing Quilla from wheel files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#use-pip-to-create-the-required-wheel-files">Use pip to create the required wheel files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#package-quilla-from-source">Package Quilla from source</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#customizing-source-install-build">Customizing source install &amp; build</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="validation_files.html">Validation Files</a></li>
@@ -182,21 +187,48 @@
 <h2>Recommended Python Version<a class="headerlink" href="#recommended-python-version" title="Permalink to this headline">¶</a></h2>
 <p>Quilla was designed to work with Python 3.8+, and currently includes syntax that will cause errors in Python 3.7. Make sure you are using the correct version of python</p>
 </div>
-<div class="section" id="installing-quilla">
-<h2>Installing Quilla<a class="headerlink" href="#installing-quilla" title="Permalink to this headline">¶</a></h2>
-<!-- TODO: Update docs if it gets deployed to PyPI to reflect easy installation with `pip` -->
+<div class="section" id="installing-quilla-with-pip">
+<h2>Installing Quilla with pip<a class="headerlink" href="#installing-quilla-with-pip" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>Note: A virtual environment is recommended. Python ships with <code class="docutils literal notranslate"><span class="pre">venv</span></code>, though other alternatives such as using <code class="docutils literal notranslate"><span class="pre">conda</span></code> or <code class="docutils literal notranslate"><span class="pre">virtualenvwrapper</span></code> are just as useful</p>
+</div></blockquote>
+<p>Install Quilla by using <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">quilla</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">pytest-quilla</span></code> plugin is also installed when installing quilla, though <code class="docutils literal notranslate"><span class="pre">pytest</span></code> is not. It is not necessary to install Pytest to run Quilla on its own. To download Pytest alongside Quilla, run <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">quilla[pytest]</span></code> or <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">pytest</span> <span class="pre">quilla</span></code> to install them separately.</p>
+</div>
+<div class="section" id="installing-quilla-from-source">
+<h2>Installing Quilla from source<a class="headerlink" href="#installing-quilla-from-source" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><p>Note: A virtual environment is recommended. Python ships with <code class="docutils literal notranslate"><span class="pre">venv</span></code>, though other alternatives such as using <code class="docutils literal notranslate"><span class="pre">conda</span></code> or <code class="docutils literal notranslate"><span class="pre">virtualenvwrapper</span></code> are just as useful</p>
 </div></blockquote>
 <p>Download (or clone) the repository, and run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">install</span></code> to install Quilla. This will also expose the Quilla plugin to Pytest (if installed), though it will remain disabled until your pytest configuration file has the <code class="docutils literal notranslate"><span class="pre">use-quilla</span></code> option set to <code class="docutils literal notranslate"><span class="pre">True</span></code>. This does not cause any issues if Pytest is not installed, however, since it only registers the entrypoint.</p>
 </div>
-<div class="section" id="packaging-the-python-code">
-<h2>Packaging the Python Code<a class="headerlink" href="#packaging-the-python-code" title="Permalink to this headline">¶</a></h2>
-<p>Packaging Quilla requires the <code class="docutils literal notranslate"><span class="pre">setuptools</span></code>, <code class="docutils literal notranslate"><span class="pre">pip</span></code>, and <code class="docutils literal notranslate"><span class="pre">wheel</span></code> packages. These should come default with every installation of Python, but if something seems to be going wrong make sure to check if they are installed.</p>
-<p>The preferred method of packaging Quilla is by using the <code class="docutils literal notranslate"><span class="pre">make</span></code> commands that come bundled with the project. Use <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">package</span></code> to create (by default) the source and wheel distributions of Quilla, and use <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">package-deps</span></code> to create a Quilla <code class="docutils literal notranslate"><span class="pre">.whl</span></code> file and all the <code class="docutils literal notranslate"><span class="pre">.whl</span></code> files required by Quilla as dependencies.</p>
+<div class="section" id="installing-quilla-from-wheel-files">
+<h2>Installing Quilla from wheel files<a class="headerlink" href="#installing-quilla-from-wheel-files" title="Permalink to this headline">¶</a></h2>
+<p>It is occasionally necessary to install software in machines that either are not currently connected to the internet, or that cannot be connected to the internet. In these cases, it is still possible to install Quilla, although some setup will be required.</p>
+<div class="section" id="use-pip-to-create-the-required-wheel-files">
+<h3>Use pip to create the required wheel files<a class="headerlink" href="#use-pip-to-create-the-required-wheel-files" title="Permalink to this headline">¶</a></h3>
+<p>From a machine that can connect to PyPI, run <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">wheel</span> <span class="pre">quilla</span></code>, which will download all the <code class="docutils literal notranslate"><span class="pre">.whl</span></code> files from PyPI required to install Quilla. This will include all the dependencies listed in <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>, but none of the extras. Move the <code class="docutils literal notranslate"><span class="pre">.whl</span></code> files to the target machine, and run <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">./*.whl</span></code> to install them.</p>
 </div>
-<div class="section" id="customizing-install-build">
-<h2>Customizing install &amp; build<a class="headerlink" href="#customizing-install-build" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="package-quilla-from-source">
+<h3>Package Quilla from source<a class="headerlink" href="#package-quilla-from-source" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Packaging Quilla requires the <code class="docutils literal notranslate"><span class="pre">setuptools</span></code>, <code class="docutils literal notranslate"><span class="pre">pip</span></code>, and <code class="docutils literal notranslate"><span class="pre">wheel</span></code> packages. These should come default with every installation of Python, but if something seems to be going wrong make sure to check if they are installed.</p>
+</div></blockquote>
+<p>Quilla comes bundled with a convenience Makefile that has multiple commands to make managing it simpler. For creating the <code class="docutils literal notranslate"><span class="pre">.whl</span></code> files from source, do the following:</p>
+<ol>
+<li><p>Clone the repository</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">package-deps</span></code> to generate <code class="docutils literal notranslate"><span class="pre">.whl</span></code> files</p>
+<blockquote>
+<div><p>Note: While this will generate a <code class="docutils literal notranslate"><span class="pre">.whl</span></code> from source for Quilla, it will still download the dependency <code class="docutils literal notranslate"><span class="pre">.whl</span></code> files from the package repository</p>
+</div></blockquote>
+</li>
+<li><p>Collect all files from the <code class="docutils literal notranslate"><span class="pre">dist/</span></code> folder (or whatever target folder you have decided) and move them to the target machine</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">./*.whl</span></code></p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="customizing-source-install-build">
+<h2>Customizing source install &amp; build<a class="headerlink" href="#customizing-source-install-build" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> provided with Quilla uses several environment variables to configure its install and build process. All the available options are defined in the <a class="reference internal" href="makefile_vars.html"><span class="doc std std-doc">makefile vars</span></a> docs, including explanations on how they are used.</p>
 </div>
 </div>
