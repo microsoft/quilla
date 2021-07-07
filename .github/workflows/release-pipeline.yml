@@ -97,19 +97,19 @@ jobs:
       - name: Pull tags from the repo
         run: git pull --tags
 
-      - name: Generate version changelog for release
-        run: gitchangelog $previous_tag..HEAD | sed "s/## (unreleased)/Quilla v$(cat VERSION) ($(date +"%Y-%m-%d"))/" > version_changelog.md
+      # - name: Generate version changelog for release
+      #   run: gitchangelog $previous_tag..HEAD | sed "s/## (unreleased)/Quilla v$(cat VERSION) ($(date +"%Y-%m-%d"))/" > version_changelog.md
 
-      - name:  Create Github release & upload files
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: hub release create -a $wheel_name -a $tar_name -F version_changelog.md $(cat VERSION)
+      # - name:  Create Github release & upload files
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   run: hub release create -a $wheel_name -a $tar_name -F version_changelog.md $(cat VERSION)
 
-      - name: Install Twine
-        run: pip install twine
+      # - name: Install Twine
+      #   run: pip install twine
 
-      - name: Release package
-        run: twine upload dist/*
+      # - name: Release package
+      #   run: twine upload dist/*
 
   changelog-result:
     needs: release
@@ -119,12 +119,15 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Create new branch
-        run: git checkout -b actions/changelog-$(cat VERSION)
+        run: git checkout -b actions/changelog
 
       - name: Setup python
         uses: actions/setup-python@v2
         with:
           python-version: '3.8'
+
+      - name: Install dependencies
+        run: pip install -e .[all]
 
       - name: Generate newest changelog
         run: gitchangelog $(cat VERSION) > CHANGELOG.md
@@ -135,6 +138,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           add: 'CHANGELOG.md'
+          branch: actions/changelog
           message: '!gitchangelog'
 
       - name: Create pull request for the auto generated changelog
@@ -153,6 +157,8 @@ jobs:
             --auto \
             --delete-branch \
             --rebase
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
 
@@ -200,4 +206,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           add: '.'
+          branch: gh-pages
           message: 'chg: updated documentation after release'
