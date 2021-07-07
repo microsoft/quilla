@@ -67,5 +67,5 @@ install-tests:  ## Install the package and test dependencies
 	$(PYTHON_EXECUTABLE) -m pip install -e .[tests]
 
 .PHONY: install-all
-install-all:  ## Install the package, docs, and test dependencies
-	$(PYTHON_EXECUTABLE) -m pip install -e .[all]
+install-all:  ## Install the package, docs, and test dependencies as well as pre-commit hooks
+	$(PYTHON_EXECUTABLE) -m pip install -e .[all] && pre-commit install

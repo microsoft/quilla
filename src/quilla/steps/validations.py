@@ -21,8 +21,11 @@ from quilla.common.enums import (
     XPathValidationStates,
     URLValidationStates,
 )
-from quilla.reports.validation_report import ValidationReport
-from quilla.steps.base_steps import BaseStepFactory, BaseValidation
+from quilla.reports import ValidationReport
+from quilla.steps.base_steps import (
+    BaseStepFactory,
+    BaseValidation,
+)
 
 
 ValidationDictionary = Dict[str, Union[str, ValidationStates, ValidationTypes]]

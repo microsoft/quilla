@@ -11,8 +11,10 @@ from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.common.by import By
 
 from quilla.ctx import Context
-from quilla.reports.base_report import BaseReport
-from quilla.reports.validation_report import ValidationReport
+from quilla.reports import (
+    BaseReport,
+    ValidationReport
+)
 from quilla.common.utils import (
     DriverHolder,
     EnumResolver
@@ -187,7 +189,7 @@ class BaseValidation(BaseStep):
         self._report: Optional[ValidationReport] = None
 
     def copy(self) -> "BaseValidation":
-        # All classes derived from BaseValidation only need these three things
+        # All classes derived from BaseValidation only need these parameters
         return self.__class__(  # type: ignore
             self.ctx,  # type: ignore
             self._target,  # type: ignore
@@ -204,6 +206,11 @@ class BaseValidation(BaseStep):
         Returns:
             A report summarizing the results of the executed validation
         '''
+        self.ctx.logger.debug(
+            'Performing %s with desired state "%s"',
+            self._type.value,
+            self._state.value
+        )
         action_function = self._selector[self._state]
         self._report = action_function()
 

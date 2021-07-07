@@ -1,4 +1,8 @@
 from unittest.mock import Mock
+from logging import (
+    Logger,
+    NullHandler,
+)
 
 import pytest
 from _pytest.config import PytestPluginManager
@@ -25,8 +29,9 @@ def ctx(driver: WebDriver, plugin_manager):
 
 @pytest.fixture()
 def plugin_manager(pytestconfig: Config):
-
-    pm = get_plugin_manager(str(pytestconfig.rootpath))
+    logger = Logger('quilla-test-logger')
+    logger.addHandler(NullHandler())
+    pm = get_plugin_manager(str(pytestconfig.rootpath), logger)
 
     return pm
 
