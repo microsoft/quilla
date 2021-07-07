@@ -8,6 +8,11 @@ from typing import (
     cast
 )
 from pathlib import Path
+from logging import (
+    Logger,
+    getLogger,
+    NullHandler,
+)
 import json
 
 from pluggy import PluginManager
@@ -26,9 +31,14 @@ class Context(DriverHolder):
     should not be created directly but retrieved with "get_default_context"
 
     Args:
+        plugin_manager: A configured PluginManager instance
         debug: Whether the configurations should be run as debug mode.
         drivers_path: The directory where the different browser drivers are stored
-        context_data: Data to be stored to the Validation namespace for context expressions
+        pretty: If the output should be pretty-printed
+        json_data: The json describing the validations
+        is_file: Whether a file was originally passed in or if the raw json was passed in
+        no_sandbox: Whether to pass the '--no-sandbox' arg to Chrome and Edge
+        logger: An optional configured logger instance.
 
 
     Attributes:
@@ -42,8 +52,11 @@ class Context(DriverHolder):
         json_data: The json describing the validations
         is_file: Whether a file was originally passed in or if raw json was passed in
         no_sandbox: Whether to pass the '--no-sandbox' arg to Chrome and Edge
+        logger: A logger instance. If None was passed in for the 'logger' argument, will create
+            one with the default logger.
     '''
     default_context: Optional["Context"] = None
+    _drivers_path: str
     _expression_regex = re.compile(r'\${{(.*)}}')
     _context_obj_expression = re.compile(
         # Used on the inside of the _expession_regex to
@@ -64,6 +77,7 @@ class Context(DriverHolder):
         is_file: bool = False,
         no_sandbox: bool = False,
         definitions: List[str] = [],
+        logger: Optional[Logger] = None
     ):
         super().__init__()
         self.pm = plugin_manager
@@ -74,6 +88,12 @@ class Context(DriverHolder):
         self.is_file = is_file
         self.no_sandbox = no_sandbox
         path = Path(drivers_path)
+
+        if logger is None:
+            self.logger = getLogger('quilla')
+            self.logger.addHandler(NullHandler())
+        else:
+            self.logger = logger
 
         self.drivers_path = str(path.resolve())
         self._context_data: Dict[str, dict] = {'Validation': {}, 'Outputs': {}, 'Definitions': {}}
@@ -107,7 +127,9 @@ class Context(DriverHolder):
     @drivers_path.setter
     def drivers_path(self, v: str) -> str:
         path = Path(v)
-        self._drivers_path = str(path.resolve())
+        driver_path_str = str(path.resolve())
+        self.logger.debug('Setting driver path to "%s"', driver_path_str)
+        self._drivers_path = driver_path_str
         self._set_path()
 
         return v
@@ -133,9 +155,13 @@ class Context(DriverHolder):
             >>> ctx.perform_replacements('/api/${{ Validation.name }}/get')
             '/api/examplesvc/get'
         '''
+        self.logger.debug('Performing replacement function on %s', text)
         while (expression_match := self._expression_regex.search(text)) is not None:
             expression = expression_match.group(1).strip()
+            self.logger.debug('Found expression match: %s', expression)
             processed = self._process_objects(expression)
+
+            self.logger.debug('Post-processing, expression value is: %s', processed)
 
             text = (
                 text[:expression_match.start()] +
@@ -161,8 +187,10 @@ class Context(DriverHolder):
         '''
         while (object_match := self._context_obj_expression.search(expression)) is not None:
             object_expression = object_match.group(0)  # Grab the full expression
+
             root, *path = object_expression.split('.')
-            # repl_value = ''
+            repl_value = ''
+
             if root == 'Environment':
                 repl_value = self._escape_quotes(os.environ.get('.'.join(path), ''))
             elif root == 'Validation' or root == 'Definitions':
@@ -172,6 +200,12 @@ class Context(DriverHolder):
                 repl_value = cast(str, data)
             elif self.pm is not None:
                 # Pass it to the defined hooks
+
+                self.logger.debug(
+                    'Context object "%s" does not match known options, forwarding to plugins',
+                    root
+                )
+
                 hook_results = self.pm.hook.quilla_context_obj(
                     ctx=self,
                     root=root,
@@ -183,6 +217,12 @@ class Context(DriverHolder):
                     repl_value = ''
                 else:
                     repl_value = hook_results[0]
+
+            if repl_value == '':
+                self.logger.info(
+                    'Context expression "%s" does not resolve to any value',
+                    object_expression
+                )
 
             expression = (
                 expression[:object_match.start()] +
@@ -217,6 +257,11 @@ class Context(DriverHolder):
             value: The value that the name will be associated with
 
         '''
+        self.logger.debug(
+            'Creating output with id "%s" and value "%s"',
+            output_name,
+            value,
+        )
         if self.driver.name.strip().capitalize() == self._output_browser:
             self._deep_insert('Outputs', output_name, value)
         self._deep_insert('Validation', output_name, value)
@@ -247,9 +292,15 @@ class Context(DriverHolder):
         Given a list of definition file names, loads all of them into the context data store
         '''
         for definition_file in definition_files:
+            self.logger.info(
+                'Loading definition file "%s"',
+                definition_file
+            )
             with open(definition_file) as fp:
                 data_dict = json.load(fp)
             self.load_definitions(data_dict)
+
+        self.logger.debug('Final Definition object: "%s"', self._context_data['Definitions'])
 
     def load_definitions(self, definitions_dict: dict):
         '''
@@ -278,6 +329,7 @@ def get_default_context(
         no_sandbox: bool = False,
         definitions: List[str] = [],
         recreate_context: bool = False,
+        logger: Optional[Logger] = None
 ) -> Context:
     '''
     Gets the default context, creating a new one if necessary.
@@ -296,11 +348,16 @@ def get_default_context(
         no_sandbox: Specifies that Chrome and Edge should start with the --no-sandbox flag
         definitions: A list file names that contain definitions for Quilla
         recreate_context: Whether a new context object should be created or not
+        logger: An optional logger instance. If None, one will be created
+            with the NullHandler.
 
     Returns
         Application context shared for the entire application
     '''
     if Context.default_context is None or recreate_context:
+        if logger is not None:
+            logger.debug('Creating new default context object')
+
         Context.default_context = Context(
             plugin_manager,
             debug,
@@ -310,5 +367,6 @@ def get_default_context(
             is_file,
             no_sandbox,
             definitions,
+            logger,
         )
     return Context.default_context

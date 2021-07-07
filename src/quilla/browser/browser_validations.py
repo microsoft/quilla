@@ -70,6 +70,7 @@ class BrowserValidations:
         Creates the appropriate driver, sets the start URL to the specified root, and
         sets all steps to have the appropriate driver
         '''
+        self.ctx.logger.debug('Initializing browser %s', self._target.value)
         driver: WebDriver = self.driver_selector[self._target](self.ctx)
         self._driver = driver
         driver.get(self._root)
@@ -89,10 +90,12 @@ class BrowserValidations:
         '''
         Closes the browser instance and resets all the step drivers to None state
         '''
+        self.ctx.logger.debug('Cleaning up finished browser')
         if self.ctx.close_browser:
             try:
                 self._driver.close()
-            except Exception:
+            except Exception as e:
+                self.ctx.logger.debug('Could not close browser due to %e', e, exc_info=True)
                 pass  # Browser unable to be closed or is already closed
         self._driver = None
         self._steps.driver = None
@@ -116,6 +119,12 @@ class BrowserValidations:
         except Exception as e:
             # Catch exception and crash the program, but clean up
             # the browser first
+            self.ctx.logger.error(
+                'Exception %s raised for browser %s while running steps',
+                e,
+                self._target.value,
+                exc_info=True,
+            )
             raise e
         finally:
             self.clean()

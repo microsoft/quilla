@@ -62,6 +62,11 @@ class OutputValueStep(BaseStep, BaseStepFactory):
         }
 
     def perform(self):
+        self.ctx.logger.debug(
+            'Creating value output with source %s and target %s',
+            self._parameters['source'],
+            self._target,
+        )
         value_producer = self.selector[self.parameters['source']]
 
         output_value = value_producer()

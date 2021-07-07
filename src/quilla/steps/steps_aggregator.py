@@ -19,8 +19,10 @@ from quilla.steps.base_steps import (
 from quilla.steps.steps import TestStep
 from quilla.steps.validations import Validation
 from quilla.steps.outputs import OutputValueStep
-from quilla.reports.base_report import BaseReport
-from quilla.reports.step_failure_report import StepFailureReport
+from quilla.reports import (
+    BaseReport,
+    StepFailureReport
+)
 
 
 class StepsAggregator(DriverHolder):
@@ -48,6 +50,7 @@ class StepsAggregator(DriverHolder):
         }
 
         # Allow plugins to add selectors
+        ctx.logger.info('Running "quilla_step_factory_selector" hook')
         ctx.pm.hook.quilla_step_factory_selector(selector=step_factory_selector)
 
         for step in steps:
@@ -84,11 +87,19 @@ class StepsAggregator(DriverHolder):
         reports: List[BaseReport] = []
         for i, step in enumerate(self._steps):
             try:
+                self.ctx.logger.debug('Running step %s', step.action.value)
                 report = step.perform()
             except Exception as e:
                 if not self.ctx.suppress_exceptions:
                     # If debugging, don't produce reports since a stack trace will be better
                     raise e
+
+                self.ctx.logger.debug(
+                    'Performing step %s caused exception %s',
+                    step.action.value,
+                    e,
+                    exc_info=True
+                )
                 report = StepFailureReport(e, self.driver.name, step.action, i)
                 reports.append(report)
                 # Exit early, since steps producing exception can prevent future steps from working

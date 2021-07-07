@@ -16,7 +16,7 @@ from typing import (
 
 from quilla.hookspecs import hookspec
 from quilla.ctx import Context
-from quilla.ui_validation import UIValidation
+from quilla.ui_validation import QuillaTest
 
 
 T = TypeVar('T', bound=Enum)
@@ -65,6 +65,18 @@ def quilla_configure(ctx: Context, args: Namespace):
     '''
 
 
+@hookspec
+def quilla_prevalidate(validation: QuillaTest):
+    '''
+    A hook called immediately before the validations attempt to be resolved
+    (i.e. before `validations.validate_all()` is called)
+
+    Args:
+        validation: The collected validations from the json passed to
+            the application
+    '''
+
+
 @hookspec(firstresult=True)
 def quilla_resolve_enum_from_name(name: str, enum: Type[T]) -> Optional[T]:
     '''
@@ -82,18 +94,4 @@ def quilla_resolve_enum_from_name(name: str, enum: Type[T]) -> Optional[T]:
     Returns:
         The resolved enum, if it can be resolved. None if the plugin can't resolve
         the value.
-    '''
-
-
-@hookspec
-def quilla_prevalidate(validation: UIValidation):
-    '''
-    A hook called immediately before the validations attempt to be resolved
-    (i.e. before `validations.validate_all()` is called).
-
-    If the Context object is needed, it is available through ``validations.ctx``.
-
-    Args:
-        validation: The collected validations from the json passed to
-            the application
     '''
