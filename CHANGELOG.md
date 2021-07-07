@@ -1,4 +1,23 @@
-# Changelog
+## 0.2 (2021-06-29)
+
+### New
+
+* Added release pipeline workflow file (#15) [Natalia Maximo]
+
+* Added pytest-quilla documentation (#11) [Natalia Maximo]
+
+* Added test pipeline workflow file (#9) [Natalia Maximo]
+
+* Added code analysis workflow file. [Natalia Maximo]
+
+* Initial migration from ADO. [Natalia Maximo]
+
+### Other
+
+* Updated SUPPORT.md and setup file (#13) [Natalia Maximo]
+
+* Update README.md. [Natalia Maximo]
+
 
 ## 0.1 (2021-06-28)
 

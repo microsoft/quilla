@@ -30,6 +30,7 @@ author = 'Natalia Maximo'
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.napoleon',
+    'sphinx.ext.githubpages',
     'sphinx_autodoc_typehints',
     'myst_parser',
     'sphinx_argparse_cli',

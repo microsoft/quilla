@@ -97,17 +97,6 @@ jobs:
       - name: Pull tags from the repo
         run: git pull --tags
 
-      - name: Generate full changelog
-        run: gitchangelog | sed "s/(unreleased)/$(cat VERSION) ($(date +"%Y-%m-%d"))/" > CHANGELOG.md
-
-      - name: Make commit for auto-generated changelog
-        uses: EndBug/add-and-commit@v4
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          add: 'CHANGELOG.md'
-          message: '!gitchangelog'
-
       - name: Generate version changelog for release
         run: gitchangelog $previous_tag..HEAD | sed "s/## (unreleased)/Quilla v$(cat VERSION) ($(date +"%Y-%m-%d"))/" > version_changelog.md
 
@@ -121,3 +110,94 @@ jobs:
 
       - name: Release package
         run: twine upload dist/*
+
+  changelog-result:
+    needs: release
+    runs-on: ubuntu-latest
+    name: Generating Changelog
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Create new branch
+        run: git checkout -b actions/changelog-$(cat VERSION)
+
+      - name: Setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+
+      - name: Generate newest changelog
+        run: gitchangelog $(cat VERSION) > CHANGELOG.md
+
+      - name: Make commit for auto-generated changelog
+        uses: EndBug/add-and-commit@v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          add: 'CHANGELOG.md'
+          message: '!gitchangelog'
+
+      - name: Create pull request for the auto generated changelog
+        run: |
+          echo "PR_URL=$(gh pr create \
+            --title "Auto-generated changelog for release $(cat VERSION)" \
+            --body "This is an auto-generated PR" \
+            --reviewer microsoft/quilla-admin \
+            --label documentation)" >> $GITHUB_ENV
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set pull request to auto-merge as rebase
+        run: |
+          gh pr merge $PR_URL \
+            --auto \
+            --delete-branch \
+            --rebase
+
+
+
+
+  docs-build:
+    needs: release
+    runs-on: ubuntu-latest
+    name: Build the docs artifact
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+
+      - name: Install docs packages
+        run: pip install -e .[docs]
+
+      - name: Build documentation
+        run: DOC_TARGETS=html make docs
+
+      - name: Export docs as an artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: html_docs
+          path: ./docs/_build/html
+
+  docs-release:
+    needs: docs-build
+    runs-on: ubuntu-latest
+    name: Publish the new documentation
+    steps:
+      - uses: actions/checkout
+        with:
+          ref: gh-pages
+      - name: Download the doc artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: html_docs
+          path: ./docs
+
+      - name: Release gh-pages
+        uses: EndBug/add-and-commit@v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          add: '.'
+          message: 'chg: updated documentation after release'
