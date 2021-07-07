@@ -185,7 +185,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Publish the new documentation
     steps:
-      - uses: actions/checkout
+      - uses: actions/checkout@v2
         with:
           ref: gh-pages
       - name: Download the doc artifact
