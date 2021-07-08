@@ -1,6 +1,6 @@
 '''
 This file is used to generate the parser for the documentation. It initializes a plugin manager,
-and runs the necessary hooks to set up the parser. This is done so that local plugins will also
+and runs the necessary hooks to set up the parser. This is done so that built-in plugins will also
 appear in the usage documentation from ``doc/usage.rst``.
 '''
 
