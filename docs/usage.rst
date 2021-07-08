@@ -3,5 +3,5 @@ Command-Line Usage
 
 
 .. sphinx_argparse_cli::
-   :module: quilla
-   :func: make_parser
+   :module: quilla._doc
+   :func: _setup_docs_parser
