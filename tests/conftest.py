@@ -46,10 +46,10 @@ def driver():
 def pytest_addoption(parser, pluginmanager: PytestPluginManager):
     pluginmanager.set_blocked('quilla')
     parser.addoption(
-        "--quilla-opts",
-        action="store",
-        default="",
-        help="Options to be passed through to the quilla runtime for the scenario tests"
+        '--quilla-opts',
+        action='store',
+        default='',
+        help='Options to be passed through to the quilla runtime for the scenario tests'
     )
 
 

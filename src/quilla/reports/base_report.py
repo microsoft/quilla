@@ -23,14 +23,14 @@ class BaseReport(EnumResolver):
         msg: A string giving further context to the report
     '''
 
-    def __init__(self, report_type: ReportType, browser: str, action: UITestActions, msg: str = ""):
+    def __init__(self, report_type: ReportType, browser: str, action: UITestActions, msg: str = ''):
         self.browser: str = browser
         self.action: UITestActions = action
         self.msg: str = msg
         self.report_type: ReportType = report_type
 
     @abstractclassmethod
-    def from_dict(cls, report: Dict[str, Dict[str, str]]) -> "BaseReport":
+    def from_dict(cls, report: Dict[str, Dict[str, str]]) -> 'BaseReport':
         '''
         Converts a dictionary report into a valid Report object
 
@@ -53,7 +53,7 @@ class BaseReport(EnumResolver):
         return json.dumps(report)
 
     @classmethod
-    def from_json(cls, report_json: str) -> "BaseReport":
+    def from_json(cls, report_json: str) -> 'BaseReport':
         '''
         Loads a valid json string and attempts to convert it into a Report object
 
@@ -64,7 +64,7 @@ class BaseReport(EnumResolver):
         return cls.from_dict(st)  # type: ignore
 
     @classmethod
-    def from_file(cls, fp) -> "BaseReport":
+    def from_file(cls, fp) -> 'BaseReport':
         '''
         Converts a fp (a file-like .read() supporting object) containing a json document
         into a Report object
