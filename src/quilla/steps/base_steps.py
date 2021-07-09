@@ -109,8 +109,13 @@ class BaseStep(DriverHolder, EnumResolver):
         return params
 
     def _verify_parameters(self, *parameters: str):
+        if self._parameters is None:
+            raise FailedStepException(
+                f'No parameters were specified for "{self.action.value}" action'
+            )
+
         for parameter in parameters:
-            if parameter not in self.parameters:  # type: ignore
+            if parameter not in self._parameters:  # type: ignore
                 raise FailedStepException(
                     f'"{parameter}" parameter not specified for "{self.action.value}" action'
                 )

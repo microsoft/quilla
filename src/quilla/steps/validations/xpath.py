@@ -1,14 +1,10 @@
-from typing import (
-    cast,
-    Optional,
-    List,
-    Dict,
-    Union,
-    Callable,
-    Type
-)
 import re
-
+from typing import (
+    Optional,
+    Dict,
+    Callable,
+    List
+)
 
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement
@@ -16,19 +12,12 @@ from selenium.webdriver.common.by import By
 
 from quilla.ctx import Context
 from quilla.common.enums import (
-    ValidationTypes,
-    ValidationStates,
     XPathValidationStates,
-    URLValidationStates,
+    ValidationStates,
+    ValidationTypes,
 )
 from quilla.reports import ValidationReport
-from quilla.steps.base_steps import (
-    BaseStepFactory,
-    BaseValidation,
-)
-
-
-ValidationDictionary = Dict[str, Union[str, ValidationStates, ValidationTypes]]
+from quilla.steps.base_steps import BaseValidation
 
 
 class XPathValidation(BaseValidation):
@@ -64,6 +53,7 @@ class XPathValidation(BaseValidation):
             XPathValidationStates.NOT_HAS_ATTRIBUTE: self._check_not_has_attribute,
             XPathValidationStates.ATTRIBUTE_HAS_VALUE: self._check_attribute_has_value,
             XPathValidationStates.NOT_ATTRIBUTE_HAS_VALUE: self._check_not_attribute_has_value,
+            XPathValidationStates.VISUAL_PARITY: self._check_visual_parity,
         }
         super().__init__(
             ctx,
@@ -211,124 +201,10 @@ class XPathValidation(BaseValidation):
             not self._element_attribute_has_value
         )
 
+    def _check_visual_parity(self) -> ValidationReport:
+        self._verify_parameters('baselineID')
 
-class URLValidation(BaseValidation):
-    '''
-    Class defining the behaviour for performing URL validations
-
-    Args:
-        ctx: The runtime context for the application
-        target: The URL to perform the validation with
-        state: The desired state of the target url
-        driver: An optional argument to allow the driver to be bound at object creation.
-    '''
-    def __init__(
-        self,
-        ctx: Context,
-        target: str,
-        state: URLValidationStates,
-        parameters: Optional[Dict],
-        driver: Optional[WebDriver] = None,
-    ) -> None:
-        selector: Dict[ValidationStates, Callable[[], ValidationReport]] = {
-            URLValidationStates.CONTAINS: self._check_contains,
-            URLValidationStates.NOT_CONTAINS: self._check_not_contains,
-            URLValidationStates.EQUALS: self._check_equals,
-            URLValidationStates.NOT_EQUALS: self._check_not_equals
-        }
-        super().__init__(
-            ctx,
-            ValidationTypes.URL,
-            target,
-            state,
-            selector=selector,
-            parameters=parameters,
-            driver=driver
-        )
-
-    def perform(self) -> ValidationReport:
-        '''
-        Performs the correct action based on what is defined within the selector, and returns
-        the resulting report produced.
-
-        Returns:
-            A report summarizing the results of the executed validation
-        '''
-        report = super().perform()
-
-        if not report.success:
-            report.msg = f'Expected URL: "{self._target}", Received URL "{self.url}"'
-
-        return report
-
-    @property
-    def url(self) -> str:
-        '''
-        The current URL of the browser
-
-        Raises:
-            NoDriverException: If the driver is not currently bound to this step
-        '''
-        return self.driver.current_url
-
-    def _check_contains(self) -> ValidationReport:
         return self._create_report(
-            self.url.find(self.target) > -1
+            False,
+            msg='VisualParity Validation State not yet implemented'
         )
-
-    def _check_not_contains(self) -> ValidationReport:
-        return self._create_report(
-            self.url.find(self.target) == -1
-        )
-
-    def _check_equals(self) -> ValidationReport:
-        return self._create_report(
-            self.url == self.target
-        )
-
-    def _check_not_equals(self) -> ValidationReport:
-        return self._create_report(
-            self.url != self.target
-        )
-
-
-class Validation(BaseStepFactory):
-    '''
-    Factory class for the different validations
-    '''
-    validation_selector: Dict[ValidationTypes, Type[BaseValidation]] = {
-        ValidationTypes.XPATH: XPathValidation,
-        ValidationTypes.URL: URLValidation,
-    }
-
-    @classmethod
-    def from_dict(
-        cls,
-        ctx: Context,
-        validation_dict: ValidationDictionary,
-        driver: Optional[WebDriver] = None
-    ) -> BaseValidation:
-        '''
-        From a validation dict, produces the appropriate validation object
-
-        Args:
-            ctx: The runtime context for the application
-            validation_dict: A dictionary containing the definition of a validation, including
-                the target, state, and type of validation to be performed
-            driver: The driver that will be connected to the validation, if any
-
-        Returns:
-            Validation object of the type requested in the validation dictionary
-        '''
-        validation_params = {
-            'driver': driver,
-            'target': validation_dict['target'],
-            'state': validation_dict['state'],
-            'parameters': validation_dict.get('parameters', None),
-        }
-
-        validation_type = cast(ValidationTypes, validation_dict['type'])
-
-        validation = cls.validation_selector[validation_type]
-
-        return validation(ctx=ctx, **validation_params)  # type: ignore

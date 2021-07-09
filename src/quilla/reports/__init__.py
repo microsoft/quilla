@@ -8,3 +8,4 @@ from .base_report import BaseReport
 from .validation_report import ValidationReport
 from .step_failure_report import StepFailureReport
 from .report_summary import ReportSummary
+from .visual_parity_report import VisualParityReport

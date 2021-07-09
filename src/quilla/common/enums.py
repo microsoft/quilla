@@ -38,6 +38,7 @@ class XPathValidationStates(ValidationStates):
     NOT_HAS_ATTRIBUTE = 'NotHasAttribute'
     ATTRIBUTE_HAS_VALUE = 'AttributeHasValue'
     NOT_ATTRIBUTE_HAS_VALUE = 'NotAttributeHasValue'
+    VISUAL_PARITY = 'VisualParity'
 
 
 class URLValidationStates(ValidationStates):
