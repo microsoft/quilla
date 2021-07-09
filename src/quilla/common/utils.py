@@ -81,7 +81,7 @@ class EnumResolver:
         if ctx is not None:
             resolved_plugin_value = ctx.pm.hook.quilla_resolve_enum_from_name(name=name, enum=enum)
 
-            if resolved_plugin_value is not None:
-                return resolved_plugin_value
+            if len(resolved_plugin_value) > 0:
+                return resolved_plugin_value[0]
 
         raise EnumValueNotFoundException(name, enum)

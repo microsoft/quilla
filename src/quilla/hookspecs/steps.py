@@ -11,7 +11,10 @@ from typing import (
 
 from quilla.hookspecs import hookspec
 from quilla.ctx import Context
-from quilla.common.enums import UITestActions
+from quilla.common.enums import (
+    UITestActions,
+    VisualParityImageType,
+)
 from quilla.steps.base_steps import BaseStepFactory
 
 
@@ -51,4 +54,63 @@ def quilla_context_obj(ctx: Context, root: str, path: Tuple[str]) -> Optional[st
 
     Returns
         the data stored at the context object if existing, None otherwise
+    '''
+
+
+@hookspec(firstresult=True)
+def quilla_store_image(
+    ctx: Context,
+    baseline_id: str,
+    image_bytes: bytes,
+    image_type: VisualParityImageType,
+) -> Optional[str]:
+    '''
+    A hook to allow pluggins to store images for the VisualParity validation.
+
+    Plugins should first check if they are able to authenticate or configure
+    with whatever storage mechanism is being used to keep the baseline images,
+    and return None if they cannot both read and write files. It is assumed that
+    only one storage mechanism will be used for baseline/treatment images.
+
+    If a plugin can write files to its storage mechanism, it should return the URI
+    (i.e. the link, path, etc. that can be used to find the new image) so that it
+    can be included in the report.
+
+    Plugins to add storage mechanisms to VisualParity validations should implement
+    this hook as well as the ``quilla_get_visualparity_baseline`` hook and some
+    configuration method (i.e. adding CLI options with ``quilla_addopts`` or
+    pulling data from the environment)
+
+    Args:
+        ctx: The runtime context for the application
+        baseline_id: The image baseline ID associated with the image
+        image_bytes: The data for the image PNG in bytes form
+        image_type: The kind of image that it is, since different image types
+            might be desired to be stored differently
+
+    Returns
+        An identifier that can locate the new image
+    '''
+
+
+@hookspec(firstresult=True)
+def quilla_get_visualparity_baseline(ctx: Context, baseline_id: str) -> Optional[bytes]:
+    '''
+    A hook to allow pluggins to find baseline images for the VisualParity
+    validation, called while the VisualParity validation step is being executed.
+
+    Plugins should first check if they are able to authenticate or configure
+    with whatever storage mechanism is being used to keep the baseline images,
+    and return None if they cannot both read and write files. It is assumed that
+    only one storage mechanism will be used for baseline/treatment images.
+
+    If a plugin can read the files from its storage mechanism, it should search for the
+    image by its baseline ID and return the data in bytes.
+
+    Args:
+        ctx: The runtime context for the application
+        baseline_id: The baseline ID to search for
+
+    Returns:
+        The image data in bytes
     '''

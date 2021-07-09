@@ -5,18 +5,24 @@ from typing import (
     Callable,
     List
 )
+from io import BytesIO
 
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.common.by import By
+from PIL import Image
 
 from quilla.ctx import Context
 from quilla.common.enums import (
     XPathValidationStates,
     ValidationStates,
     ValidationTypes,
+    VisualParityImageType,
 )
-from quilla.reports import ValidationReport
+from quilla.reports import (
+    ValidationReport,
+    VisualParityReport
+)
 from quilla.steps.base_steps import BaseValidation
 
 
@@ -204,7 +210,50 @@ class XPathValidation(BaseValidation):
     def _check_visual_parity(self) -> ValidationReport:
         self._verify_parameters('baselineID')
 
-        return self._create_report(
-            False,
-            msg='VisualParity Validation State not yet implemented'
+        baseline_id = self.parameters['baselineID']
+
+        treatment_image_bytes = self.element.screenshot_as_png
+        treatment_image = Image.open(BytesIO(treatment_image_bytes))
+
+        plugin_result: List = self.ctx.pm.hook.quilla_get_visualparity_baseline(
+            ctx=self.ctx,
+            baseline_id=baseline_id
+        )
+
+        if len(plugin_result) == 0:
+            return VisualParityReport(
+                success=False,
+                target=self._target,
+                browser_name=self.driver.name,
+                baseline_id=baseline_id,
+                msg='No baseline storage mechanism configured, or no baseline found'
+            )
+
+        baseline_image_bytes, baseline_uri = plugin_result[0]
+        baseline_image = Image.open(BytesIO(baseline_image_bytes))
+
+        success = baseline_image == treatment_image  # Run the comparison with Pillow
+
+        if success:
+            return VisualParityReport(
+                success=success,
+                target=self._target,
+                browser_name=self.driver.name,
+                baseline_id=baseline_id,
+            )
+
+        treatment_uri = self.ctx.pm.hook.quilla_store_image(
+            ctx=self.ctx,
+            baseline_id=baseline_id,
+            image_bytes=treatment_image_bytes,
+            image_type=VisualParityImageType.TREATMENT,
+        )
+
+        return VisualParityReport(
+            success=False,
+            target=self._target,
+            browser_name=self.driver.name,
+            baseline_id=baseline_id,
+            baseline_image_uri=baseline_uri,
+            treatment_image_uri=treatment_uri,
         )
