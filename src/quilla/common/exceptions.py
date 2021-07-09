@@ -19,7 +19,7 @@ class NoDriverException(UIValidationException):
     '''
 
     def __init__(self):
-        super().__init__("No driver currently bound")
+        super().__init__('No driver currently bound')
 
 
 class FailedStepException(UIValidationException):

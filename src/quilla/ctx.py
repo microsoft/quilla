@@ -55,7 +55,7 @@ class Context(DriverHolder):
         logger: A logger instance. If None was passed in for the 'logger' argument, will create
             one with the default logger.
     '''
-    default_context: Optional["Context"] = None
+    default_context: Optional['Context'] = None
     _drivers_path: str
     _expression_regex = re.compile(r'\${{(.*)}}')
     _context_obj_expression = re.compile(
@@ -135,7 +135,7 @@ class Context(DriverHolder):
         return v
 
     def _set_path(self):
-        os.environ['PATH'] = f"{self._path}:{self._drivers_path}"
+        os.environ['PATH'] = f'{self._path}:{self._drivers_path}'
 
     @lru_cache
     def perform_replacements(self, text: str) -> str:

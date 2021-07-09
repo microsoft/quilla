@@ -25,7 +25,7 @@ def collect_file(parent: pytest.Session, path: LocalPath, prefix: str):
     '''
     # TODO: change "path" to be "fspath" when pytest 6.3 is released:
     # https://docs.pytest.org/en/latest/_modules/_pytest/hookspec.html#pytest_collect_file
-    if path.ext == ".json" and path.basename.startswith(prefix):
+    if path.ext == '.json' and path.basename.startswith(prefix):
         return QuillaFile.from_parent(parent, fspath=path)
 
 

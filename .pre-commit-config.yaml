@@ -17,6 +17,3 @@ repos:
       - id: detect-private-key
       - id: double-quote-string-fixer
       - id: end-of-file-fixer
-      - id: fix-encoding-pragma
-      - id: name-tests-test
-      - id: trailing-whitespace
