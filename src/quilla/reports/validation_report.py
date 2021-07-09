@@ -51,7 +51,7 @@ class ValidationReport(BaseReport):
         Converts a dictionary into a ValidationReport object
 
         Args:
-            report:
+            report: the dictionary representation of a validation report
         '''
         params = report['validationReport']
         msg = ''

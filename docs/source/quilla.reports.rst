@@ -40,3 +40,11 @@ quilla.reports.validation\_report module
    :members:
    :undoc-members:
    :show-inheritance:
+
+quilla.reports.visual\_parity\_report module
+----------------------------------------
+
+.. automodule:: quilla.reports.visual_parity_report
+   :members:
+   :undoc-members:
+   :show-inheritance:
