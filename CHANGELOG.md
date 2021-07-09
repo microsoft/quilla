@@ -1,3 +1,14 @@
+## 0.3.1 (2021-07-09)
+
+### Changes
+
+* Document parser only after plugins run (#26) [Natalia Maximo]
+
+### Fix
+
+* Fixed doc pipeline and changelog generation (#25) [Natalia Maximo]
+
+
 ## 0.3 (2021-07-07)
 
 ### New
