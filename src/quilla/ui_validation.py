@@ -49,14 +49,14 @@ class QuillaTest(EnumResolver):
     }
 
     @classmethod
-    def from_json(cls, ctx: Context, validation_json: str) -> "QuillaTest":  # pragma: no cover
+    def from_json(cls, ctx: Context, validation_json: str) -> 'QuillaTest':  # pragma: no cover
         '''
         Converts a json string into a UIValidation object
         '''
         return QuillaTest.from_dict(ctx, json.loads(validation_json))
 
     @classmethod
-    def from_file(cls, ctx: Context, fp) -> "QuillaTest":  # pragma: no cover
+    def from_file(cls, ctx: Context, fp) -> 'QuillaTest':  # pragma: no cover
         '''
         Converts an fp (a .read() supporting file-like object) containing a json
         document into a UIValidation object
@@ -64,7 +64,7 @@ class QuillaTest(EnumResolver):
         return QuillaTest.from_dict(ctx, json.load(fp))
 
     @classmethod
-    def from_filename(cls, ctx: Context, path: str) -> "QuillaTest":  # pragma: no cover
+    def from_filename(cls, ctx: Context, path: str) -> 'QuillaTest':  # pragma: no cover
         '''
         Reads a file at the specified path and attempts to convert it into a
         UIValidation object
@@ -73,7 +73,7 @@ class QuillaTest(EnumResolver):
             return QuillaTest.from_file(ctx, fp)
 
     @classmethod
-    def from_dict(cls, ctx: Context, validation_parameters: dict) -> "QuillaTest":
+    def from_dict(cls, ctx: Context, validation_parameters: dict) -> 'QuillaTest':
         '''
         Converts a dictionary that represents a single UIValidation test case into
         the appropriate validation object.

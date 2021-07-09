@@ -5,7 +5,7 @@ import re
 release_json = sys.argv[1]
 platform = sys.argv[2]
 
-asset_regex = re.compile(f"{platform}.tar.gz$")
+asset_regex = re.compile(f'{platform}.tar.gz$')
 
 with open(release_json) as f:
     release_data = json.load(f)
@@ -18,7 +18,7 @@ for data in release_data:
         break
 
 if release is None:
-    print("")
+    print('')
     sys.exit(1)
 
 for asset in release['assets']:

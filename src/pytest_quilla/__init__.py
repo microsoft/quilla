@@ -29,10 +29,10 @@ def pytest_load_initial_conftests(early_config: Config, parser: Parser):
         return
 
     parser.addoption(
-        "--quilla-opts",
-        action="store",
-        default="",
-        help="Options to be passed through to the quilla runtime for the scenario tests"
+        '--quilla-opts',
+        action='store',
+        default='',
+        help='Options to be passed through to the quilla runtime for the scenario tests'
     )
 
 

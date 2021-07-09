@@ -29,7 +29,7 @@ class OutputValueStep(BaseStep, BaseStepFactory):
         ctx: Context,
         action_dict: Dict,
         driver: Optional[WebDriver] = None
-    ) -> "BaseStep":
+    ) -> 'BaseStep':
         '''
         Factory method to extract needed parameters from a dictionary
         '''
@@ -87,7 +87,7 @@ class OutputValueStep(BaseStep, BaseStepFactory):
 
         return self.element.get_property(property_name)
 
-    def copy(self) -> "OutputValueStep":
+    def copy(self) -> 'OutputValueStep':
         '''
         Creates a shallow copy of the OutputValueStep object
 

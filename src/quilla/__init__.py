@@ -50,11 +50,11 @@ def make_parser() -> argparse.ArgumentParser:  # pragma: no cover
     parser.add_argument(
         '--debug',
         action='store_true',
-        help="Enable debug mode",
+        help='Enable debug mode',
     )
     parser.add_argument(
         '--driver-dir',
-        dest="drivers_path",
+        dest='drivers_path',
         action='store',
         default='.',
         help='The directory where browser drivers are stored',

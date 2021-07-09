@@ -63,33 +63,33 @@ class UITestActions(Enum):
     WAIT_FOR_VISIBILITY = 'WaitForVisibility'
     NAVIGATE_TO = 'NavigateTo'
     VALIDATE = 'Validate'
-    REFRESH = "Refresh"
-    ADD_COOKIES = "AddCookies"
-    SET_COOKIES = "SetCookies"
-    REMOVE_COOKIE = "RemoveCookie"
-    CLEAR_COOKIES = "ClearCookies"
-    NAVIGATE_FORWARD = "NavigateForward"
-    NAVIGATE_BACK = "NavigateBack"
-    SET_BROWSER_SIZE = "SetBrowserSize"
-    HOVER = "Hover"
-    OUTPUT_VALUE = "OutputValue"
+    REFRESH = 'Refresh'
+    ADD_COOKIES = 'AddCookies'
+    SET_COOKIES = 'SetCookies'
+    REMOVE_COOKIE = 'RemoveCookie'
+    CLEAR_COOKIES = 'ClearCookies'
+    NAVIGATE_FORWARD = 'NavigateForward'
+    NAVIGATE_BACK = 'NavigateBack'
+    SET_BROWSER_SIZE = 'SetBrowserSize'
+    HOVER = 'Hover'
+    OUTPUT_VALUE = 'OutputValue'
 
 
 class ReportType(Enum):
     '''
     All the currently supported report types
     '''
-    VALIDATION = "Validation"
-    STEP_FAILURE = "StepFailure"
+    VALIDATION = 'Validation'
+    STEP_FAILURE = 'StepFailure'
 
 
 class BrowserTargets(Enum):
     '''
     All the currently supported browser targets
     '''
-    FIREFOX = "Firefox"
-    CHROME = "Chrome"
-    EDGE = "Edge"
+    FIREFOX = 'Firefox'
+    CHROME = 'Chrome'
+    EDGE = 'Edge'
 
 
 class OutputSources(Enum):

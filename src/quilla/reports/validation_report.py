@@ -32,7 +32,7 @@ class ValidationReport(BaseReport):
         state: str,
         browser_name: str,
         success: bool,
-        msg: str = ""
+        msg: str = ''
     ):
         super().__init__(
             ReportType.VALIDATION,
@@ -46,7 +46,7 @@ class ValidationReport(BaseReport):
         self.success = success
 
     @classmethod
-    def from_dict(cls, report) -> "ValidationReport":
+    def from_dict(cls, report) -> 'ValidationReport':
         '''
         Converts a dictionary into a ValidationReport object
 
@@ -54,7 +54,7 @@ class ValidationReport(BaseReport):
             report:
         '''
         params = report['validationReport']
-        msg = ""
+        msg = ''
         if 'msg' in params:
             msg = params['msg']
         return ValidationReport(
@@ -71,13 +71,13 @@ class ValidationReport(BaseReport):
         Returns a dictionary representation of the object
         '''
         report = {
-            "validationReport": {
-                "action": self.action.value,
-                "type": self.validation_type,
-                "target": self.target,
-                "state": self.state,
-                "targetBrowser": self.browser,
-                "passed": self.success,
+            'validationReport': {
+                'action': self.action.value,
+                'type': self.validation_type,
+                'target': self.target,
+                'state': self.state,
+                'targetBrowser': self.browser,
+                'passed': self.success,
             }
         }
 

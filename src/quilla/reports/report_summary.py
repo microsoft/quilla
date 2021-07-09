@@ -108,10 +108,10 @@ class ReportSummary:
         For example, to filter by only successful reports you would call
         `reports.filter_by.success()`
         '''
-        def __init__(self, summary: "ReportSummary"):
+        def __init__(self, summary: 'ReportSummary'):
             self._summary = summary
 
-        def _filter(self, condition: Callable[[BaseReport], bool]) -> "ReportSummary":
+        def _filter(self, condition: Callable[[BaseReport], bool]) -> 'ReportSummary':
             '''
             Returns a new summary with only reports that match the condition passed as
             a lambda function parameter
@@ -121,7 +121,7 @@ class ReportSummary:
 
             return ReportSummary(list(filtered_reports))
 
-        def state(self, state: str) -> "ReportSummary":
+        def state(self, state: str) -> 'ReportSummary':
             '''
             Returns:
                 a new summary with only reports that have a state matching the one
@@ -131,7 +131,7 @@ class ReportSummary:
                 lambda x: isinstance(x, ValidationReport) and x.state.lower() == state
             )
 
-        def browser(self, browser: str) -> "ReportSummary":
+        def browser(self, browser: str) -> 'ReportSummary':
             '''
             Returns:
                 a new summary with only reports that have a browser matching the one
@@ -139,21 +139,21 @@ class ReportSummary:
             '''
             return self._filter(lambda x: x.browser.lower() == browser.lower())
 
-        def successful(self) -> "ReportSummary":
+        def successful(self) -> 'ReportSummary':
             '''
             Returns:
                 a new summary with only the reports that produced a success
             '''
             return self._filter(lambda x: isinstance(x, ValidationReport) and x.success)
 
-        def failure(self) -> "ReportSummary":
+        def failure(self) -> 'ReportSummary':
             '''
             Returns:
                 a new summary with only the reports that produced a failure
             '''
             return self._filter(lambda x: isinstance(x, ValidationReport) and not x.success)
 
-        def type(self, validation_type: str) -> "ReportSummary":
+        def type(self, validation_type: str) -> 'ReportSummary':
             '''
             Returns:
                 a new summary with only reports that have a type matching the one
@@ -165,7 +165,7 @@ class ReportSummary:
                     x.validation_type.lower() == validation_type.lower()
             )
 
-        def target(self, target: str) -> "ReportSummary":
+        def target(self, target: str) -> 'ReportSummary':
             '''
             Returns:
                 a new summary with only reports that have a target matching the one
@@ -175,7 +175,7 @@ class ReportSummary:
                 lambda x: isinstance(x, ValidationReport) and x.target.lower() == target.lower()
             )
 
-        def critical_failure(self) -> "ReportSummary":
+        def critical_failure(self) -> 'ReportSummary':
             '''
             Returns:
                 a new summary with only reports that constitute a critical failure
