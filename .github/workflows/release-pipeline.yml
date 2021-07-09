@@ -117,24 +117,35 @@ jobs:
     name: Generating Changelog
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Needed for changelog generation
 
       - name: Create new branch
-        run: git checkout -b actions/changelog-$(cat VERSION)
+        run: git checkout -b actions/changelog
+
+      - name: Set branch upstream
+        run: git push -u origin actions/changelog
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup python
         uses: actions/setup-python@v2
         with:
           python-version: '3.8'
 
+      - name: Install dependencies
+        run: pip install -e .[all]
+
       - name: Generate newest changelog
         run: gitchangelog $(cat VERSION) > CHANGELOG.md
 
       - name: Make commit for auto-generated changelog
-        uses: EndBug/add-and-commit@v4
+        uses: EndBug/add-and-commit@v7
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           add: 'CHANGELOG.md'
+          branch: actions/changelog
           message: '!gitchangelog'
 
       - name: Create pull request for the auto generated changelog
@@ -142,7 +153,6 @@ jobs:
           echo "PR_URL=$(gh pr create \
             --title "Auto-generated changelog for release $(cat VERSION)" \
             --body "This is an auto-generated PR" \
-            --reviewer microsoft/quilla-admin \
             --label documentation)" >> $GITHUB_ENV
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -153,9 +163,8 @@ jobs:
             --auto \
             --delete-branch \
             --rebase
-
-
-
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   docs-build:
     needs: release
@@ -195,9 +204,10 @@ jobs:
           path: ./docs
 
       - name: Release gh-pages
-        uses: EndBug/add-and-commit@v4
+        uses: EndBug/add-and-commit@v7
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           add: '.'
+          branch: gh-pages
           message: 'chg: updated documentation after release'

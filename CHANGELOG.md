@@ -1,3 +1,22 @@
+## 0.3 (2021-07-07)
+
+### New
+
+* Added logging (#18) [Natalia Maximo]
+
+* Added pre-commit dev tool (#20) [Natalia Maximo]
+
+### Changes
+
+* Added doc generation pipeline (#17) [Natalia Maximo]
+
+* Reorganized hookspecs (#19) [Natalia Maximo]
+
+### Fix
+
+* Typo in release pipeline file (#23) [Natalia Maximo]
+
+
 ## 0.2 (2021-06-29)
 
 ### New
@@ -34,3 +53,5 @@
 * CODE_OF_CONDUCT.md committed. [Microsoft Open Source]
 
 * Initial commit. [microsoft-github-operations[bot]]
+
+
