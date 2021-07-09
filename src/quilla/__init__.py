@@ -9,6 +9,7 @@ from typing import (
     List,
 )
 import logging
+from pkg_resources import get_distribution
 
 from quilla.ui_validation import QuillaTest
 from quilla.ctx import (
@@ -88,6 +89,11 @@ def make_parser() -> argparse.ArgumentParser:  # pragma: no cover
         help='Flag to increase the verbosity of the outputs. '
         'Log outputs are directed to stderr by default.',
         default=0
+    )
+    parser.add_argument(
+        '--version',
+        action='store_true',
+        help='Prints the version of the software and quits'
     )
 
     return parser
@@ -207,6 +213,11 @@ def setup_context(args: List[str], plugin_root: str = '.') -> Context:
     '''
     parser = make_parser()
     early_configs = get_early_configs(parser, args)
+
+    if early_configs.version:
+        print(f'Quilla v{get_distribution("quilla").version}')
+        sys.exit(0)
+
     logger = make_default_logger(early_configs)
 
     logger.debug('Default logger configured, running Quilla with args %s', args)

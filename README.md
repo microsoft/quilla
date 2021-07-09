@@ -51,31 +51,6 @@ Quilla is available on [PyPI](https://pypi.org/project/quilla/), and can be inst
 
 For more information on installation options (such as installing from source) and packaging Quilla for remote install, check out the documentation for it [here](docs/install.md)
 
-## Usage
-
-This module can be used both as a library, a runnable module, as well as as a command-line tool. The output of `quilla --help` is presented below:
-
-```text
-usage: quilla [-h] [-f] [--debug] [--driver-dir DRIVERS_PATH] [-P] [--no-sandbox] [-d file] json
-
-Program to provide a report of UI validations given a json representation of the validations or given the filename
-containing a json document describing the validations
-
-positional arguments:
-  json                  The json file name or raw json string
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -f, --file            Whether to treat the argument as raw json or as a file
-  --debug               Enable debug mode
-  --driver-dir DRIVERS_PATH
-                        The directory where browser drivers are stored
-  -P, --pretty          Set this flag to have the output be pretty-printed
-  --no-sandbox          Adds '--no-sandbox' to the Chrome and Edge browsers. Useful for running in docker containers'
-  -d file, --definitions file
-                        A file with definitions for the 'Definitions' context object
-```
-
 ## Writing Validation Files
 
 Check out the documentation for it [here](docs/validation_files.md)
@@ -131,8 +106,8 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 
 ## Trademarks
 
-This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft 
-trademarks or logos is subject to and must follow 
+This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft
+trademarks or logos is subject to and must follow
 [Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks/usage/general).
 Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship.
 Any use of third-party trademarks or logos are subject to those third-party's policies.
