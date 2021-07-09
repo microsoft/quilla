@@ -32,11 +32,11 @@ class UtilTests:
     def test_driverholder_returns_expected(self):
         holder = DriverHolder()
 
-        holder.driver = "Some Value"
+        holder.driver = 'Some Value'
 
-        assert holder.driver == "Some Value"
+        assert holder.driver == 'Some Value'
 
-    @pytest.mark.parametrize("enum_type", [
+    @pytest.mark.parametrize('enum_type', [
         enums.UITestActions,
         enums.XPathValidationStates,
         enums.URLValidationStates,
@@ -49,7 +49,7 @@ class UtilTests:
         for val in enum_type:
             assert resolver._name_to_enum(val.value, enum_type) is val
 
-    @pytest.mark.parametrize("enum_type", [
+    @pytest.mark.parametrize('enum_type', [
         enums.UITestActions,
         enums.XPathValidationStates,
         enums.URLValidationStates,

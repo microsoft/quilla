@@ -66,7 +66,7 @@ class BaseStep(DriverHolder, EnumResolver):
         pass
 
     @abstractmethod
-    def copy(self) -> "BaseStep":
+    def copy(self) -> 'BaseStep':
         '''
         Returns a copy of the current Step object
         '''
@@ -188,7 +188,7 @@ class BaseValidation(BaseStep):
         self._selector = selector
         self._report: Optional[ValidationReport] = None
 
-    def copy(self) -> "BaseValidation":
+    def copy(self) -> 'BaseValidation':
         # All classes derived from BaseValidation only need these parameters
         return self.__class__(  # type: ignore
             self.ctx,  # type: ignore
@@ -216,7 +216,7 @@ class BaseValidation(BaseStep):
 
         return self._report
 
-    def _create_report(self, success: bool, msg: str = "") -> ValidationReport:
+    def _create_report(self, success: bool, msg: str = '') -> ValidationReport:
         '''
         Creates a new validation report. Used to simplify the common shared
         behaviour that all validation reports require

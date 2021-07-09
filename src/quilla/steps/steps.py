@@ -71,7 +71,7 @@ class TestStep(BaseStep, BaseStepFactory):
         ctx: Context,
         action_dict,
         driver: Optional[WebDriver] = None
-    ) -> "TestStep":
+    ) -> 'TestStep':
         '''
         Factory method to extract needed parameters from a dictionary
         '''
@@ -117,7 +117,7 @@ class TestStep(BaseStep, BaseStepFactory):
             UITestActions.REMOVE_COOKIE: self._remove_cookie,
         }
 
-    def copy(self) -> "TestStep":
+    def copy(self) -> 'TestStep':
         '''
         Creates a shallow copy of the TestStep object
 

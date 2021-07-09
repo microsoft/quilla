@@ -110,7 +110,7 @@ class StepsAggregator(DriverHolder):
 
         return reports
 
-    def copy(self) -> "StepsAggregator":
+    def copy(self) -> 'StepsAggregator':
         '''
         Creates a copy of the StepsAggregator object
 
