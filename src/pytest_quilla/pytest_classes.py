@@ -10,7 +10,7 @@ from quilla import (
 from quilla.reports.report_summary import ReportSummary
 
 
-def collect_file(parent: pytest.Session, path: LocalPath, prefix: str):
+def collect_file(parent: pytest.Session, path: LocalPath, prefix: str, run_id: str):
     '''
     Collects files if their path ends with .json and starts with the prefix
 
@@ -18,6 +18,7 @@ def collect_file(parent: pytest.Session, path: LocalPath, prefix: str):
         parent: The session object performing the collection
         path: The path to the file that might be collected
         prefix: The prefix for files that should be collected
+        run_id: The run ID of the quilla tests
 
     Returns:
         A quilla file object if the path matches, None otherwise
@@ -26,10 +27,14 @@ def collect_file(parent: pytest.Session, path: LocalPath, prefix: str):
     # TODO: change "path" to be "fspath" when pytest 6.3 is released:
     # https://docs.pytest.org/en/latest/_modules/_pytest/hookspec.html#pytest_collect_file
     if path.ext == '.json' and path.basename.startswith(prefix):
-        return QuillaFile.from_parent(parent, fspath=path)
+        return QuillaFile.from_parent(parent, fspath=path, run_id=run_id)
 
 
 class QuillaFile(pytest.File):
+    def __init__(self, *args, run_id: str = '', **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+        self.quilla_run_id = run_id
+
     def collect(self):
         '''
         Loads the JSON test data from the path and creates the test instance
@@ -38,13 +43,19 @@ class QuillaFile(pytest.File):
             A quilla item configured from the JSON data
         '''
         test_data = self.fspath.open().read()
-        yield QuillaItem.from_parent(self, name=self.fspath.purebasename, test_data=test_data)
+        yield QuillaItem.from_parent(
+            self,
+            name=self.fspath.purebasename,
+            test_data=test_data,
+            run_id=self.quilla_run_id
+        )
 
 
 class QuillaItem(pytest.Item):
-    def __init__(self, name: str, parent: QuillaFile, test_data: str):
+    def __init__(self, name: str, parent: QuillaFile, test_data: str, run_id: str):
         super(QuillaItem, self).__init__(name, parent)
         self.test_data = test_data
+        self.quilla_run_id = run_id
         json_data = json.loads(test_data)
         markers = json_data.get('markers', [])
         for marker in markers:
@@ -59,6 +70,12 @@ class QuillaItem(pytest.Item):
             [*self.config.getoption('--quilla-opts').split(), ''],
             str(self.config.rootpath)
         )
+        if not (
+            '-i' in self.config.getoption('--quilla-opts') or
+            '--run-id' in self.config.getoption('--quilla-opts')
+        ):
+            ctx.run_id = self.quilla_run_id
+
         ctx.json = self.test_data
         results = execute(ctx)
         self.results = results

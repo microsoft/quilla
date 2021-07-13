@@ -3,6 +3,7 @@ from logging import (
     Logger,
     NullHandler,
 )
+import uuid
 
 import pytest
 from _pytest.config import PytestPluginManager
@@ -43,6 +44,9 @@ def driver():
     return mock_driver
 
 
+run_id = str(uuid.uuid4())
+
+
 def pytest_addoption(parser, pluginmanager: PytestPluginManager):
     pluginmanager.set_blocked('quilla')
     parser.addoption(
@@ -54,4 +58,4 @@ def pytest_addoption(parser, pluginmanager: PytestPluginManager):
 
 
 def pytest_collect_file(parent, path):
-    return collect_file(parent, path, 'test')
+    return collect_file(parent, path, 'test', run_id)

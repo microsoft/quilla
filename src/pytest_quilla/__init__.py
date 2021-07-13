@@ -1,3 +1,5 @@
+import uuid
+
 import pytest
 from _pytest.config import Config
 from _pytest.config.argparsing import Parser
@@ -37,4 +39,7 @@ def pytest_load_initial_conftests(early_config: Config, parser: Parser):
 
 
 def pytest_collect_file(parent: pytest.Session, path):
-    return collect_file(parent, path, parent.config.getini('quilla-prefix'))
+    return collect_file(parent, path, parent.config.getini('quilla-prefix'), run_id)
+
+
+run_id = str(uuid.uuid4())
