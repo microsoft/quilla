@@ -14,6 +14,7 @@ from logging import (
     NullHandler,
 )
 import json
+import uuid
 
 from pluggy import PluginManager
 import pydeepmerge as pdm
@@ -39,6 +40,7 @@ class Context(DriverHolder):
         is_file: Whether a file was originally passed in or if the raw json was passed in
         no_sandbox: Whether to pass the '--no-sandbox' arg to Chrome and Edge
         logger: An optional configured logger instance.
+        run_id: A string that uniquely identifies the run of Quilla.
 
 
     Attributes:
@@ -54,6 +56,8 @@ class Context(DriverHolder):
         no_sandbox: Whether to pass the '--no-sandbox' arg to Chrome and Edge
         logger: A logger instance. If None was passed in for the 'logger' argument, will create
             one with the default logger.
+        run_id: A string that uniquely identifies the run of Quilla.
+        pretty_print_indent: How many spaces to use for indentation when pretty-printing the output
     '''
     default_context: Optional['Context'] = None
     _drivers_path: str
@@ -65,7 +69,6 @@ class Context(DriverHolder):
         r'([a-zA-Z][a-zA-Z0-9_]+)(\.[a-zA-Z_][a-zA-Z0-9_]+)+'
     )
     _output_browser: str = 'Firefox'
-    pretty_print_indent: int = 4
 
     def __init__(
         self,
@@ -77,7 +80,9 @@ class Context(DriverHolder):
         is_file: bool = False,
         no_sandbox: bool = False,
         definitions: List[str] = [],
-        logger: Optional[Logger] = None
+        logger: Optional[Logger] = None,
+        run_id: Optional[str] = None,
+        indent: int = 4,
     ):
         super().__init__()
         self.pm = plugin_manager
@@ -87,6 +92,7 @@ class Context(DriverHolder):
         self.json = json_data
         self.is_file = is_file
         self.no_sandbox = no_sandbox
+        self.pretty_print_indent = indent
         path = Path(drivers_path)
 
         if logger is None:
@@ -95,9 +101,21 @@ class Context(DriverHolder):
         else:
             self.logger = logger
 
+        if run_id is None:
+            self.run_id = str(uuid.uuid4())  # Generate a random UUID
+        else:
+            self.run_id = run_id
+
         self.drivers_path = str(path.resolve())
         self._context_data: Dict[str, dict] = {'Validation': {}, 'Outputs': {}, 'Definitions': {}}
         self._load_definition_files(definitions)
+
+    @property
+    def outputs(self) -> dict:
+        '''
+        A dictionary of all outputs created by the steps for the current Quilla test
+        '''
+        return self._context_data['Outputs']
 
     @property
     def is_debug(self) -> bool:
@@ -329,7 +347,9 @@ def get_default_context(
         no_sandbox: bool = False,
         definitions: List[str] = [],
         recreate_context: bool = False,
-        logger: Optional[Logger] = None
+        logger: Optional[Logger] = None,
+        run_id: Optional[str] = None,
+        indent: int = 4,
 ) -> Context:
     '''
     Gets the default context, creating a new one if necessary.
@@ -350,6 +370,7 @@ def get_default_context(
         recreate_context: Whether a new context object should be created or not
         logger: An optional logger instance. If None, one will be created
             with the NullHandler.
+        run_id: A string that uniquely identifies the run of Quilla.
 
     Returns
         Application context shared for the entire application
@@ -368,5 +389,7 @@ def get_default_context(
             no_sandbox,
             definitions,
             logger,
+            run_id,
+            indent,
         )
     return Context.default_context

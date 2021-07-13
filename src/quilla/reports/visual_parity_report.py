@@ -1,4 +1,7 @@
-
+from typing import (
+    Dict,
+    cast
+)
 from quilla.common.enums import (
     XPathValidationStates,
     ValidationTypes
@@ -75,3 +78,24 @@ class VisualParityReport(ValidationReport):
         return {
             'visualParityReport': report_data
         }
+
+    @classmethod
+    def from_dict(cls, report) -> 'VisualParityReport':
+        params: Dict[str, str] = report['visualParityReport']
+        msg = params.get('msg', '')
+        baseline_id = params['baselineId']
+        baseline_uri = params.get('baselineImageUri', '')
+        treatment_uri = params.get('treatmentImageUri', '')
+        delta_uri = params.get('deltaImageUri', '')
+        success = cast(bool, params['passed'])
+
+        return VisualParityReport(
+            target=params['target'],
+            browser_name=params['targetBrowser'],
+            success=success,
+            msg=msg,
+            baseline_id=baseline_id,
+            baseline_image_uri=baseline_uri,
+            treatment_image_uri=treatment_uri,
+            delta_image_uri=delta_uri,
+        )
