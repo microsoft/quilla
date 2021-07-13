@@ -160,4 +160,4 @@ class QuillaTest(EnumResolver):
         for browser in self.browsers:
             validation_reports.extend(browser.validate())
 
-        return ReportSummary(validation_reports)
+        return ReportSummary(self.ctx.run_id, self.ctx.outputs, validation_reports)

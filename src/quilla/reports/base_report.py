@@ -1,6 +1,5 @@
 import json
 from abc import (
-    abstractclassmethod,
     abstractmethod,
 )
 from typing import Dict
@@ -29,7 +28,8 @@ class BaseReport(EnumResolver):
         self.msg: str = msg
         self.report_type: ReportType = report_type
 
-    @abstractclassmethod
+    @classmethod
+    @abstractmethod
     def from_dict(cls, report: Dict[str, Dict[str, str]]) -> 'BaseReport':
         '''
         Converts a dictionary report into a valid Report object

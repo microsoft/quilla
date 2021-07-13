@@ -30,11 +30,18 @@ def make_parser() -> argparse.ArgumentParser:  # pragma: no cover
     '''
     parser = argparse.ArgumentParser(
         prog='quilla',
+        usage='%(prog)s [options] [-f] JSON',
         description='''
         Program to provide a report of UI validations given a json representation
         of the validations or given the filename containing a json document describing
         the validations
         ''',
+    )
+
+    parser.add_argument(
+        '--version',
+        action='store_true',
+        help='Prints the version of the software and quits'
     )
 
     parser.add_argument(
@@ -48,25 +55,32 @@ def make_parser() -> argparse.ArgumentParser:  # pragma: no cover
         'json',
         help='The json file name or raw json string',
     )
-    parser.add_argument(
-        '--debug',
-        action='store_true',
-        help='Enable debug mode',
+
+    config_group = parser.add_argument_group(title='Configuration options')
+    config_group.add_argument(
+        '-i',
+        '--run-id',
+        action='store',
+        metavar='run_id',
+        default=None,
+        help='A run ID for quilla, if manually passed in.'
+        'Used to set many quilla tests to have the same run ID'
     )
-    parser.add_argument(
+    config_group.add_argument(
+        '-d',
+        '--definitions',
+        action='append',
+        metavar='file',
+        help='A file with definitions for the \'Definitions\' context object'
+    )
+    config_group.add_argument(
         '--driver-dir',
         dest='drivers_path',
         action='store',
         default='.',
         help='The directory where browser drivers are stored',
     )
-    parser.add_argument(
-        '-P',
-        '--pretty',
-        action='store_true',
-        help='Set this flag to have the output be pretty-printed'
-    )
-    parser.add_argument(
+    config_group.add_argument(
         '--no-sandbox',
         dest='no_sandbox',
         action='store_true',
@@ -75,25 +89,34 @@ def make_parser() -> argparse.ArgumentParser:  # pragma: no cover
         Useful for running in docker containers'
         '''
     )
-    parser.add_argument(
-        '-d',
-        '--definitions',
-        action='append',
-        metavar='file',
-        help='A file with definitions for the \'Definitions\' context object'
+
+    output_group = parser.add_argument_group(title='Output Options')
+    output_group.add_argument(
+        '-P',
+        '--pretty',
+        action='store_true',
+        help='Set this flag to have the output be pretty-printed'
     )
-    parser.add_argument(
+    output_group.add_argument(
+        '--indent',
+        type=int,
+        default=4,
+        help='How much space each indent level should have when pretty-printing the report'
+    )
+
+    debug_group = parser.add_argument_group(title='Debug Options')
+    debug_group.add_argument(
+        '--debug',
+        action='store_true',
+        help='Enable debug mode',
+    )
+    debug_group.add_argument(
         '-v',
         '--verbose',
         action='count',
         help='Flag to increase the verbosity of the outputs. '
         'Log outputs are directed to stderr by default.',
         default=0
-    )
-    parser.add_argument(
-        '--version',
-        action='store_true',
-        help='Prints the version of the software and quits'
     )
 
     return parser
@@ -257,6 +280,8 @@ def setup_context(args: List[str], plugin_root: str = '.') -> Context:
         parsed_args.no_sandbox,
         parsed_args.definitions,
         logger=logger,
+        run_id=parsed_args.run_id,
+        indent=parsed_args.indent,
     )
 
     logger.info('Running "quilla_configure" hook')
@@ -279,8 +304,6 @@ def run():
     ctx.logger.debug('Finished generating reports')
 
     out = reports.to_dict()
-    if ctx._context_data['Outputs']:
-        out['Outputs'] = ctx._context_data['Outputs']
 
     if ctx.pretty:
         print(json.dumps(
