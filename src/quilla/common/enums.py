@@ -100,3 +100,13 @@ class OutputSources(Enum):
     LITERAL = 'Literal'
     XPATH_TEXT = 'XPathText'
     XPATH_PROPERTY = 'XPathProperty'
+
+
+class VisualParityImageType(Enum):
+    '''
+    The types of images that are supported by the
+    VisualParity validation state
+    '''
+
+    BASELINE = 'Baseline'
+    TREATMENT = 'Treatment'

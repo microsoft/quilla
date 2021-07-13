@@ -68,7 +68,8 @@ setup(
         'selenium',
         'pluggy',
         'msedge-selenium-tools',
-        'pydeepmerge'
+        'pydeepmerge',
+        'pillow'
     ],
     tests_require=extra_dependencies['tests'],
     extras_require=extra_dependencies,
