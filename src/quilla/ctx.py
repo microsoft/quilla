@@ -103,6 +103,8 @@ class Context(DriverHolder):
 
         if run_id is None:
             self.run_id = str(uuid.uuid4())  # Generate a random UUID
+        else:
+            self.run_id = run_id
 
         self.drivers_path = str(path.resolve())
         self._context_data: Dict[str, dict] = {'Validation': {}, 'Outputs': {}, 'Definitions': {}}
