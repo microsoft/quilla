@@ -7,6 +7,8 @@ import pluggy
 
 from quilla import hookspecs
 
+from . import local_storage
+
 
 _hookimpl = pluggy.HookimplMarker('quilla')
 
@@ -107,6 +109,16 @@ def _load_entrypoint_plugins(pm: pluggy.PluginManager, logger: Logger):
             pass
 
 
+def _load_bundled_plugins(pm: pluggy.PluginManager, logger: Logger):
+    bundled_plugins = [
+        local_storage,
+    ]
+
+    for plugin in bundled_plugins:
+        logger.debug('Loading plugin module %s', plugin.__name__)
+        _load_hooks_from_module(pm, plugin, logger)
+
+
 def get_plugin_manager(path: str, logger: Logger) -> pluggy.PluginManager:
     '''
     Creates and configures a plugin manager by loading all the plugins defined
@@ -119,8 +131,12 @@ def get_plugin_manager(path: str, logger: Logger) -> pluggy.PluginManager:
         a configured PluginManager instance with all plugins already loaded
     '''
     pm = pluggy.PluginManager('quilla')
+    pm.add_hookspecs(hookspecs)
     logger.debug('Loading dummy hooks into plugin manager')
     pm.register(_DummyHooks)
+
+    logger.debug('Loading bundled plugins')
+    _load_bundled_plugins(pm, logger)
 
     logger.debug('Loading entrypoint plugins')
     _load_entrypoint_plugins(pm, logger)

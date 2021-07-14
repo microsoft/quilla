@@ -41,6 +41,7 @@ class Context(DriverHolder):
         no_sandbox: Whether to pass the '--no-sandbox' arg to Chrome and Edge
         logger: An optional configured logger instance.
         run_id: A string that uniquely identifies the run of Quilla.
+        update_baseline: Whether the VisualParity baselines should be updated or not
 
 
     Attributes:
@@ -58,6 +59,7 @@ class Context(DriverHolder):
             one with the default logger.
         run_id: A string that uniquely identifies the run of Quilla.
         pretty_print_indent: How many spaces to use for indentation when pretty-printing the output
+        update_baseline: Whether the VisualParity baselines should be updated or not
     '''
     default_context: Optional['Context'] = None
     _drivers_path: str
@@ -83,6 +85,7 @@ class Context(DriverHolder):
         logger: Optional[Logger] = None,
         run_id: Optional[str] = None,
         indent: int = 4,
+        update_baseline: bool = False,
     ):
         super().__init__()
         self.pm = plugin_manager
@@ -105,6 +108,8 @@ class Context(DriverHolder):
             self.run_id = str(uuid.uuid4())  # Generate a random UUID
         else:
             self.run_id = run_id
+
+        self.update_baseline = update_baseline
 
         self.drivers_path = str(path.resolve())
         self._context_data: Dict[str, dict] = {'Validation': {}, 'Outputs': {}, 'Definitions': {}}
@@ -231,10 +236,10 @@ class Context(DriverHolder):
                 )  # type: ignore
 
                 # Hook results will always be either size 1 or 0
-                if len(hook_results) == 0:
+                if hook_results is None:
                     repl_value = ''
                 else:
-                    repl_value = hook_results[0]
+                    repl_value = hook_results
 
             if repl_value == '':
                 self.logger.info(
@@ -350,6 +355,7 @@ def get_default_context(
         logger: Optional[Logger] = None,
         run_id: Optional[str] = None,
         indent: int = 4,
+        update_baseline: bool = False,
 ) -> Context:
     '''
     Gets the default context, creating a new one if necessary.
@@ -371,6 +377,7 @@ def get_default_context(
         logger: An optional logger instance. If None, one will be created
             with the NullHandler.
         run_id: A string that uniquely identifies the run of Quilla.
+        update_baseline: Whether the VisualParity baselines should be updated or not
 
     Returns
         Application context shared for the entire application
@@ -391,5 +398,6 @@ def get_default_context(
             logger,
             run_id,
             indent,
+            update_baseline
         )
     return Context.default_context

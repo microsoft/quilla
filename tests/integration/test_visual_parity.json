@@ -1,0 +1,79 @@
+{
+  "definitions": {
+    "RiddleInput": "//input[@id='r1Input']",
+    "PasswordInput": "//input[@id='r2Input']",
+    "MerchantInput": "//input[@id='r3Input']",
+    "RiddleSubmitButton": "//button[@id='r1Btn']",
+    "PasswordSubmitButton": "//button[@id='r2Butn']",
+    "MerchantSubmitButton": "//button[@id='r3Butn']",
+    "TrialSubmitButton": "//button[@id='checkButn']",
+    "PasswordBanner": "//div[@id='passwordBanner']",
+    "TrialCompleteBanner": "//div[@id='trialCompleteBanner']"
+  },
+  "targetBrowsers": [
+    "Firefox"
+  ],
+  "path": "https://techstepacademy.com/trial-of-the-stones",
+  "steps": [
+    {
+      "action": "SendKeys",
+      "target": "${{ Definitions.RiddleInput }}",
+      "parameters": {
+        "data": "rock"
+      }
+    },
+    {
+      "action": "Click",
+      "target": "${{ Definitions.RiddleSubmitButton }}"
+    },
+    {
+      "action": "OutputValue",
+      "target": "${{ Definitions.PasswordBanner }}",
+      "parameters": {
+        "source": "XPathText",
+        "outputName": "trialPassword"
+      }
+    },
+    {
+      "action": "SendKeys",
+      "target": "${{ Definitions.PasswordInput }}",
+      "parameters": {
+        "data": "${{ Validation.trialPassword }}"
+      }
+    },
+    {
+      "action": "Click",
+      "target": "${{ Definitions.PasswordSubmitButton }}"
+    },
+    {
+      "action": "SendKeys",
+      "target": "${{ Definitions.MerchantInput }}",
+      "parameters": {
+        "data": "Jessica"
+      }
+    },
+    {
+      "action": "Click",
+      "target": "${{ Definitions.MerchantSubmitButton }}"
+    },
+    {
+      "action": "Click",
+      "target": "${{ Definitions.TrialSubmitButton }}"
+    },
+    {
+      "action": "Validate",
+      "type": "XPath",
+      "state": "Visible",
+      "target": "${{ Definitions.TrialCompleteBanner }}"
+    },
+    {
+      "action": "Validate",
+      "type": "XPath",
+      "state": "VisualParity",
+      "target": "${{ Definitions.TrialCompleteBanner }}",
+      "parameters": {
+        "baselineID": "TrialCompleteBanner"
+      }
+    }
+  ]
+}

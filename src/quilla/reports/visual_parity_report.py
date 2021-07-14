@@ -54,9 +54,9 @@ class VisualParityReport(ValidationReport):
             success=success,
             msg=msg
         )
-        self.baseline_id = baseline_id,
-        self.baseline_image_uri = baseline_image_uri,
-        self.treatment_image_uri = treatment_image_uri,
+        self.baseline_id = baseline_id
+        self.baseline_image_uri = baseline_image_uri
+        self.treatment_image_uri = treatment_image_uri
         self.delta_image_uri = delta_image_uri
 
     def to_dict(self):

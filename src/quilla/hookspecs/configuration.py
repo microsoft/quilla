@@ -14,7 +14,7 @@ from typing import (
     Optional,
 )
 
-from quilla.hookspecs import hookspec
+from quilla.hookspecs._hookspec import hookspec
 from quilla.ctx import Context
 from quilla.ui_validation import QuillaTest
 
