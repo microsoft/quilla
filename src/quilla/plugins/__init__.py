@@ -7,6 +7,8 @@ import pluggy
 
 from quilla import hookspecs
 
+from .local_storage import LocalStorage
+
 
 _hookimpl = pluggy.HookimplMarker('quilla')
 
@@ -68,7 +70,11 @@ def _get_uiconf_plugins(pm: pluggy.PluginManager, root: Path, logger: Logger):
     _load_hooks_from_module(pm, uiconf_module, logger)
 
 
-def _load_hooks_from_module(pm: pluggy.PluginManager, module, logger: Logger):
+def _load_hooks_from_module(
+    pm: pluggy.PluginManager,
+    module,
+    logger: Logger,
+):
     '''
     Load a module into the given plugin manager object by finding all
     methods in the module that start with the `quilla_` prefix
@@ -88,7 +94,12 @@ def _load_hooks_from_module(pm: pluggy.PluginManager, module, logger: Logger):
             setattr(module, hook, hook_function)
 
     logger.debug('Loading all discovered hooks into the plugin manager')
-    pm.register(module)
+
+    # If it is callable, it is a class object not a module
+    if callable(module):
+        pm.register(module())
+    else:
+        pm.register(module)
 
 
 def _load_entrypoint_plugins(pm: pluggy.PluginManager, logger: Logger):
@@ -104,7 +115,16 @@ def _load_entrypoint_plugins(pm: pluggy.PluginManager, logger: Logger):
                 entry_point.name
             )
             logger.debug('Module encountered %s', e, exc_info=True)
-            pass
+
+
+def _load_bundled_plugins(pm: pluggy.PluginManager, logger: Logger):
+    bundled_plugins = [
+        LocalStorage,
+    ]
+
+    for plugin in bundled_plugins:
+        logger.debug('Loading plugin module %s', plugin.__name__)
+        _load_hooks_from_module(pm, plugin, logger)
 
 
 def get_plugin_manager(path: str, logger: Logger) -> pluggy.PluginManager:
@@ -119,8 +139,12 @@ def get_plugin_manager(path: str, logger: Logger) -> pluggy.PluginManager:
         a configured PluginManager instance with all plugins already loaded
     '''
     pm = pluggy.PluginManager('quilla')
+    pm.add_hookspecs(hookspecs)
     logger.debug('Loading dummy hooks into plugin manager')
     pm.register(_DummyHooks)
+
+    logger.debug('Loading bundled plugins')
+    _load_bundled_plugins(pm, logger)
 
     logger.debug('Loading entrypoint plugins')
     _load_entrypoint_plugins(pm, logger)

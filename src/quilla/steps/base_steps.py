@@ -121,7 +121,7 @@ class BaseStep(DriverHolder, EnumResolver):
                 )
 
     def _verify_target(self):
-        if self.target is None:
+        if self._target is None:
             raise FailedStepException(f'No specified target for "{self.action.value}" action')
 
     @property

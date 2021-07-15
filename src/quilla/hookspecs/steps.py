@@ -9,7 +9,7 @@ from typing import (
     Optional
 )
 
-from quilla.hookspecs import hookspec
+from quilla.hookspecs._hookspec import hookspec
 from quilla.ctx import Context
 from quilla.common.enums import (
     UITestActions,
@@ -90,6 +90,23 @@ def quilla_store_image(
 
     Returns
         An identifier that can locate the new image
+    '''
+
+
+@hookspec(firstresult=True)
+def quilla_get_baseline_uri(ctx: Context, run_id: str, baseline_id: str) -> Optional[str]:
+    '''
+    A hook to allow plugins to retrieve some URI for the image associated with
+    the baseline ID.
+
+    Args:
+        ctx: The runtime context of the application
+        run_id: The run ID for the current run, in case the plugin tracks
+            baselines for each run
+        baseline_id: The unique ID for the baseline image
+
+    Returns:
+        An identifier that can locate the baseline image
     '''
 
 

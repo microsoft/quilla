@@ -63,8 +63,18 @@ def make_parser() -> argparse.ArgumentParser:  # pragma: no cover
         action='store',
         metavar='run_id',
         default=None,
-        help='A run ID for quilla, if manually passed in.'
-        'Used to set many quilla tests to have the same run ID'
+        help='A run ID for quilla, if manually passed in. '
+        'Used to set many quilla tests to have the same run ID '
+        'If no run ID is manually passed in, it will be auto-generated'
+    )
+    config_group.add_argument(
+        '-u',
+        '--update-baseline',
+        dest='update_baseline',
+        action='store_true',
+        help='Used to update the baseline images for VisualParity. '
+        'Different plugins define different behaviour, so this is not '
+        'necessarily a lossless operation.'
     )
     config_group.add_argument(
         '-d',
@@ -282,10 +292,11 @@ def setup_context(args: List[str], plugin_root: str = '.') -> Context:
         logger=logger,
         run_id=parsed_args.run_id,
         indent=parsed_args.indent,
+        update_baseline=parsed_args.update_baseline
     )
 
     logger.info('Running "quilla_configure" hook')
-    pm.hook.quilla_configure(ctx=ctx, args=args)
+    pm.hook.quilla_configure(ctx=ctx, args=parsed_args)
 
     return ctx
 

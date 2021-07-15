@@ -3,7 +3,7 @@ Hooks related to outputs and reports
 '''
 
 from quilla.ctx import Context
-from quilla.hookspecs import hookspec
+from quilla.hookspecs._hookspec import hookspec
 from quilla.reports.report_summary import ReportSummary
 
 

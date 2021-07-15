@@ -212,13 +212,59 @@ class XPathValidation(BaseValidation):
 
         baseline_id = self.parameters['baselineID']
 
+        if self.ctx.update_baseline:
+            result = self.ctx.pm.hook.quilla_store_image(
+                ctx=self.ctx,
+                baseline_id=baseline_id,
+                image_bytes=self.element.screenshot_as_png,
+                image_type=VisualParityImageType.BASELINE
+            )
+
+            if result is None:
+                return VisualParityReport(
+                    success=False,
+                    target=self._target,
+                    browser_name=self.driver.name,
+                    baseline_id=baseline_id,
+                    msg='No baseline storage mechanism configured'
+                )
+
+            baseline_uri = result
+
+            if baseline_uri == '':
+                return VisualParityReport(
+                    success=False,
+                    target=self._target,
+                    browser_name=self.driver.name,
+                    baseline_id=baseline_id,
+                    msg='Unable to update the baseline image'
+                )
+
+            return VisualParityReport(
+                success=True,
+                target=self._target,
+                browser_name=self.driver.name,
+                baseline_id=baseline_id,
+                baseline_image_uri=baseline_uri,
+                msg='Successfully updated baseline URI'
+            )
+
         treatment_image_bytes = self.element.screenshot_as_png
         treatment_image = Image.open(BytesIO(treatment_image_bytes))
 
-        plugin_result: List = self.ctx.pm.hook.quilla_get_visualparity_baseline(
+        plugin_result = self.ctx.pm.hook.quilla_get_visualparity_baseline(
             ctx=self.ctx,
             baseline_id=baseline_id
         )
+
+        if plugin_result is None:
+            return VisualParityReport(
+                success=False,
+                target=self._target,
+                browser_name=self.driver.name,
+                baseline_id=baseline_id,
+                msg='No baseline storage mechanism configured'
+            )
 
         if len(plugin_result) == 0:
             return VisualParityReport(
@@ -226,10 +272,10 @@ class XPathValidation(BaseValidation):
                 target=self._target,
                 browser_name=self.driver.name,
                 baseline_id=baseline_id,
-                msg='No baseline storage mechanism configured, or no baseline found'
+                msg='No baseline image found'
             )
 
-        baseline_image_bytes, baseline_uri = plugin_result[0]
+        baseline_image_bytes = plugin_result
         baseline_image = Image.open(BytesIO(baseline_image_bytes))
 
         success = baseline_image == treatment_image  # Run the comparison with Pillow
@@ -247,6 +293,12 @@ class XPathValidation(BaseValidation):
             baseline_id=baseline_id,
             image_bytes=treatment_image_bytes,
             image_type=VisualParityImageType.TREATMENT,
+        )
+
+        baseline_uri = self.ctx.pm.hook.quilla_get_baseline_uri(
+            ctx=self.ctx,
+            run_id=self.ctx.run_id,
+            baseline_id=baseline_id
         )
 
         return VisualParityReport(
