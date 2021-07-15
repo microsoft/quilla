@@ -57,6 +57,8 @@ class LocalStorage(BaseStorage):
 
         snapshot_path = baseline_path.parent / 'snapshots' / f'{baseline_id}_{run_id}.png'
 
+        snapshot_path.parent.mkdir(exist_ok=True)
+
         baseline_path.touch()
 
         baseline_path.write_bytes(baseline)
