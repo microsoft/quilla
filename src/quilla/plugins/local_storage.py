@@ -13,8 +13,6 @@ from typing import (
     cast
 )
 
-from quilla.ctx import Context
-from quilla.common.enums import VisualParityImageType
 from .base_storage import BaseStorage
 
 
@@ -54,12 +52,17 @@ class LocalStorage(BaseStorage):
 
         return path
 
-    def store_baseline_image(self, baseline_id: str, baseline: bytes) -> str:
-        baseline_path = cast(Path, self.baseline_directory) / (baseline_id + '.png')
+    def store_baseline_image(self, run_id: str, baseline_id: str, baseline: bytes) -> str:
+        baseline_path = cast(Path, self.baseline_directory) / f'{baseline_id}.png'
+
+        snapshot_path = baseline_path.parent / 'snapshots' / f'{baseline_id}_{run_id}.png'
 
         baseline_path.touch()
 
         baseline_path.write_bytes(baseline)
+
+        snapshot_path.touch()
+        snapshot_path.write_bytes(baseline)
 
         return baseline_path.absolute().as_uri()
 
@@ -72,14 +75,14 @@ class LocalStorage(BaseStorage):
 
         run_path = self.run_path(run_id)
 
-        image_path = run_path / (baseline_id + '_treatment.png')
+        image_path = run_path / f'{baseline_id}_treatment.png'
 
         image_path.write_bytes(treatment)
 
         return image_path.absolute().as_uri()
 
     def find_image_by_baseline(self, baseline_id: str) -> bytes:
-        image_path = cast(Path, self.baseline_directory) / (baseline_id + '.png')
+        image_path = cast(Path, self.baseline_directory) / f'{baseline_id}.png'
 
         if not image_path.exists():
             return b''
@@ -91,7 +94,7 @@ class LocalStorage(BaseStorage):
 
         run_path = self.run_path(run_id)
 
-        image_path = run_path / (baseline_id + '.png')
+        image_path = run_path / f'{baseline_id}.png'
 
         image_path.touch()
 
@@ -105,49 +108,22 @@ class LocalStorage(BaseStorage):
         users are expected to have granular control over their own filesystems
         '''
 
+    def quilla_addopts(self, parser: ArgumentParser):
+        '''
+        Using the Quilla hook to add a new group of CLI args to the parser
+        '''
 
-local_storage = LocalStorage()
+        ls_group = parser.add_argument_group(title='Local Storage Options')
 
+        ls_group.add_argument(
+            '--image-directory',
+            dest='image_dir',
+            action='store',
+            default=None,
+            help='The directory that should be used for the LocalStorage '
+            'plugin to store VisualParity images'
+        )
 
-def quilla_addopts(parser: ArgumentParser):
-    '''
-    Using the Quilla hook to add a new group of CLI args to the parser
-    '''
-
-    ls_group = parser.add_argument_group(title='Local Storage Options')
-
-    ls_group.add_argument(
-        '--image-directory',
-        dest='image_dir',
-        action='store',
-        default=None,
-        help='The directory that should be used for the LocalStorage '
-        'plugin to store VisualParity images'
-    )
-
-
-def quilla_configure(args: Namespace):
-    if args.image_dir is not None:
-        local_storage.configure(args.image_dir)
-
-
-def quilla_store_image(
-    ctx: Context,
-    baseline_id: str,
-    image_bytes: bytes,
-    image_type: VisualParityImageType,
-) -> Optional[str]:
-    return local_storage.store_image(
-        ctx.run_id,
-        baseline_id,
-        image_bytes,
-        image_type
-    )
-
-
-def quilla_get_baseline_uri(run_id: str, baseline_id: str) -> Optional[str]:
-    return local_storage.get_baseline_uri(run_id, baseline_id)
-
-
-def quilla_get_visualparity_baseline(baseline_id: str) -> Optional[bytes]:
-    return local_storage.get_image(baseline_id)
+    def quilla_configure(self, args: Namespace):
+        if args.image_dir is not None:
+            self.configure(args.image_dir)

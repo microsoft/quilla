@@ -72,9 +72,9 @@ def make_parser() -> argparse.ArgumentParser:  # pragma: no cover
         '--update-baseline',
         dest='update_baseline',
         action='store_true',
-        help='Used to update the baseline images for VisualParity, '
-        'overwriting existing ones and creating new ones if necessary. '
-        'This is NOT lossless!'
+        help='Used to update the baseline images for VisualParity. '
+        'Different plugins define different behaviour, so this is not '
+        'necessarily a lossless operation.'
     )
     config_group.add_argument(
         '-d',

@@ -13,6 +13,7 @@ from typing import (
     Optional
 )
 
+from quilla.ctx import Context
 from quilla.common.enums import VisualParityImageType
 
 
@@ -71,6 +72,7 @@ class BaseStorage(ABC):
     @abstractmethod
     def store_baseline_image(
         self,
+        run_id: str,
         baseline_id: str,
         baseline: bytes,
     ) -> str:
@@ -78,9 +80,13 @@ class BaseStorage(ABC):
         Stores a baseline image under the given baseline_id.
 
         This function should be used to update the current baseline
-        image, or create a new one if the baseline did not previously exist
+        image, or create a new one if the baseline did not previously exist.
+
+        The run ID is passed in case a plugin would like to use it to version and
+        store previous image baselines
 
         Args:
+            run_id: The ID of the current run of Quilla
             baseline_id: A unique identifier for the image
             baseline: The image data in bytes
 
@@ -144,20 +150,20 @@ class BaseStorage(ABC):
 
         return self.make_baseline_uri(run_id, baseline_id)
 
-    def store_image(
+    def quilla_store_image(
         self,
-        run_id: str,
+        ctx: Context,
         baseline_id: str,
-        image_data: bytes,
-        image_type: VisualParityImageType
+        image_bytes: bytes,
+        image_type: VisualParityImageType,
     ) -> Optional[str]:
         '''
         Stores a given image based on its type and possibly the run ID
 
         Args:
-            run_id: The unique ID for the current Quilla run
+            ctx: The runtime context for Quilla
             baseline_id: The unique identifier for the image
-            image_data: The byte data for the image
+            image_bytes: The byte data for the image
             image_type: The kind of image that is being stored
 
         Returns:
@@ -165,24 +171,32 @@ class BaseStorage(ABC):
             is not enabled. The URI might be the empty string if the
             image type is not supported
         '''
-
         if not self.is_enabled:
             return None
 
+        run_id = ctx.run_id
+
         image_uri = ''
 
-        if image_type == VisualParityImageType.TREATMENT:
-            image_uri = self.store_treatment_image(
-                run_id,
-                baseline_id,
-                treatment=image_data
-            )
-        elif image_type == VisualParityImageType.BASELINE:
-            image_uri = self.store_baseline_image(
-                baseline_id,
-                baseline=image_data,
-            )
+        function_selector = {
+            VisualParityImageType.TREATMENT: self.store_treatment_image,
+            VisualParityImageType.BASELINE: self.store_baseline_image,
+        }
+
+        store_image_function = function_selector[image_type]
+
+        image_uri = store_image_function(
+            run_id,
+            baseline_id,
+            image_bytes
+        )
 
         self.cleanup_reports()
 
         return image_uri
+
+    def quilla_get_baseline_uri(self, run_id: str, baseline_id: str) -> Optional[str]:
+        return self.get_baseline_uri(run_id, baseline_id)
+
+    def quilla_get_visualparity_baseline(self, baseline_id: str) -> Optional[bytes]:
+        return self.get_image(baseline_id)
