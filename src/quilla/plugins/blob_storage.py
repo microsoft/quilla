@@ -113,6 +113,7 @@ class BlobStorage(BaseStorage):
             args.run_days,
         )
 
+    @property
     def is_enabled(self) -> bool:
         return self._container_client is not None
 
