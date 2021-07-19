@@ -8,6 +8,7 @@ import pluggy
 from quilla import hookspecs
 
 from .local_storage import LocalStorage
+from .blob_storage import BlobStorage
 
 
 _hookimpl = pluggy.HookimplMarker('quilla')
@@ -120,6 +121,7 @@ def _load_entrypoint_plugins(pm: pluggy.PluginManager, logger: Logger):
 def _load_bundled_plugins(pm: pluggy.PluginManager, logger: Logger):
     bundled_plugins = [
         LocalStorage,
+        BlobStorage,
     ]
 
     for plugin in bundled_plugins:
