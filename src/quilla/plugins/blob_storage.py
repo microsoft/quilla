@@ -15,7 +15,7 @@ from .base_storage import BaseStorage
 
 class BlobStorage(BaseStorage):
     _container_client: Optional[ContainerClient]
-    max_run_days: int
+    max_retention_days: int
 
     def __init__(self):
         self._container_client = None
@@ -48,8 +48,8 @@ class BlobStorage(BaseStorage):
         )
 
         az_group.add_argument(
-            '--max-run-days',
-            dest='run_days',
+            '--retention-days',
+            dest='retention_days',
             type=int,
             default=30,
             help='The maximum number of days that reports should be allowed to exist. '
@@ -61,7 +61,7 @@ class BlobStorage(BaseStorage):
         self,
         connection_string: str,
         container_name: str,
-        run_days: int,
+        retention_days: int,
     ):
         '''
         Configure the container client and other necessary data, such as the max cleanup time.
@@ -71,15 +71,15 @@ class BlobStorage(BaseStorage):
         Args:
             connection_string: The full connection string to the storage account
             container_name: The name of the container that should be used to store all images
-            run_days: The maximum number of days a report should be allowed to have before being
-                cleaned up
+            retention_days: The maximum number of days a report should be allowed to have before
+                being cleaned up
         '''
         self._container_client = client = ContainerClient.from_connection_string(
             connection_string,
             container_name=container_name
         )
 
-        self.max_run_days = run_days
+        self.max_retention_days = retention_days
 
         if not client.exists():
             client.create_container()
@@ -110,7 +110,7 @@ class BlobStorage(BaseStorage):
         self.configure(
             args.connection_string,
             args.container_name,
-            args.run_days,
+            args.retention_days,
         )
 
     @property
@@ -162,6 +162,6 @@ class BlobStorage(BaseStorage):
             time_created: datetime = datetime.fromtimestamp(blob.creation_time.timestamp())
 
             delta = current_time - time_created
-            if self.max_run_days > -1 and delta.days >= self.max_run_days:
+            if self.max_retention_days > -1 and delta.days > self.max_retention_days:
                 blob_client = self.container_client.get_blob_client(blob)
                 blob_client.delete_blob()
