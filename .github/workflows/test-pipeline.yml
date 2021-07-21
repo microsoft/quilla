@@ -42,7 +42,7 @@ jobs:
         run: echo "JUNIT_XML_OUT=quilla-pytest-junit-RUN${{ env.GITHUB_RUN_NUMBER }}-$(date +'%Y-%m-%d').xml" >> $GITHUB_ENV
 
       - name: Run tests
-        run: pytest --junit-xml="${{ env.JUNIT_XML_OUT }}" --quilla-opts="--connection-string \"${{ secrets.CONNECTION_STRING }}\""
+        run: pytest --junit-xml="${{ env.JUNIT_XML_OUT }}" --quilla-opts="--connection-string ${{ secrets.CONNECTION_STRING }}"
 
       - name: Upload JUnit XML artifact
         if: ${{ always() }}
