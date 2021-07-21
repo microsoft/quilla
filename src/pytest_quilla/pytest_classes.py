@@ -68,8 +68,10 @@ class QuillaItem(pytest.Item):
         '''
         ctx = setup_context(
             [*self.config.getoption('--quilla-opts').split(), ''],
-            str(self.config.rootpath)
+            str(self.config.rootpath),
+            recreate_context=True
         )
+        ctx.logger.debug('Quilla options discovered: %s', self.config.getoption('--quilla-opts'))
         if not (
             '-i' in self.config.getoption('--quilla-opts') or
             '--run-id' in self.config.getoption('--quilla-opts')

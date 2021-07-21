@@ -46,7 +46,9 @@ class BaseStorage(ABC):
     @abstractmethod
     def cleanup_reports(self):
         '''
-        Searches for reports that match some cleanup criteria
+        Searches for reports that match some cleanup criteria, and deletes them
+        if necessary. Not every storage plugin will implement logic for this function,
+        choosing instead to have all images exist indefinitely.
         '''
 
     @abstractmethod

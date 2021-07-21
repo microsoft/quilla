@@ -25,10 +25,11 @@ quilla.steps.steps module
    :undoc-members:
    :show-inheritance:
 
-quilla.steps.validations module
--------------------------------
 
-.. automodule:: quilla.steps.validations
-   :members:
-   :undoc-members:
-   :show-inheritance:
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   quilla.steps.validations

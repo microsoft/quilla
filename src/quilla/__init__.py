@@ -234,13 +234,18 @@ def execute(ctx: Context) -> ReportSummary:
     return reports
 
 
-def setup_context(args: List[str], plugin_root: str = '.') -> Context:
+def setup_context(
+    args: List[str],
+    plugin_root: str = '.',
+    recreate_context: bool = False,
+) -> Context:
     '''
     Starts up the plugin manager, creates parser, parses args and sets up the application context
 
     Args:
         args: A list of cli options, such as sys.argv[1:]
         plugin_root: The directory used by the plugin manager to search for `uiconf.py` files
+        recreate_context: Whether the context should be recreated
     Returns:
         A runtime context configured by the hooks and the args
     '''
@@ -292,7 +297,8 @@ def setup_context(args: List[str], plugin_root: str = '.') -> Context:
         logger=logger,
         run_id=parsed_args.run_id,
         indent=parsed_args.indent,
-        update_baseline=parsed_args.update_baseline
+        update_baseline=parsed_args.update_baseline,
+        recreate_context=recreate_context,
     )
 
     logger.info('Running "quilla_configure" hook')

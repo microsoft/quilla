@@ -69,7 +69,8 @@ setup(
         'pluggy',
         'msedge-selenium-tools',
         'pydeepmerge',
-        'pillow'
+        'pillow',
+        'azure-storage-blob',
     ],
     tests_require=extra_dependencies['tests'],
     extras_require=extra_dependencies,

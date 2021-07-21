@@ -12,7 +12,6 @@ repos:
       - id: check-merge-conflict
       - id: check-executables-have-shebangs
       - id: check-json
-      - id: pretty-format-json
       - id: debug-statements
       - id: detect-private-key
       - id: double-quote-string-fixer
