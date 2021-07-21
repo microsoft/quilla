@@ -129,6 +129,9 @@ def make_parser() -> argparse.ArgumentParser:  # pragma: no cover
         default=0
     )
 
+    # Sets the application handler, i.e. the function that runs when ctx.run() is called
+    parser.set_defaults(handler=run)
+
     return parser
 
 
@@ -298,6 +301,7 @@ def setup_context(
         run_id=parsed_args.run_id,
         indent=parsed_args.indent,
         update_baseline=parsed_args.update_baseline,
+        args=parsed_args,
         recreate_context=recreate_context,
     )
 
@@ -307,15 +311,14 @@ def setup_context(
     return ctx
 
 
-def run():
+def run(ctx: Context):
     '''
-    Creates the parser object, parses the command-line arguments, and runs them, finishing with the
-    appropriate exit code.
+    Runs all reports and prints to stdout while providing the proper
+    exit code
+
+    Args:
+        ctx: The application context
     '''
-    ctx = setup_context(sys.argv[1:])
-
-    ctx.logger.debug('Context setup complete, running the "execute" function')
-
     reports = execute(ctx)
 
     ctx.logger.debug('Finished generating reports')
@@ -339,5 +342,15 @@ def run():
     sys.exit(exit_code)
 
 
+def main():
+    '''
+    Creates the context and parses all arguments, then runs the default handler function
+    '''
+    ctx = setup_context(sys.argv[1:])
+    ctx.logger.debug('Context setup complete, running the Quilla handler')
+
+    ctx.run()
+
+
 if __name__ == '__main__':
-    run()
+    main()

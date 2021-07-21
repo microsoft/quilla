@@ -75,7 +75,7 @@ setup(
     tests_require=extra_dependencies['tests'],
     extras_require=extra_dependencies,
     entry_points={
-        'console_scripts': ['quilla = quilla:run'],
+        'console_scripts': ['quilla = quilla:main'],
         'pytest11': [
             'quilla = pytest_quilla'
         ]

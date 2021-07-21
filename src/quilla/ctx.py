@@ -15,6 +15,7 @@ from logging import (
 )
 import json
 import uuid
+from argparse import Namespace
 
 from pluggy import PluginManager
 import pydeepmerge as pdm
@@ -41,6 +42,7 @@ class Context(DriverHolder):
         no_sandbox: Whether to pass the '--no-sandbox' arg to Chrome and Edge
         logger: An optional configured logger instance.
         run_id: A string that uniquely identifies the run of Quilla.
+        args: The Namespace object that parsed related arguments, if applicable
         update_baseline: Whether the VisualParity baselines should be updated or not
 
 
@@ -59,6 +61,7 @@ class Context(DriverHolder):
             one with the default logger.
         run_id: A string that uniquely identifies the run of Quilla.
         pretty_print_indent: How many spaces to use for indentation when pretty-printing the output
+        args: The Namespace object that parsed related arguments, if applicable
         update_baseline: Whether the VisualParity baselines should be updated or not
     '''
     default_context: Optional['Context'] = None
@@ -85,6 +88,7 @@ class Context(DriverHolder):
         logger: Optional[Logger] = None,
         run_id: Optional[str] = None,
         indent: int = 4,
+        args: Optional[Namespace] = None,
         update_baseline: bool = False,
     ):
         super().__init__()
@@ -96,6 +100,7 @@ class Context(DriverHolder):
         self.is_file = is_file
         self.no_sandbox = no_sandbox
         self.pretty_print_indent = indent
+        self.args = args
         path = Path(drivers_path)
 
         if logger is None:
@@ -114,6 +119,17 @@ class Context(DriverHolder):
         self.drivers_path = str(path.resolve())
         self._context_data: Dict[str, dict] = {'Validation': {}, 'Outputs': {}, 'Definitions': {}}
         self._load_definition_files(definitions)
+
+    def run(self):
+        '''
+        Runs Quilla, assuming a proper Namespace object with a handler has been passed in.
+
+        This function is not guaranteed to do anything, and is just a passthrough to allow
+        the proper parser handlers to execute, as described in the documentation for ArgParse
+        https://docs.python.org/3/library/argparse.html#argparse.ArgumentParser.add_subparsers
+        '''
+        if self.args is not None:
+            self.args.handler(self)
 
     @property
     def outputs(self) -> dict:
@@ -355,6 +371,7 @@ def get_default_context(
         logger: Optional[Logger] = None,
         run_id: Optional[str] = None,
         indent: int = 4,
+        args: Optional[Namespace] = None,
         update_baseline: bool = False,
 ) -> Context:
     '''
@@ -398,6 +415,7 @@ def get_default_context(
             logger,
             run_id,
             indent,
-            update_baseline
+            args,
+            update_baseline,
         )
     return Context.default_context
