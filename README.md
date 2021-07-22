@@ -34,7 +34,7 @@ Check out the [features](docs/features.md) docs for an overview of all quilla ca
           "action": "Validate",
           "type": "URL",
           "state": "Contains",
-          "target": "bing",
+          "target": "bing"
         }
       ]
     }
