@@ -39,4 +39,4 @@ jobs:
         run: mypy
 
       - name: Run tests
-        run: pytest --quilla-opts="--images-dir ./images"
+        run: pytest --quilla-opts="--image-directory ./images"
