@@ -30,7 +30,7 @@ def make_parser() -> argparse.ArgumentParser:  # pragma: no cover
     '''
     parser = argparse.ArgumentParser(
         prog='quilla',
-        usage='%(prog)s [options] [-f] JSON',
+        # usage='%(prog)s [options] [-f] JSON',
         description='''
         Program to provide a report of UI validations given a json representation
         of the validations or given the filename containing a json document describing
@@ -44,16 +44,22 @@ def make_parser() -> argparse.ArgumentParser:  # pragma: no cover
         help='Prints the version of the software and quits'
     )
 
-    parser.add_argument(
+    data_group = parser.add_mutually_exclusive_group()
+
+    data_group.add_argument(
         '-f',
         '--file',
-        dest='is_file',
-        action='store_true',
-        help='Whether to treat the argument as raw json or as a file',
+        dest='file_name',
+        action='store',
+        help='A file containing a Quilla test',
+        default=None,
     )
-    parser.add_argument(
-        'json',
-        help='The json file name or raw json string',
+    data_group.add_argument(
+        '-r',
+        '--raw',
+        action='store',
+        help='A Quilla test passed in as a raw string',
+        default=None,
     )
 
     config_group = parser.add_argument_group(title='Configuration options')
@@ -280,10 +286,10 @@ def setup_context(
     if not parsed_args.definitions:
         parsed_args.definitions = []
 
-    if not parsed_args.is_file:
-        json_data = parsed_args.json
+    if parsed_args.file_name is None:
+        json_data = parsed_args.raw
     else:
-        with open(parsed_args.json) as f:
+        with open(parsed_args.file_name) as f:
             json_data = f.read()
 
     logger.debug('Initializing context object')
@@ -294,7 +300,7 @@ def setup_context(
         parsed_args.drivers_path,
         parsed_args.pretty,
         json_data,
-        parsed_args.is_file,
+        parsed_args.file_name is not None,
         parsed_args.no_sandbox,
         parsed_args.definitions,
         logger=logger,
