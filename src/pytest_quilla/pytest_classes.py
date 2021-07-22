@@ -67,7 +67,7 @@ class QuillaItem(pytest.Item):
         data retrieved from the JSON file.
         '''
         ctx = setup_context(
-            [*self.config.getoption('--quilla-opts').split(), ''],
+            [*self.config.getoption('--quilla-opts').split()],
             str(self.config.rootpath),
             recreate_context=True
         )
