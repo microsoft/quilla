@@ -3,6 +3,7 @@ from typing import (
     Callable,
     Dict,
     Any,
+    TYPE_CHECKING
 )
 from abc import abstractclassmethod, abstractmethod
 
@@ -10,7 +11,6 @@ from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.common.by import By
 
-from quilla.ctx import Context
 from quilla.reports import (
     BaseReport,
     ValidationReport
@@ -25,6 +25,9 @@ from quilla.common.enums import (
     ValidationStates,
 )
 from quilla.common.exceptions import FailedStepException
+
+if TYPE_CHECKING:
+    from quilla.ctx import Context
 
 
 class BaseStep(DriverHolder, EnumResolver):
@@ -42,7 +45,7 @@ class BaseStep(DriverHolder, EnumResolver):
     '''
     def __init__(
         self,
-        ctx: Context,
+        ctx: 'Context',
         action_type: UITestActions,
         target: Optional[str] = None,
         parameters: Optional[dict] = None,
@@ -99,7 +102,7 @@ class BaseStep(DriverHolder, EnumResolver):
         self._parameters = val
         return val
 
-    def _deep_replace(self, ctx: Context, params: Dict[str, Any]):
+    def _deep_replace(self, ctx: 'Context', params: Dict[str, Any]):
         for key, value in params.items():
             if isinstance(value, str):
                 params[key] = ctx.perform_replacements(value)
@@ -141,7 +144,7 @@ class BaseStep(DriverHolder, EnumResolver):
 
 class BaseStepFactory:
     @abstractclassmethod
-    def from_dict(cls, ctx: Context, step: Dict, driver: Optional[WebDriver] = None) -> BaseStep:
+    def from_dict(cls, ctx: 'Context', step: Dict, driver: Optional[WebDriver] = None) -> BaseStep:
         '''
         Given a context, step dictionary, and optionally a driver, return an appropriate subclass
         of BaseStep
@@ -172,7 +175,7 @@ class BaseValidation(BaseStep):
     '''
     def __init__(
         self,
-        ctx: Context,
+        ctx: 'Context',
         type_: ValidationTypes,
         target: str,
         state: ValidationStates,

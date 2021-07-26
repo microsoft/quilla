@@ -30,7 +30,6 @@ def make_parser() -> argparse.ArgumentParser:  # pragma: no cover
     '''
     parser = argparse.ArgumentParser(
         prog='quilla',
-        # usage='%(prog)s [options] [-f] JSON',
         description='''
         Program to provide a report of UI validations given a json representation
         of the validations or given the filename containing a json document describing
@@ -77,10 +76,29 @@ def make_parser() -> argparse.ArgumentParser:  # pragma: no cover
         '-u',
         '--update-baseline',
         dest='update_baseline',
-        action='store_true',
-        help='Used to update the baseline images for VisualParity. '
+        action='append',
+        metavar='BASELINE_ID',
+        help='Used to update the specific baseline image associated with '
+        'the provided baseline ID for VisualParity. '
         'Different plugins define different behaviour, so this is not '
-        'necessarily a lossless operation.'
+        'necessarily a lossless operation.',
+        default=[],
+    )
+    config_group.add_argument(
+        '-U',
+        '--update-all-baselines',
+        dest='update_all_baselines',
+        action='store_true',
+        help='Used to update all baseline images in a Quilla test file. '
+        'this is equivalent to using --update-baseline with every baseline ID '
+        'that is used in the Quilla test.'
+    )
+    config_group.add_argument(
+        '--create-baseline-if-none',
+        dest='create_baseline_if_none',
+        action='store_true',
+        help='A flag to set that will create a new baseline image if a storage '
+        'mechanism is configured but no baseline image is found with the specified ID.'
     )
     config_group.add_argument(
         '-d',
@@ -306,7 +324,9 @@ def setup_context(
         logger=logger,
         run_id=parsed_args.run_id,
         indent=parsed_args.indent,
+        update_all_baselines=parsed_args.update_all_baselines,
         update_baseline=parsed_args.update_baseline,
+        create_baseline_if_none=parsed_args.create_baseline_if_none,
         args=parsed_args,
         recreate_context=recreate_context,
     )
