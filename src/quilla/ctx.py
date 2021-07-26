@@ -86,6 +86,7 @@ class Context(DriverHolder):
     )
     _output_browser: str = 'Firefox'
     current_step: Optional['BaseStep'] = None
+    logger: Logger
 
     def __init__(
         self,

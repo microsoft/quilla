@@ -3,7 +3,7 @@ from typing import (
     Callable,
     Dict,
     Any,
-    TYPE_CHECKING
+    TYPE_CHECKING,
 )
 from abc import abstractclassmethod, abstractmethod
 
