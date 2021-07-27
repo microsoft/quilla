@@ -88,6 +88,7 @@ class StepsAggregator(DriverHolder):
         for i, step in enumerate(self._steps):
             try:
                 self.ctx.logger.debug('Running step %s', step.action.value)
+                self.ctx.current_step = step
                 report = step.perform()
             except Exception as e:
                 if not self.ctx.suppress_exceptions:
@@ -107,6 +108,8 @@ class StepsAggregator(DriverHolder):
 
             if report is not None:
                 reports.append(report)
+
+        self.ctx.current_step = None
 
         return reports
 

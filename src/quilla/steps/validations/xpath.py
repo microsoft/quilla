@@ -211,8 +211,12 @@ class XPathValidation(BaseValidation):
         self._verify_parameters('baselineID')
 
         baseline_id = self.parameters['baselineID']
+        update_baseline = (
+            self.ctx.update_all_baselines or
+            baseline_id in self.ctx.update_baseline
+        )
 
-        if self.ctx.update_baseline:
+        if update_baseline:
             result = self.ctx.pm.hook.quilla_store_image(
                 ctx=self.ctx,
                 baseline_id=baseline_id,
@@ -267,6 +271,22 @@ class XPathValidation(BaseValidation):
             )
 
         if len(plugin_result) == 0:
+            if self.ctx.create_baseline_if_none:
+                baseline_uri = self.ctx.pm.hook.quilla_store_image(
+                    ctx=self.ctx,
+                    baseline_id=baseline_id,
+                    image_bytes=self.element.screenshot_as_png,
+                    image_type=VisualParityImageType.BASELINE
+                )
+                return VisualParityReport(
+                    success=True,
+                    target=self._target,
+                    browser_name=self.driver.name,
+                    baseline_id=baseline_id,
+                    baseline_image_uri=baseline_uri,
+                    msg='Successfully updated baseline URI'
+                )
+
             return VisualParityReport(
                 success=False,
                 target=self._target,

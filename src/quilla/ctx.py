@@ -5,7 +5,8 @@ from typing import (
     Optional,
     List,
     Dict,
-    cast
+    cast,
+    TYPE_CHECKING,
 )
 from pathlib import Path
 from logging import (
@@ -26,6 +27,9 @@ from quilla.common.exceptions import (
 )
 from quilla.common.utils import DriverHolder
 
+if TYPE_CHECKING:
+    from quilla.steps.base_steps import BaseStep
+
 
 class Context(DriverHolder):
     '''
@@ -43,7 +47,10 @@ class Context(DriverHolder):
         logger: An optional configured logger instance.
         run_id: A string that uniquely identifies the run of Quilla.
         args: The Namespace object that parsed related arguments, if applicable
-        update_baseline: Whether the VisualParity baselines should be updated or not
+        update_all_baselines: Whether the VisualParity baselines should be updated or not
+        update_baseline: A list of baseline IDs to update during this run
+        create_baseline_if_none: If true, instructs the storage plugin to create a new
+            baseline image if none can be found for the given baseline ID
 
 
     Attributes:
@@ -62,7 +69,11 @@ class Context(DriverHolder):
         run_id: A string that uniquely identifies the run of Quilla.
         pretty_print_indent: How many spaces to use for indentation when pretty-printing the output
         args: The Namespace object that parsed related arguments, if applicable
-        update_baseline: Whether the VisualParity baselines should be updated or not
+        update_all_baselines: Whether the VisualParity baselines should be updated or not
+        update_baseline: A list of baseline IDs to update during this run
+        current_step: The current step
+        create_baseline_if_none: If true, instructs the storage plugin to create a new
+            baseline image if none can be found for the given baseline ID
     '''
     default_context: Optional['Context'] = None
     _drivers_path: str
@@ -74,6 +85,8 @@ class Context(DriverHolder):
         r'([a-zA-Z][a-zA-Z0-9_]+)(\.[a-zA-Z_][a-zA-Z0-9_]+)+'
     )
     _output_browser: str = 'Firefox'
+    current_step: Optional['BaseStep'] = None
+    logger: Logger
 
     def __init__(
         self,
@@ -89,7 +102,9 @@ class Context(DriverHolder):
         run_id: Optional[str] = None,
         indent: int = 4,
         args: Optional[Namespace] = None,
-        update_baseline: bool = False,
+        update_all_baselines: bool = False,
+        update_baseline: List[str] = [],
+        create_baseline_if_none: bool = False,
     ):
         super().__init__()
         self.pm = plugin_manager
@@ -102,6 +117,7 @@ class Context(DriverHolder):
         self.pretty_print_indent = indent
         self.args = args
         path = Path(drivers_path)
+        self.create_baseline_if_none = create_baseline_if_none
 
         if logger is None:
             self.logger = getLogger('quilla')
@@ -114,6 +130,7 @@ class Context(DriverHolder):
         else:
             self.run_id = run_id
 
+        self.update_all_baselines = update_all_baselines
         self.update_baseline = update_baseline
 
         self.drivers_path = str(path.resolve())
@@ -372,7 +389,9 @@ def get_default_context(
         run_id: Optional[str] = None,
         indent: int = 4,
         args: Optional[Namespace] = None,
-        update_baseline: bool = False,
+        update_all_baselines: bool = False,
+        update_baseline: List[str] = [],
+        create_baseline_if_none: bool = False,
 ) -> Context:
     '''
     Gets the default context, creating a new one if necessary.
@@ -394,7 +413,9 @@ def get_default_context(
         logger: An optional logger instance. If None, one will be created
             with the NullHandler.
         run_id: A string that uniquely identifies the run of Quilla.
-        update_baseline: Whether the VisualParity baselines should be updated or not
+        update_all_baselines: Whether the VisualParity baselines should be updated or not
+        create_baseline_if_none: If true, instructs the storage plugin to create a new
+            baseline image if none can be found for the given baseline ID
 
     Returns
         Application context shared for the entire application
@@ -416,6 +437,8 @@ def get_default_context(
             run_id,
             indent,
             args,
+            update_all_baselines,
             update_baseline,
+            create_baseline_if_none,
         )
     return Context.default_context

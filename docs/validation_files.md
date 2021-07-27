@@ -72,6 +72,9 @@ The table below describes what the supported states are, and what they are valid
 | `NotPropertyHasValue` | Ensures that the property does not have a value matching the one specified | `name`, `value` |
 | `AttributeHasValue` | Ensures that the attribute has a value matching the one specified | `name`, `value` |
 | `AttributeHasValue` | Ensures that the attribute does not have a value matching the one specified | `name`, `value` |
+| `VisualParity` | Checks previous baseline images pixel-by-pixel to ensure that sections have not changed | `baselineID` |
+
+> Note: The `VisualParity` state is discussed more at length in the [visual parity](visual_parity.md) section. For information on how to write storage plugins for `VisualParity` to use, check out the "Storage Plugins" section of the [plugins](plugins.md) docs.
 
 ### URL Validation
 
@@ -191,7 +194,7 @@ Example written on 2021-06-24
             "action": "Validate",
             "type": "XPath",
             "target": "${{ Definitions.WelcomePage.SignInButton }}",
-            "state": "NotTextMatches",
+            "state": "TextMatches",
             "parameters": {
                 "pattern": "[Ss]ign[ -]?[Ii]n"
             }
