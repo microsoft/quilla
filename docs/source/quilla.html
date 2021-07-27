@@ -88,7 +88,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../intro.html">Quilla</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../preface.html">Preface</a></li>
@@ -234,6 +234,12 @@ exiting on failure, since it potentially needs to ignore errors to collect the e
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="quilla.main">
+<span class="sig-prename descclassname"><span class="pre">quilla.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#quilla.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates the context and parses all arguments, then runs the default handler function</p>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="quilla.make_default_logger">
 <span class="sig-prename descclassname"><span class="pre">quilla.</span></span><span class="sig-name descname"><span class="pre">make_default_logger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">early_configs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.make_default_logger" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a default logger class for Quilla. All internal logger setup logic
@@ -268,20 +274,26 @@ of the parse_known_intermixed_args function, before plugins run</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="quilla.run">
-<span class="sig-prename descclassname"><span class="pre">quilla.</span></span><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#quilla.run" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates the parser object, parses the command-line arguments, and runs them, finishing with the
-appropriate exit code.</p>
+<span class="sig-prename descclassname"><span class="pre">quilla.</span></span><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs all reports and prints to stdout while providing the proper
+exit code</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ctx</strong> (<a class="reference internal" href="#quilla.ctx.Context" title="quilla.ctx.Context"><code class="xref py py-class docutils literal notranslate"><span class="pre">Context</span></code></a>) – The application context</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="quilla.setup_context">
-<span class="sig-prename descclassname"><span class="pre">quilla.</span></span><span class="sig-name descname"><span class="pre">setup_context</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plugin_root</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.setup_context" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">quilla.</span></span><span class="sig-name descname"><span class="pre">setup_context</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plugin_root</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recreate_context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.setup_context" title="Permalink to this definition">¶</a></dt>
 <dd><p>Starts up the plugin manager, creates parser, parses args and sets up the application context</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>args</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – A list of cli options, such as sys.argv[1:]</p></li>
 <li><p><strong>plugin_root</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The directory used by the plugin manager to search for <cite>uiconf.py</cite> files</p></li>
+<li><p><strong>recreate_context</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Whether the context should be recreated</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
@@ -300,7 +312,7 @@ appropriate exit code.</p>
 <span id="quilla-ctx-module"></span><h2>quilla.ctx module<a class="headerlink" href="#module-quilla.ctx" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="quilla.ctx.Context">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">quilla.ctx.</span></span><span class="sig-name descname"><span class="pre">Context</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plugin_manager</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drivers_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pretty</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">json_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_sandbox</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">definitions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.ctx.Context" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">quilla.ctx.</span></span><span class="sig-name descname"><span class="pre">Context</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plugin_manager</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drivers_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pretty</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">json_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_sandbox</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">definitions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update_all_baselines</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update_baseline</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">create_baseline_if_none</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.ctx.Context" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="quilla.common.html#quilla.common.utils.DriverHolder" title="quilla.common.utils.DriverHolder"><code class="xref py py-class docutils literal notranslate"><span class="pre">quilla.common.utils.DriverHolder</span></code></a></p>
 <p>Class defining configurations for the runtime context. This object
 should not be created directly but retrieved with “get_default_context”</p>
@@ -315,6 +327,12 @@ should not be created directly but retrieved with “get_default_context”</p>
 <li><p><strong>is_file</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Whether a file was originally passed in or if the raw json was passed in</p></li>
 <li><p><strong>no_sandbox</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Whether to pass the ‘–no-sandbox’ arg to Chrome and Edge</p></li>
 <li><p><strong>logger</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Logger</span></code>]) – An optional configured logger instance.</p></li>
+<li><p><strong>run_id</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – A string that uniquely identifies the run of Quilla.</p></li>
+<li><p><strong>args</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Namespace</span></code>]) – The Namespace object that parsed related arguments, if applicable</p></li>
+<li><p><strong>update_all_baselines</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Whether the VisualParity baselines should be updated or not</p></li>
+<li><p><strong>update_baseline</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – A list of baseline IDs to update during this run</p></li>
+<li><p><strong>create_baseline_if_none</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – If true, instructs the storage plugin to create a new
+baseline image if none can be found for the given baseline ID</p></li>
 </ul>
 </dd>
 </dl>
@@ -373,6 +391,59 @@ session open</p>
 <span class="sig-name descname"><span class="pre">logger</span></span><a class="headerlink" href="#quilla.ctx.Context.logger" title="Permalink to this definition">¶</a></dt>
 <dd><p>A logger instance. If None was passed in for the ‘logger’ argument, will create
 one with the default logger.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>logging.Logger</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="quilla.ctx.Context.run_id">
+<span class="sig-name descname"><span class="pre">run_id</span></span><a class="headerlink" href="#quilla.ctx.Context.run_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>A string that uniquely identifies the run of Quilla.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="quilla.ctx.Context.pretty_print_indent">
+<span class="sig-name descname"><span class="pre">pretty_print_indent</span></span><a class="headerlink" href="#quilla.ctx.Context.pretty_print_indent" title="Permalink to this definition">¶</a></dt>
+<dd><p>How many spaces to use for indentation when pretty-printing the output</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="quilla.ctx.Context.args">
+<span class="sig-name descname"><span class="pre">args</span></span><a class="headerlink" href="#quilla.ctx.Context.args" title="Permalink to this definition">¶</a></dt>
+<dd><p>The Namespace object that parsed related arguments, if applicable</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="quilla.ctx.Context.update_all_baselines">
+<span class="sig-name descname"><span class="pre">update_all_baselines</span></span><a class="headerlink" href="#quilla.ctx.Context.update_all_baselines" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the VisualParity baselines should be updated or not</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="quilla.ctx.Context.update_baseline">
+<span class="sig-name descname"><span class="pre">update_baseline</span></span><a class="headerlink" href="#quilla.ctx.Context.update_baseline" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of baseline IDs to update during this run</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="quilla.ctx.Context.current_step">
+<span class="sig-name descname"><span class="pre">current_step</span></span><a class="headerlink" href="#quilla.ctx.Context.current_step" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current step</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>Optional[<a class="reference internal" href="quilla.steps.html#quilla.steps.base_steps.BaseStep" title="quilla.steps.base_steps.BaseStep">BaseStep</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="quilla.ctx.Context.create_baseline_if_none">
+<span class="sig-name descname"><span class="pre">create_baseline_if_none</span></span><a class="headerlink" href="#quilla.ctx.Context.create_baseline_if_none" title="Permalink to this definition">¶</a></dt>
+<dd><p>If true, instructs the storage plugin to create a new
+baseline image if none can be found for the given baseline ID</p>
 </dd></dl>
 
 <dl class="py method">
@@ -398,8 +469,13 @@ namespace to create a more dictionary-like structure</p></li>
 </dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">current_step</span></span><em class="property"><span class="pre">:</span> <span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">BaseStep</span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="quilla.ctx.Context.default_context">
-<span class="sig-name descname"><span class="pre">default_context</span></span><em class="property"><span class="pre">:</span> <span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#quilla.ctx.Context" title="quilla.ctx.Context"><span class="pre">quilla.ctx.Context</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#quilla.ctx.Context.default_context" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">default_context</span></span><em class="property"><span class="pre">:</span> <span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#quilla.ctx.Context" title="quilla.ctx.Context"><span class="pre">Context</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#quilla.ctx.Context.default_context" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
@@ -442,6 +518,22 @@ test writers to use declarative names for XPaths</p>
 </dl>
 </dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">logger</span></span><em class="property"><span class="pre">:</span> <span class="pre">logging.Logger</span></em><a class="headerlink" href="#id1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="quilla.ctx.Context.outputs">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">outputs</span></span><em class="property"><span class="pre">:</span> <span class="pre">dict</span></em><a class="headerlink" href="#quilla.ctx.Context.outputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>A dictionary of all outputs created by the steps for the current Quilla test</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="quilla.ctx.Context.perform_replacements">
 <span class="sig-name descname"><span class="pre">perform_replacements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.ctx.Context.perform_replacements" title="Permalink to this definition">¶</a></dt>
@@ -467,16 +559,20 @@ making suitable replacements for the context objects</p>
 </div>
 </dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py" id="quilla.ctx.Context.pretty_print_indent">
-<span class="sig-name descname"><span class="pre">pretty_print_indent</span></span><em class="property"><span class="pre">:</span> <span class="pre">int</span></em><em class="property"> <span class="pre">=</span> <span class="pre">4</span></em><a class="headerlink" href="#quilla.ctx.Context.pretty_print_indent" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="quilla.ctx.Context.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#quilla.ctx.Context.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs Quilla, assuming a proper Namespace object with a handler has been passed in.</p>
+<p>This function is not guaranteed to do anything, and is just a passthrough to allow
+the proper parser handlers to execute, as described in the documentation for ArgParse
+<a class="reference external" href="https://docs.python.org/3/library/argparse.html#argparse.ArgumentParser.add_subparsers">https://docs.python.org/3/library/argparse.html#argparse.ArgumentParser.add_subparsers</a></p>
+</dd></dl>
 
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="quilla.ctx.get_default_context">
-<span class="sig-prename descclassname"><span class="pre">quilla.ctx.</span></span><span class="sig-name descname"><span class="pre">get_default_context</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plugin_manager</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drivers_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pretty</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">json</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_sandbox</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">definitions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recreate_context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.ctx.get_default_context" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">quilla.ctx.</span></span><span class="sig-name descname"><span class="pre">get_default_context</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plugin_manager</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drivers_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pretty</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">json</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_sandbox</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">definitions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recreate_context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update_all_baselines</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update_baseline</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">create_baseline_if_none</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.ctx.get_default_context" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the default context, creating a new one if necessary.</p>
 <p>If a context object already exists, all of the arguments passed into this function
 are ignored.</p>
@@ -495,6 +591,10 @@ as a string</p></li>
 <li><p><strong>recreate_context</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Whether a new context object should be created or not</p></li>
 <li><p><strong>logger</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Logger</span></code>]) – An optional logger instance. If None, one will be created
 with the NullHandler.</p></li>
+<li><p><strong>run_id</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – A string that uniquely identifies the run of Quilla.</p></li>
+<li><p><strong>update_all_baselines</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Whether the VisualParity baselines should be updated or not</p></li>
+<li><p><strong>create_baseline_if_none</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – If true, instructs the storage plugin to create a new
+baseline image if none can be found for the given baseline ID</p></li>
 </ul>
 </dd>
 </dl>
@@ -658,6 +758,7 @@ through entrypoints or through a <cite>uiconf.py</cite> file found at the <cite>
 <li class="toctree-l2"><a class="reference internal" href="quilla.reports.html#module-quilla.reports.report_summary">quilla.reports.report_summary module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quilla.reports.html#module-quilla.reports.step_failure_report">quilla.reports.step_failure_report module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quilla.reports.html#module-quilla.reports.validation_report">quilla.reports.validation_report module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quilla.reports.html#quilla-reports-visual-parity-report-module">quilla.reports.visual_parity_report module</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="quilla.steps.html">quilla.steps package</a><ul>
@@ -667,7 +768,17 @@ through entrypoints or through a <cite>uiconf.py</cite> file found at the <cite>
 <li class="toctree-l3"><a class="reference internal" href="quilla.steps.html#adding-new-actions">Adding new actions</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="quilla.steps.html#module-quilla.steps.validations">quilla.steps.validations module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quilla.steps.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quilla.steps.validations.html">quilla.steps.validations package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="quilla.steps.validations.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quilla.steps.validations.html#module-quilla.steps.validations.url">quilla.steps.validations.url module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quilla.steps.validations.html#module-quilla.steps.validations.validation_factory">quilla.steps.validations.validation_factory module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quilla.steps.validations.html#module-quilla.steps.validations.xpath">quilla.steps.validations.xpath module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quilla.steps.validations.html#module-quilla.steps.validations">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="quilla.hookspecs.html">quilla.hookspecs package</a><ul>

@@ -88,7 +88,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Quilla</a></li>
 <li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
@@ -369,8 +369,15 @@
 <td><p>Ensures that the attribute does not have a value matching the one specified</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">name</span></code>, <code class="docutils literal notranslate"><span class="pre">value</span></code></p></td>
 </tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">VisualParity</span></code></p></td>
+<td><p>Checks previous baseline images pixel-by-pixel to ensure that sections have not changed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">baselineID</span></code></p></td>
+</tr>
 </tbody>
 </table>
+<blockquote>
+<div><p>Note: The <code class="docutils literal notranslate"><span class="pre">VisualParity</span></code> state is discussed more at length in the <a class="reference internal" href="visual_parity.html"><span class="doc std std-doc">visual parity</span></a> section. For information on how to write storage plugins for <code class="docutils literal notranslate"><span class="pre">VisualParity</span></code> to use, check out the “Storage Plugins” section of the <a class="reference internal" href="plugins.html"><span class="doc std std-doc">plugins</span></a> docs.</p>
+</div></blockquote>
 </div>
 <div class="section" id="url-validation">
 <h3>URL Validation<a class="headerlink" href="#url-validation" title="Permalink to this headline">¶</a></h3>
@@ -502,7 +509,7 @@
             <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Validate&quot;</span><span class="p">,</span>
             <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;XPath&quot;</span><span class="p">,</span>
             <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.WelcomePage.SignInButton }}&quot;</span><span class="p">,</span>
-            <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;NotTextMatches&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;TextMatches&quot;</span><span class="p">,</span>
             <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
                 <span class="nt">&quot;pattern&quot;</span><span class="p">:</span> <span class="s2">&quot;[Ss]ign[ -]?[Ii]n&quot;</span>
             <span class="p">}</span>

@@ -1,0 +1,795 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>quilla.plugins package &mdash; Quilla  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Quilla
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Quilla</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Command-Line Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../validation_files.html">Validation Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../context_expressions.html">Context Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hooks.html">Quilla Plugin Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quilla_pytest.html">Running Quilla tests with Pytest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../how_it_works.html">How does Quilla work?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../README.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../makefile_vars.html">Makefile Variables</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Quilla</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>quilla.plugins package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/source/quilla.plugins.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="quilla-plugins-package">
+<h1>quilla.plugins package<a class="headerlink" href="#quilla-plugins-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-quilla.plugins.base_storage">
+<span id="quilla-plugins-base-storage-module"></span><h2>quilla.plugins.base_storage module<a class="headerlink" href="#module-quilla.plugins.base_storage" title="Permalink to this headline">¶</a></h2>
+<p>This module contains a base class that can be useful when defining new
+storage plugins, as there are some behaviours that will be shared among
+the configuration objects</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="quilla.plugins.base_storage.BaseStorage">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">quilla.plugins.base_storage.</span></span><span class="sig-name descname"><span class="pre">BaseStorage</span></span><a class="headerlink" href="#quilla.plugins.base_storage.BaseStorage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="quilla.plugins.base_storage.BaseStorage.cleanup_reports">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">cleanup_reports</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#quilla.plugins.base_storage.BaseStorage.cleanup_reports" title="Permalink to this definition">¶</a></dt>
+<dd><p>Searches for reports that match some cleanup criteria, and deletes them
+if necessary. Not every storage plugin will implement logic for this function,
+choosing instead to have all images exist indefinitely.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="quilla.plugins.base_storage.BaseStorage.find_image_by_baseline">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">find_image_by_baseline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">baseline_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.plugins.base_storage.BaseStorage.find_image_by_baseline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Searches the defined storage method for the image matching some
+baseline ID</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>baseline_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The unique ID to search for. It is assumed every
+baseline ID is unique regardless of what test is requesting it.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The bytes representation of the stored image if found, or an empty
+bytes object if the image is not found.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="quilla.plugins.base_storage.BaseStorage.get_baseline_uri">
+<span class="sig-name descname"><span class="pre">get_baseline_uri</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">run_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">baseline_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.plugins.base_storage.BaseStorage.get_baseline_uri" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves the URI for the baseline image</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>run_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The unique ID for the current run of Quilla</p></li>
+<li><p><strong>baseline_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The unique ID for the baseline image</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>None if the plugin is not enabled, a string URI if it is</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="quilla.plugins.base_storage.BaseStorage.get_image">
+<span class="sig-name descname"><span class="pre">get_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">baseline_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.plugins.base_storage.BaseStorage.get_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines if the plugin should run, and if so searches for the image
+with the specified baseline ID and returns the byte data for it</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>baseline_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The unique ID to search for</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code>]</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>None if the plugin is not enabled, a <code class="docutils literal notranslate"><span class="pre">bytes</span></code> representation
+of the image if it is. If no baseline image is found, returns an
+empty byte string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="quilla.plugins.base_storage.BaseStorage.is_enabled">
+<em class="property"><span class="pre">abstract</span> <span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">is_enabled</span></span><em class="property"><span class="pre">:</span> <span class="pre">bool</span></em><a class="headerlink" href="#quilla.plugins.base_storage.BaseStorage.is_enabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>A property to be used to determine if the plugin is configured and
+therefore able to run</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if the plugin is configured, False otherwise</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="quilla.plugins.base_storage.BaseStorage.make_baseline_uri">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">make_baseline_uri</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">run_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">baseline_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.plugins.base_storage.BaseStorage.make_baseline_uri" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a baseline URI for the current run given the baseline_id of the image.</p>
+<p>It is recommended that plugins create a clone of the baseline image
+when generating the URI so that the returned URI will uniquely identify
+the baseline that was used for the associated run ID. This ensures that
+even if the baseline image is updated, the report is still meaningful.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>run_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The unique ID identifying the current run</p></li>
+<li><p><strong>baseline_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The unique identifier for the image</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A URI that can locate the baseline image used for the given run</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="quilla.plugins.base_storage.BaseStorage.quilla_get_baseline_uri">
+<span class="sig-name descname"><span class="pre">quilla_get_baseline_uri</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">run_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">baseline_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.plugins.base_storage.BaseStorage.quilla_get_baseline_uri" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="quilla.plugins.base_storage.BaseStorage.quilla_get_visualparity_baseline">
+<span class="sig-name descname"><span class="pre">quilla_get_visualparity_baseline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">baseline_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.plugins.base_storage.BaseStorage.quilla_get_visualparity_baseline" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="quilla.plugins.base_storage.BaseStorage.quilla_store_image">
+<span class="sig-name descname"><span class="pre">quilla_store_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">baseline_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_bytes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.plugins.base_storage.BaseStorage.quilla_store_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stores a given image based on its type and possibly the run ID</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctx</strong> (<a class="reference internal" href="quilla.html#quilla.ctx.Context" title="quilla.ctx.Context"><code class="xref py py-class docutils literal notranslate"><span class="pre">Context</span></code></a>) – The runtime context for Quilla</p></li>
+<li><p><strong>baseline_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The unique identifier for the image</p></li>
+<li><p><strong>image_bytes</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code>) – The byte data for the image</p></li>
+<li><p><strong>image_type</strong> (<a class="reference internal" href="quilla.common.html#quilla.common.enums.VisualParityImageType" title="quilla.common.enums.VisualParityImageType"><code class="xref py py-class docutils literal notranslate"><span class="pre">VisualParityImageType</span></code></a>) – The kind of image that is being stored</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A URI for the image that was stored, or None if the plugin
+is not enabled. The URI might be the empty string if the
+image type is not supported</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="quilla.plugins.base_storage.BaseStorage.store_baseline_image">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">store_baseline_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">run_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">baseline_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">baseline</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.plugins.base_storage.BaseStorage.store_baseline_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stores a baseline image under the given baseline_id.</p>
+<p>This function should be used to update the current baseline
+image, or create a new one if the baseline did not previously exist.</p>
+<p>The run ID is passed in case a plugin would like to use it to version and
+store previous image baselines</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>run_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The ID of the current run of Quilla</p></li>
+<li><p><strong>baseline_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – A unique identifier for the image</p></li>
+<li><p><strong>baseline</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code>) – The image data in bytes</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A URI for the new baseline image</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="quilla.plugins.base_storage.BaseStorage.store_treatment_image">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">store_treatment_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">run_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">baseline_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">treatment</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.plugins.base_storage.BaseStorage.store_treatment_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stores a treatment image within the storage mechanism enabled by the plugin</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>run_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The run ID of the current Quilla run, to version the treatment images</p></li>
+<li><p><strong>baseline_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The ID of the baseline that this treatment image is associated
+with</p></li>
+<li><p><strong>treatment</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code>) – The image data in bytes</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>An identifier that can locate the newly stored treatment image</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-quilla.plugins.blob_storage">
+<span id="quilla-plugins-blob-storage-module"></span><h2>quilla.plugins.blob_storage module<a class="headerlink" href="#module-quilla.plugins.blob_storage" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="quilla.plugins.blob_storage.BlobStorage">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">quilla.plugins.blob_storage.</span></span><span class="sig-name descname"><span class="pre">BlobStorage</span></span><a class="headerlink" href="#quilla.plugins.blob_storage.BlobStorage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#quilla.plugins.base_storage.BaseStorage" title="quilla.plugins.base_storage.BaseStorage"><code class="xref py py-class docutils literal notranslate"><span class="pre">quilla.plugins.base_storage.BaseStorage</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="quilla.plugins.blob_storage.BlobStorage.cleanup_reports">
+<span class="sig-name descname"><span class="pre">cleanup_reports</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#quilla.plugins.blob_storage.BlobStorage.cleanup_reports" title="Permalink to this definition">¶</a></dt>
+<dd><p>Searches for reports that match some cleanup criteria, and deletes them
+if necessary. Not every storage plugin will implement logic for this function,
+choosing instead to have all images exist indefinitely.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="quilla.plugins.blob_storage.BlobStorage.configure">
+<span class="sig-name descname"><span class="pre">configure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">connection_string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">container_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retention_days</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.plugins.blob_storage.BlobStorage.configure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configure the container client and other necessary data, such as the max cleanup time.</p>
+<p>If a container with that name does not exist, it will be created.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>connection_string</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The full connection string to the storage account</p></li>
+<li><p><strong>container_name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The name of the container that should be used to store all images</p></li>
+<li><p><strong>retention_days</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The maximum number of days a report should be allowed to have before
+being cleaned up</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="quilla.plugins.blob_storage.BlobStorage.container_client">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">container_client</span></span><em class="property"><span class="pre">:</span> <span class="pre">azure.storage.blob._container_client.ContainerClient</span></em><a class="headerlink" href="#quilla.plugins.blob_storage.BlobStorage.container_client" title="Permalink to this definition">¶</a></dt>
+<dd><p>An instance of the container client, casting it to ContainerClient.</p>
+<p>This should be used exclusively from the abstract methods from BaseStorage</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ContainerClient</span></code></p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The container client</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="quilla.plugins.blob_storage.BlobStorage.find_image_by_baseline">
+<span class="sig-name descname"><span class="pre">find_image_by_baseline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">baseline_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.plugins.blob_storage.BlobStorage.find_image_by_baseline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Searches the defined storage method for the image matching some
+baseline ID</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>baseline_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The unique ID to search for. It is assumed every
+baseline ID is unique regardless of what test is requesting it.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The bytes representation of the stored image if found, or an empty
+bytes object if the image is not found.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="quilla.plugins.blob_storage.BlobStorage.is_enabled">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">is_enabled</span></span><em class="property"><span class="pre">:</span> <span class="pre">bool</span></em><a class="headerlink" href="#quilla.plugins.blob_storage.BlobStorage.is_enabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>A property to be used to determine if the plugin is configured and
+therefore able to run</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if the plugin is configured, False otherwise</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="quilla.plugins.blob_storage.BlobStorage.make_baseline_uri">
+<span class="sig-name descname"><span class="pre">make_baseline_uri</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">run_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">baseline_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.plugins.blob_storage.BlobStorage.make_baseline_uri" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a baseline URI for the current run given the baseline_id of the image.</p>
+<p>It is recommended that plugins create a clone of the baseline image
+when generating the URI so that the returned URI will uniquely identify
+the baseline that was used for the associated run ID. This ensures that
+even if the baseline image is updated, the report is still meaningful.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>run_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The unique ID identifying the current run</p></li>
+<li><p><strong>baseline_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The unique identifier for the image</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A URI that can locate the baseline image used for the given run</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="quilla.plugins.blob_storage.BlobStorage.max_retention_days">
+<span class="sig-name descname"><span class="pre">max_retention_days</span></span><em class="property"><span class="pre">:</span> <span class="pre">int</span></em><a class="headerlink" href="#quilla.plugins.blob_storage.BlobStorage.max_retention_days" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="quilla.plugins.blob_storage.BlobStorage.quilla_addopts">
+<span class="sig-name descname"><span class="pre">quilla_addopts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parser</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.plugins.blob_storage.BlobStorage.quilla_addopts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds the appropriate CLI arguments</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>parser</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">ArgumentParser</span></code>) – The Quilla argument parser</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="quilla.plugins.blob_storage.BlobStorage.quilla_configure">
+<span class="sig-name descname"><span class="pre">quilla_configure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.plugins.blob_storage.BlobStorage.quilla_configure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configures the plugin to run</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>args</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Namespace</span></code>) – A namespace generated by parsing the args from the CLI</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="quilla.plugins.blob_storage.BlobStorage.store_baseline_image">
+<span class="sig-name descname"><span class="pre">store_baseline_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">run_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">baseline_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">baseline</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.plugins.blob_storage.BlobStorage.store_baseline_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stores a baseline image under the given baseline_id.</p>
+<p>This function should be used to update the current baseline
+image, or create a new one if the baseline did not previously exist.</p>
+<p>The run ID is passed in case a plugin would like to use it to version and
+store previous image baselines</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>run_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The ID of the current run of Quilla</p></li>
+<li><p><strong>baseline_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – A unique identifier for the image</p></li>
+<li><p><strong>baseline</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code>) – The image data in bytes</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A URI for the new baseline image</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="quilla.plugins.blob_storage.BlobStorage.store_treatment_image">
+<span class="sig-name descname"><span class="pre">store_treatment_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">run_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">baseline_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">treatment</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.plugins.blob_storage.BlobStorage.store_treatment_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stores a treatment image within the storage mechanism enabled by the plugin</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>run_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The run ID of the current Quilla run, to version the treatment images</p></li>
+<li><p><strong>baseline_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The ID of the baseline that this treatment image is associated
+with</p></li>
+<li><p><strong>treatment</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code>) – The image data in bytes</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>An identifier that can locate the newly stored treatment image</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-quilla.plugins.local_storage">
+<span id="quilla-plugins-local-storage-module"></span><h2>quilla.plugins.local_storage module<a class="headerlink" href="#module-quilla.plugins.local_storage" title="Permalink to this headline">¶</a></h2>
+<p>A plugin to add LocalStorage functionality for the VisualParity plugin.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="quilla.plugins.local_storage.LocalStorage">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">quilla.plugins.local_storage.</span></span><span class="sig-name descname"><span class="pre">LocalStorage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">storage_directory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.plugins.local_storage.LocalStorage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#quilla.plugins.base_storage.BaseStorage" title="quilla.plugins.base_storage.BaseStorage"><code class="xref py py-class docutils literal notranslate"><span class="pre">quilla.plugins.base_storage.BaseStorage</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="quilla.plugins.local_storage.LocalStorage.baseline_directory">
+<span class="sig-name descname"><span class="pre">baseline_directory</span></span><em class="property"><span class="pre">:</span> <span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">pathlib.Path</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#quilla.plugins.local_storage.LocalStorage.baseline_directory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="quilla.plugins.local_storage.LocalStorage.cleanup_reports">
+<span class="sig-name descname"><span class="pre">cleanup_reports</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#quilla.plugins.local_storage.LocalStorage.cleanup_reports" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method left blank, as no cleanup is provided for LocalStorage since
+users are expected to have granular control over their own filesystems</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="quilla.plugins.local_storage.LocalStorage.configure">
+<span class="sig-name descname"><span class="pre">configure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">storage_directory</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.plugins.local_storage.LocalStorage.configure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize all the required data</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="quilla.plugins.local_storage.LocalStorage.find_image_by_baseline">
+<span class="sig-name descname"><span class="pre">find_image_by_baseline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">baseline_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.plugins.local_storage.LocalStorage.find_image_by_baseline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Searches the defined storage method for the image matching some
+baseline ID</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>baseline_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The unique ID to search for. It is assumed every
+baseline ID is unique regardless of what test is requesting it.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The bytes representation of the stored image if found, or an empty
+bytes object if the image is not found.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="quilla.plugins.local_storage.LocalStorage.is_enabled">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">is_enabled</span></span><em class="property"><span class="pre">:</span> <span class="pre">bool</span></em><a class="headerlink" href="#quilla.plugins.local_storage.LocalStorage.is_enabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>A property to be used to determine if the plugin is configured and
+therefore able to run</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if the plugin is configured, False otherwise</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="quilla.plugins.local_storage.LocalStorage.make_baseline_uri">
+<span class="sig-name descname"><span class="pre">make_baseline_uri</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">run_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">baseline_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.plugins.local_storage.LocalStorage.make_baseline_uri" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a baseline URI for the current run given the baseline_id of the image.</p>
+<p>It is recommended that plugins create a clone of the baseline image
+when generating the URI so that the returned URI will uniquely identify
+the baseline that was used for the associated run ID. This ensures that
+even if the baseline image is updated, the report is still meaningful.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>run_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The unique ID identifying the current run</p></li>
+<li><p><strong>baseline_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The unique identifier for the image</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A URI that can locate the baseline image used for the given run</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="quilla.plugins.local_storage.LocalStorage.quilla_addopts">
+<span class="sig-name descname"><span class="pre">quilla_addopts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parser</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.plugins.local_storage.LocalStorage.quilla_addopts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Using the Quilla hook to add a new group of CLI args to the parser</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="quilla.plugins.local_storage.LocalStorage.quilla_configure">
+<span class="sig-name descname"><span class="pre">quilla_configure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.plugins.local_storage.LocalStorage.quilla_configure" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="quilla.plugins.local_storage.LocalStorage.run_path">
+<span class="sig-name descname"><span class="pre">run_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">run_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.plugins.local_storage.LocalStorage.run_path" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="quilla.plugins.local_storage.LocalStorage.runs_directory">
+<span class="sig-name descname"><span class="pre">runs_directory</span></span><em class="property"><span class="pre">:</span> <span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">pathlib.Path</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#quilla.plugins.local_storage.LocalStorage.runs_directory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="quilla.plugins.local_storage.LocalStorage.store_baseline_image">
+<span class="sig-name descname"><span class="pre">store_baseline_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">run_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">baseline_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">baseline</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.plugins.local_storage.LocalStorage.store_baseline_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stores a baseline image under the given baseline_id.</p>
+<p>This function should be used to update the current baseline
+image, or create a new one if the baseline did not previously exist.</p>
+<p>The run ID is passed in case a plugin would like to use it to version and
+store previous image baselines</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>run_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The ID of the current run of Quilla</p></li>
+<li><p><strong>baseline_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – A unique identifier for the image</p></li>
+<li><p><strong>baseline</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code>) – The image data in bytes</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A URI for the new baseline image</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="quilla.plugins.local_storage.LocalStorage.store_treatment_image">
+<span class="sig-name descname"><span class="pre">store_treatment_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">run_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">baseline_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">treatment</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.plugins.local_storage.LocalStorage.store_treatment_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stores a treatment image within the storage mechanism enabled by the plugin</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>run_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The run ID of the current Quilla run, to version the treatment images</p></li>
+<li><p><strong>baseline_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The ID of the baseline that this treatment image is associated
+with</p></li>
+<li><p><strong>treatment</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code>) – The image data in bytes</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>An identifier that can locate the newly stored treatment image</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-quilla.plugins">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-quilla.plugins" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="quilla.plugins.get_plugin_manager">
+<span class="sig-prename descclassname"><span class="pre">quilla.plugins.</span></span><span class="sig-name descname"><span class="pre">get_plugin_manager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quilla.plugins.get_plugin_manager" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates and configures a plugin manager by loading all the plugins defined
+through entrypoints or through a <cite>uiconf.py</cite> file found at the <cite>path</cite> location</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – the directory in which the <cite>uiconf.py</cite> will be found</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">PluginManager</span></code></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>a configured PluginManager instance with all plugins already loaded</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Microsoft.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

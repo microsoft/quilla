@@ -1,0 +1,270 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Visual Parity &mdash; Quilla  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Quilla
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Quilla</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Command-Line Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validation_files.html">Validation Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="context_expressions.html">Context Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hooks.html">Quilla Plugin Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quilla_pytest.html">Running Quilla tests with Pytest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how_it_works.html">How does Quilla work?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/modules.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="makefile_vars.html">Makefile Variables</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Quilla</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Visual Parity</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/visual_parity.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="tex2jax_ignore mathjax_ignore section" id="visual-parity">
+<h1>Visual Parity<a class="headerlink" href="#visual-parity" title="Permalink to this headline">¶</a></h1>
+<p>Quilla includes a special <code class="docutils literal notranslate"><span class="pre">XPath</span></code> validation state called <code class="docutils literal notranslate"><span class="pre">VisualParity</span></code>. This page describes what <code class="docutils literal notranslate"><span class="pre">VisualParity</span></code> is in detail, how it can be used for UI regression tests, and how it integrates storage plugins to manage the images it uses and creates. Quilla strives to make the handling of auxiliary data (baseline images, etc) needed by VisualParity as simple as possible.</p>
+<div class="section" id="what-is-visualparity">
+<h2>What is VisualParity?<a class="headerlink" href="#what-is-visualparity" title="Permalink to this headline">¶</a></h2>
+<p>VisualParity is a validation state that uses previously accepted screenshots generated by Quilla (“baseline images”) to compare against screenshots generated when Quilla is run during testing (“treatment images”) to determine if the new screenshots match the old ones. By using VisualParity with small sections of a web page, Quilla can give assurances that each section remains the same as it has been from previous runs, allowing users to update only the baseline images related to the work they are doing and protecting the rest of the page from having unexpected visual changes introduced.</p>
+</div>
+<div class="section" id="configuring-a-storage-plugin">
+<h2>Configuring a Storage Plugin<a class="headerlink" href="#configuring-a-storage-plugin" title="Permalink to this headline">¶</a></h2>
+<p>VisualParity requires the ability to store and use images, many of which are required to persist between runs. To do so, it uses one of a few possible “storage plugins”- Quilla Plugins that handle storing, organizing, retrieving, and potentially deleting images. This allows Quilla to simplify the validation logic by outsourcing the image handling at key points to an outside mechanism.</p>
+<p>Quilla does not enforce any specific method of configuration for the storage plugins, opting to leave this to plugin authors. To configure an external Quilla storage plugin, please refer to the documentation of that plugin.</p>
+<p>Quilla has bundled two storage plugins- a LocalStorage and a BlobStorage plugin. Both of these plugins are configured through CLI that can be reviewed by running <code class="docutils literal notranslate"><span class="pre">quilla</span> <span class="pre">--help</span></code>. The LocalStorage plugin requires the specification of a directory in which to store images, and the BlobStorage requires an Azure Blob Storage connection string to connect to a Cloud storage container.</p>
+</div>
+<div class="section" id="creating-updating-baseline-images">
+<h2>Creating/Updating Baseline Images<a class="headerlink" href="#creating-updating-baseline-images" title="Permalink to this headline">¶</a></h2>
+<p>Quilla includes options to create/update baseline images on a per-baseline and a per-file basis. This is done to allow tests to be written that contain multiple <code class="docutils literal notranslate"><span class="pre">VisualParity</span></code> validations while maintaining confidence that updating the baseline image for a specific validation will not create a false positive in any other validation.</p>
+<p>To update/create all baseline images for a test file, use the <code class="docutils literal notranslate"><span class="pre">--update-all-baselines</span></code> (or <code class="docutils literal notranslate"><span class="pre">-U</span></code> for shorthand) with the execution. For example, to create all images for a test that uses LocalStorage, run <code class="docutils literal notranslate"><span class="pre">quilla</span> <span class="pre">--image-directory</span> <span class="pre">&lt;directory&gt;</span> <span class="pre">--update-all-baselines</span> <span class="pre">-f</span> <span class="pre">&lt;test_file&gt;</span></code>.</p>
+<p>Alternatively, baseline images can be updated/created individually by specifying their baseline ID. To do so, use the <code class="docutils literal notranslate"><span class="pre">--update-baseline</span> <span class="pre">&lt;BASELINE_ID&gt;</span></code> (or <code class="docutils literal notranslate"><span class="pre">-u</span> <span class="pre">&lt;BASELINE_ID&gt;</span></code> for shorthand) option, which will execute the Quilla tests normally for all <code class="docutils literal notranslate"><span class="pre">VisualParity</span></code> validations except the ones that have a baseline ID that matches the one specified in the commandline. The <code class="docutils literal notranslate"><span class="pre">-u/--update-baseline</span></code> option can be specified multiple times per run to update multiple baselines during that run. For example, to update the <code class="docutils literal notranslate"><span class="pre">HomePageHeader</span></code> and <code class="docutils literal notranslate"><span class="pre">HomePageFooter</span></code> baselines in LocalStorage, run the command <code class="docutils literal notranslate"><span class="pre">quilla</span> <span class="pre">--image-directory</span> <span class="pre">&lt;directory&gt;</span> <span class="pre">-u</span> <span class="pre">HomePageHeader</span> <span class="pre">-u</span> <span class="pre">HomePageFooter</span> <span class="pre">-f</span> <span class="pre">&lt;test_file&gt;</span></code>.</p>
+</div>
+<div class="section" id="using-visualparity-in-ci-cd">
+<h2>Using VisualParity in CI/CD<a class="headerlink" href="#using-visualparity-in-ci-cd" title="Permalink to this headline">¶</a></h2>
+<p>Running VisualParity tests in CI/CD platforms allows the automated verification that web page matches the baseline images. This can be particularly helpful as a pre-deployment action to verify that no unexpected frontend changes have occurred before deploying chanegs.</p>
+<div class="section" id="localstorage-checking-in-images">
+<h3>LocalStorage - Checking In Images<a class="headerlink" href="#localstorage-checking-in-images" title="Permalink to this headline">¶</a></h3>
+<p>Many cloud CI/CD systems use ephemeral (or effectively ephemeral) runners, which do not save state between runs, or clean up the file system between runs. In these cases, a failed test will give a locator to a file that may no longer exist on the system. However, most CI/CD systems support producing artifacts. Therefore, LocalStorage can be used while still making the run images available by exporting the runs directory as an artifact.</p>
+<p>The workflow of using this is as follows:</p>
+<ol class="simple">
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">--update-all-baselines</span></code> to generate the necessary baseline images and commit them to the repository</p></li>
+<li><p>Run the Quilla tests through the CI system</p></li>
+<li><p>If a test failed, upload the <code class="docutils literal notranslate"><span class="pre">&lt;image_directory&gt;/runs</span></code> folder as an artifact</p></li>
+<li><p>Download the artifact, compare the failed images</p></li>
+<li><p>If baseline images need to be updated, run <code class="docutils literal notranslate"><span class="pre">--update-baseline</span> <span class="pre">&lt;baseline_id&gt;</span></code> and commit the new baseline image to the repository</p></li>
+</ol>
+</div>
+<div class="section" id="blobstorage-storing-baselines-in-the-cloud">
+<h3>BlobStorage - Storing Baselines in the Cloud<a class="headerlink" href="#blobstorage-storing-baselines-in-the-cloud" title="Permalink to this headline">¶</a></h3>
+<p>Azure Blob Storage containers can be used to store both the baseline images as well as treatment images. Using the <code class="docutils literal notranslate"><span class="pre">--connection-string</span></code> CLI option, a connection string can be passed that gives Quilla access to a specific storage account. Optionally, a container name can also be given with the <code class="docutils literal notranslate"><span class="pre">--container-name</span></code> option, but Quilla will by default use a container called “quilla”, creating it if it does not exist.</p>
+<blockquote>
+<div><p><strong>Note</strong>: The Azure Blob Storage connection string contains an actual key and <strong>MUST NEVER</strong> be committed to the repository, especially on public repositories. CI systems (such as Github Actions, Azure DevOps, etc.) have secret management systems such as key vaults that are designed to store private information and should be used instead.</p>
+</div></blockquote>
+<p>The workflow for using Azure Blob Storage with Quilla in CI/CD is as follows:</p>
+<ol class="simple">
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">--update-all-baselines</span></code> to generate the baselines and upload them to Blob Storage</p></li>
+<li><p>Run Quilla tests through the CI system</p></li>
+<li><p>If a test failed, the test report will include a URL to the treatment and baseline image. Depending on how the storage account is configured, this link might work directly. If the permissions for the storage account do not allow for public view access, the images will need to be downloaded directly from Azure Blob Storage.</p></li>
+<li><p>If baseline images need to be updated, run <code class="docutils literal notranslate"><span class="pre">--update-baseline</span> <span class="pre">&lt;baseline_id&gt;</span></code>, which will generate the new baselines and upload them to Blob Storage.</p></li>
+</ol>
+</div>
+<div class="section" id="limitations-considerations">
+<h3>Limitations / Considerations<a class="headerlink" href="#limitations-considerations" title="Permalink to this headline">¶</a></h3>
+<p>Given the distributed/branching model that Git uses, the use of VisualParity tests as part of Pull Request testing should be done through the LocalStorage plugin. This allows particular branches to have different baseline images (since that is provided through Git), which removes potential inconsistencies. For pre- or post-deployment testing, BlobStorage offers a way to store images that is abstracted away from the repository.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Microsoft.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
