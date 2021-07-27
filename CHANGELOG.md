@@ -1,3 +1,38 @@
+## 0.4 (2021-07-27)
+
+### New
+
+* Added visual parity documentation (#53) [Natalia Maximo]
+
+* Added blob storage plugin (#44) [Natalia Maximo]
+
+* Added LocalStorage plugin for VisualParity (#42) [Natalia Maximo]
+
+* Added run_id to reports and to the ctx object (#40) [Natalia Maximo]
+
+* Added logic for visualparity validation (#39) [Natalia Maximo]
+
+  note: since there is not yet a storage plugin, this validation will always be false
+
+* Added --version cli arg (#33) [Natalia Maximo]
+
+* Added VisualParity validation state, report, and reorganized validations (#37) [Natalia Maximo]
+
+### Changes
+
+* Set up the main running function to use handler functions (#45) [Natalia Maximo]
+
+* Create the snapshot parent directory if it does not exist (#43) [Natalia Maximo]
+
+* Added pre-commit fixes on all files that needed them (#31) [Natalia Maximo]
+
+### Fix
+
+* Removed extra comma in example "Validation.json" in README.md (#50) [rajeevdodda]
+
+* Reverted to LocalStorage for VP integration test (#51) [Natalia Maximo]
+
+
 ## 0.3.1 (2021-07-09)
 
 ### Changes
