@@ -38,10 +38,22 @@ class BaseStep(DriverHolder, EnumResolver):
         ctx: The runtime context for the application
         action_type: Enum defining which of the supported actions this class represents
         driver: An optional argument to allow the driver to be bound at object creation.
+        target: Some form of locator for what this step will target. This is passed as a
+            string, but what that string represents is specific to the step that is being
+            performed. This can be a URL, XPath, or something else.
+        parameters: A dictionary with any other auxiliary parameter that the step might
+            require. Not all steps require extra data, but a specific step type could
+            have some actions that require parameters and other actions that don't.
 
     Attributes:
         ctx: The runtime context for the application
         action: Enum defining which of the supported actions this class represents
+        target: Some form of locator for what this step will target. This is passed as a
+            string, but what that string represents is specific to the step that is being
+            performed. This can be a URL, XPath, or something else.
+        parameters: A dictionary with any other auxiliary parameter that the step might
+            require. Not all steps require extra data, but a specific step type could
+            have some actions that require parameters and other actions that don't.
     '''
     def __init__(
         self,

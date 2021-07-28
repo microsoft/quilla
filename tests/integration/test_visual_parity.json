@@ -8,7 +8,9 @@
     "MerchantSubmitButton": "//button[@id='r3Butn']",
     "TrialSubmitButton": "//button[@id='checkButn']",
     "PasswordBanner": "//div[@id='passwordBanner']",
-    "TrialCompleteBanner": "//div[@id='trialCompleteBanner']"
+    "TrialCompleteBanner": "//div[@id='trialCompleteBanner']",
+    "WholePage": "//html",
+    "InfoFooter": "//div[@class='info-footer']"
   },
   "targetBrowsers": [
     "Firefox"
@@ -73,6 +75,18 @@
       "target": "${{ Definitions.TrialCompleteBanner }}",
       "parameters": {
         "baselineID": "TrialCompleteBanner"
+      }
+    },
+    {
+      "action": "Validate",
+      "type": "XPath",
+      "state": "VisualParity",
+      "target": "${{ Definitions.WholePage }}",
+      "parameters": {
+        "baselineID": "WholePage",
+        "excludeXPaths": [
+          "${{ Definitions.InfoFooter }}"
+        ]
       }
     }
   ]
