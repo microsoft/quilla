@@ -15,6 +15,7 @@ Welcome to Quilla's documentation!
    usage
    install
    validation_files
+   visual_parity
    context_expressions
    plugins
    hooks
