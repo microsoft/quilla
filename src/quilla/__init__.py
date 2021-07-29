@@ -97,8 +97,9 @@ def make_parser() -> argparse.ArgumentParser:  # pragma: no cover
         '--create-baseline-if-absent',
         dest='create_baseline_if_none',
         action='store_true',
-        help='A flag to set that will create a new baseline image if a storage '
-        'mechanism is configured but no baseline image is found with the specified ID.'
+        help='A flag to have Quilla create baseline images if '
+        'no baseline exists when running a VisualParity test. '
+        'This is not specific to a single test and will apply '
     )
     config_group.add_argument(
         '-d',
