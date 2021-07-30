@@ -137,7 +137,7 @@ class BlobStorage(BaseStorage):
             f'baselines/snapshots/{run_id}/{baseline_id}.png'
         )
 
-        blob.upload_blob(baseline)
+        blob.upload_blob(baseline, overwrite=True)
         snapshot.upload_blob(baseline)
 
         return blob.url
