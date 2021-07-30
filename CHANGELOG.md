@@ -1,3 +1,10 @@
+## 0.5.2 (2021-07-30)
+
+### Fix
+
+* Added overwrite=True to the blob client upload for baselines (#60) [Natalia Maximo]
+
+
 ## 0.5.1 (2021-07-30)
 
 ### Changes
