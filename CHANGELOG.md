@@ -1,3 +1,10 @@
+## 0.5.1 (2021-07-30)
+
+### Changes
+
+* Added more error checking for blob storage (#58) [Natalia Maximo]
+
+
 ## 0.5 (2021-07-30)
 
 ### New
