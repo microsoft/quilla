@@ -12,6 +12,8 @@ Validation steps will produce a `ValidationReport`, which can result in either a
 
 All Quilla integration tests are written as quilla tests and therefore can be referenced as examples when writing new Quilla tests.
 
+The Quilla docs also include a [cookbook](cookbook.md) to give examples for each of the available actions.
+
 ## Supported actions
 
 The table below summarizes all the supported actions, what they do, and what they require. The `Validate` and `OutputValue` actions are omitted from this table and are shown in later sections.
@@ -71,7 +73,7 @@ The table below describes what the supported states are, and what they are valid
 | `PropertyHasValue` | Ensures that the property has a value matching the one specified | `name`, `value` |
 | `NotPropertyHasValue` | Ensures that the property does not have a value matching the one specified | `name`, `value` |
 | `AttributeHasValue` | Ensures that the attribute has a value matching the one specified | `name`, `value` |
-| `AttributeHasValue` | Ensures that the attribute does not have a value matching the one specified | `name`, `value` |
+| `NotAttributeHasValue` | Ensures that the attribute does not have a value matching the one specified | `name`, `value` |
 | `VisualParity` | Checks previous baseline images pixel-by-pixel to ensure that sections have not changed | `baselineID` |
 
 > Note: The `VisualParity` state is discussed more at length in the [visual parity](visual_parity.md) section. For information on how to write storage plugins for `VisualParity` to use, check out the "Storage Plugins" section of the [plugins](plugins.md) docs.

@@ -15,6 +15,7 @@ Welcome to Quilla's documentation!
    usage
    install
    validation_files
+   cookbook
    visual_parity
    context_expressions
    plugins
