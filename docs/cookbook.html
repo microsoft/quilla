@@ -1,0 +1,774 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Quilla Step Cookbook &mdash; Quilla  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Visual Parity" href="visual_parity.html" />
+    <link rel="prev" title="Validation Files" href="validation_files.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Quilla
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Quilla</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Command-Line Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validation_files.html">Validation Files</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quilla Step Cookbook</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#refreshing-the-page">Refreshing the page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#navigate-back-to-the-last-page">Navigate Back to the Last Page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#navigate-forward-to-the-next-page">Navigate Forward to the Next Page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#navigate-to-a-page-given-its-url">Navigate to a Page Given Its URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#clicking-on-a-page-element">Clicking on a Page Element</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#clearing-an-input-box">Clearing an Input Box</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hovering-over-an-element">Hovering Over an Element</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#writing-text-into-an-input">Writing Text Into an Input</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#using-static-data">Using Static Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-environment-data">Using Environment Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#waiting">Waiting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#wait-for-an-element-to-exist">Wait for an Element to Exist</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#wait-for-an-element-to-be-visible">Wait for an Element to be Visible</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-browser-size">Setting Browser Size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-outputs">Creating Outputs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#creating-a-literal-output">Creating a Literal Output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-output-from-xpath-text">Creating Output from XPath Text</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-output-from-xpath-property">Creating output from XPath Property</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#xpath-validations">XPath Validations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#validating-an-element-exists-on-the-page">Validating an Element Exists on the Page</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#validating-an-element-does-not-exist-on-the-page">Validating an Element Does Not Exist on the Page</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#validating-an-element-is-visible-on-the-page">Validating an Element is Visible on the Page</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#validating-an-element-is-not-visisble-on-the-page">Validating an Element is Not Visisble on the Page</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#validating-the-xpath-text-matches-a-pattern">Validating the XPath Text Matches a Pattern</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#validating-that-the-xpath-text-does-not-match-a-pattern">Validating that the XPath Text Does Not Match a Pattern</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#validating-that-the-xpath-has-some-property">Validating that the XPath Has Some Property</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#validating-that-the-xpath-does-not-have-some-property">Validating that the XPath Does Not Have Some Property</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#validating-that-the-xpath-has-some-attribute">Validating that the XPath Has Some Attribute</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#validating-that-the-xpath-does-not-have-some-attribute">Validating that the XPath Does Not Have Some Attribute</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#validating-that-the-xpath-has-some-property-with-a-specific-value">Validating that the XPath Has Some Property With a Specific Value</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#validating-that-the-xpath-does-not-have-some-property-with-a-specific-value">Validating that the XPath Does Not Have Some Property With a Specific Value</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#validating-that-the-xpath-has-some-attribute-with-a-specific-value">Validating that the XPath Has Some Attribute With a Specific Value</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#validating-that-the-xpath-does-not-have-some-attribute-with-a-specific-value">Validating that the XPath Does Not Have Some Attribute With a Specific Value</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#performing-visualparity-validation">Performing VisualParity Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#performing-url-validations">Performing URL Validations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#validating-url-constains-some-text">Validating URL Constains Some Text</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#validating-url-does-not-contain-some-text">Validating URL Does Not Contain Some Text</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#validating-url-matches-some-text-exactly">Validating URL Matches Some Text Exactly</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#validating-url-does-not-match-some-text-exactly">Validating URL Does Not Match Some Text Exactly</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="visual_parity.html">Visual Parity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="context_expressions.html">Context Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hooks.html">Quilla Plugin Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quilla_pytest.html">Running Quilla tests with Pytest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how_it_works.html">How does Quilla work?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/modules.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="makefile_vars.html">Makefile Variables</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Quilla</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Quilla Step Cookbook</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/cookbook.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="tex2jax_ignore mathjax_ignore section" id="quilla-step-cookbook">
+<h1>Quilla Step Cookbook<a class="headerlink" href="#quilla-step-cookbook" title="Permalink to this headline">¶</a></h1>
+<p>To make it easier to use Quilla, included below is a “cookbook” that showcases examples for every step definition that Quilla contains.</p>
+<div class="section" id="refreshing-the-page">
+<h2>Refreshing the page<a class="headerlink" href="#refreshing-the-page" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Refresh&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="navigate-back-to-the-last-page">
+<h2>Navigate Back to the Last Page<a class="headerlink" href="#navigate-back-to-the-last-page" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;NavigateBack&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="navigate-forward-to-the-next-page">
+<h2>Navigate Forward to the Next Page<a class="headerlink" href="#navigate-forward-to-the-next-page" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;NavigateForward&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="navigate-to-a-page-given-its-url">
+<h2>Navigate to a Page Given Its URL<a class="headerlink" href="#navigate-to-a-page-given-its-url" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;NavigateTo&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;https://bing.com&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="clicking-on-a-page-element">
+<h2>Clicking on a Page Element<a class="headerlink" href="#clicking-on-a-page-element" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Click&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.SubmitButton }}&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="clearing-an-input-box">
+<h2>Clearing an Input Box<a class="headerlink" href="#clearing-an-input-box" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Clear&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.UsernameInputBox }}&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="hovering-over-an-element">
+<h2>Hovering Over an Element<a class="headerlink" href="#hovering-over-an-element" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Hover&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.InfoIcon }}&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="writing-text-into-an-input">
+<h2>Writing Text Into an Input<a class="headerlink" href="#writing-text-into-an-input" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="using-static-data">
+<h3>Using Static Data<a class="headerlink" href="#using-static-data" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;SendKeys&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.UsernameField }}&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;data&quot;</span><span class="p">:</span> <span class="s2">&quot;test_user1&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-environment-data">
+<h3>Using Environment Data<a class="headerlink" href="#using-environment-data" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;SendKeys&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.PasswordField }}&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;data&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Environment.TEST_USER_PASSWORD }}&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="waiting">
+<h2>Waiting<a class="headerlink" href="#waiting" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="wait-for-an-element-to-exist">
+<h3>Wait for an Element to Exist<a class="headerlink" href="#wait-for-an-element-to-exist" title="Permalink to this headline">¶</a></h3>
+<p>Waiting for at most 5 seconds</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;WaitForExistence&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.SubmitButton }}&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;timeoutInSeconds&quot;</span><span class="p">:</span> <span class="mi">5</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="wait-for-an-element-to-be-visible">
+<h3>Wait for an Element to be Visible<a class="headerlink" href="#wait-for-an-element-to-be-visible" title="Permalink to this headline">¶</a></h3>
+<p>Waiting for at most 5 seconds</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;WaitForVisibility&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.HeaderBannerImage }}&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;parameter&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;timeoutInSeconds&quot;</span><span class="p">:</span> <span class="mi">5</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="setting-browser-size">
+<h2>Setting Browser Size<a class="headerlink" href="#setting-browser-size" title="Permalink to this headline">¶</a></h2>
+<p>Setting the window to be 800px by 600px</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;SetBrowserSize&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;width&quot;</span><span class="p">:</span> <span class="mi">800</span><span class="p">,</span>
+    <span class="nt">&quot;height&quot;</span><span class="p">:</span> <span class="mi">600</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="creating-outputs">
+<h2>Creating Outputs<a class="headerlink" href="#creating-outputs" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="creating-a-literal-output">
+<h3>Creating a Literal Output<a class="headerlink" href="#creating-a-literal-output" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Literal</span></code> outputs take the <em>exact</em> value provided by the <code class="docutils literal notranslate"><span class="pre">target</span></code> field, after any context expressions are reslved, and provide them as an output.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;OutputValue&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;This is some text that will be output exactly&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;source&quot;</span><span class="p">:</span> <span class="s2">&quot;Literal&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;outputName&quot;</span><span class="p">:</span> <span class="s2">&quot;ExampleOutput&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>It can then be consumed through the <code class="docutils literal notranslate"><span class="pre">Validation</span></code> context object like so:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;SendKeys&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.TextBox }}&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;data&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Validation.ExampleOutput }}&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">&quot;SendKeys&quot;</span></code> example above would evaluate to be equivalent to:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;SendKeys&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.TextBox }}&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;data&quot;</span><span class="p">:</span> <span class="s2">&quot;This is some text that will be output exactly&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="creating-output-from-xpath-text">
+<h3>Creating Output from XPath Text<a class="headerlink" href="#creating-output-from-xpath-text" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">XPathText</span></code> outputs retrieve the inner text value of the element described by the <code class="docutils literal notranslate"><span class="pre">target</span></code> XPath.</p>
+<p>Assuming that <code class="docutils literal notranslate"><span class="pre">${{</span> <span class="pre">Definitions.SomeLabel</span> <span class="pre">}}</span></code> points to a label that has the text “This is some example text”, then the following step would create the output <code class="docutils literal notranslate"><span class="pre">${{</span> <span class="pre">Validation.SomeLabelText</span> <span class="pre">}}</span></code> with value “This is some example text”.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;OutputValue&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.SomeLabel }}&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;source&quot;</span><span class="p">:</span> <span class="s2">&quot;XPathText&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;outputName&quot;</span><span class="p">:</span> <span class="s2">&quot;SomeLabelText&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="creating-output-from-xpath-property">
+<h3>Creating output from XPath Property<a class="headerlink" href="#creating-output-from-xpath-property" title="Permalink to this headline">¶</a></h3>
+<p>Similarly, the <code class="docutils literal notranslate"><span class="pre">XPathProperty</span></code> source can be used to retrieve a property of an XPath</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;OutputValue&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.SomeLabel }}&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;parameterName&quot;</span><span class="p">:</span> <span class="s2">&quot;className&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;source&quot;</span><span class="p">:</span> <span class="s2">&quot;XPathProperty&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;outputName&quot;</span><span class="p">:</span> <span class="s2">&quot;SomeLabelClassName&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="xpath-validations">
+<h2>XPath Validations<a class="headerlink" href="#xpath-validations" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="validating-an-element-exists-on-the-page">
+<h3>Validating an Element Exists on the Page<a class="headerlink" href="#validating-an-element-exists-on-the-page" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Validate&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;XPath&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.UsernameField }}&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;Exists&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="validating-an-element-does-not-exist-on-the-page">
+<h3>Validating an Element Does Not Exist on the Page<a class="headerlink" href="#validating-an-element-does-not-exist-on-the-page" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Validate&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;XPath&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.SignInButton }}&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;NotExists&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="validating-an-element-is-visible-on-the-page">
+<h3>Validating an Element is Visible on the Page<a class="headerlink" href="#validating-an-element-is-visible-on-the-page" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Validate&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;XPath&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.SignInButton }}&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;Visible&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="validating-an-element-is-not-visisble-on-the-page">
+<h3>Validating an Element is Not Visisble on the Page<a class="headerlink" href="#validating-an-element-is-not-visisble-on-the-page" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Validate&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;XPath&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.HiddenInputField }}&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;NotVisible&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="validating-the-xpath-text-matches-a-pattern">
+<h3>Validating the XPath Text Matches a Pattern<a class="headerlink" href="#validating-the-xpath-text-matches-a-pattern" title="Permalink to this headline">¶</a></h3>
+<p>Checking that it contains some text</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Validate&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;XPath&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.SignInButton }}&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;TextMatches&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;pattern&quot;</span><span class="p">:</span> <span class="s2">&quot;Sign In&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Checking that it matches the text exactly</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Validate&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;XPath&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.SignInButton }}&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;TextMatches&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;pattern&quot;</span><span class="p">:</span> <span class="s2">&quot;^Sign In$&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Matching a more advanced regular expression:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Validate&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;XPath&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.SignInButton }}&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;TextMatches&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;pattern&quot;</span><span class="p">:</span> <span class="s2">&quot;^[Ss]ign[ -]?[Ii]n!?$&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The above example will match “Sign in”, “sign in”, “signin”, “sign-In”, “Sign In!”, etc.</p>
+<p>Quilla uses Python syntax regular expressions for text matching. For more information on how to write regular expressions, refer to the <a class="reference external" href="https://docs.python.org/3/howto/regex.html">regular expression HOWTO</a></p>
+</div>
+<div class="section" id="validating-that-the-xpath-text-does-not-match-a-pattern">
+<h3>Validating that the XPath Text Does Not Match a Pattern<a class="headerlink" href="#validating-that-the-xpath-text-does-not-match-a-pattern" title="Permalink to this headline">¶</a></h3>
+<p>The inverse of the <code class="docutils literal notranslate"><span class="pre">TextMatches</span></code> operation. The following example will be a success if and only if the text does not include the text “Sign In” anywhere.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Validate&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;XPath&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.SignInButton }}&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;NotTextMatches&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;pattern&quot;</span><span class="p">:</span> <span class="s2">&quot;Sign In&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="validating-that-the-xpath-has-some-property">
+<h3>Validating that the XPath Has Some Property<a class="headerlink" href="#validating-that-the-xpath-has-some-property" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Validate&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;XPath&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.SignInButton }}&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;HasProperty&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;className&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="validating-that-the-xpath-does-not-have-some-property">
+<h3>Validating that the XPath Does Not Have Some Property<a class="headerlink" href="#validating-that-the-xpath-does-not-have-some-property" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Validate&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;XPath&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.SignInButton }}&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;NotHasProperty&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;className&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="validating-that-the-xpath-has-some-attribute">
+<h3>Validating that the XPath Has Some Attribute<a class="headerlink" href="#validating-that-the-xpath-has-some-attribute" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Validate&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;XPath&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.SignInButton }}&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;HasAttribute&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;class&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="validating-that-the-xpath-does-not-have-some-attribute">
+<h3>Validating that the XPath Does Not Have Some Attribute<a class="headerlink" href="#validating-that-the-xpath-does-not-have-some-attribute" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Validate&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;XPath&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.SignInButton }}&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;NotHasAttribute&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;class&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="validating-that-the-xpath-has-some-property-with-a-specific-value">
+<h3>Validating that the XPath Has Some Property With a Specific Value<a class="headerlink" href="#validating-that-the-xpath-has-some-property-with-a-specific-value" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Validate&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;XPath&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.SignInButton }}&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;PropertyHasValue&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;className&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;mr-3&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="validating-that-the-xpath-does-not-have-some-property-with-a-specific-value">
+<h3>Validating that the XPath Does Not Have Some Property With a Specific Value<a class="headerlink" href="#validating-that-the-xpath-does-not-have-some-property-with-a-specific-value" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Validate&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;XPath&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.SignInButton }}&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;NotPropertyHasValue&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;className&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;mr-3&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="validating-that-the-xpath-has-some-attribute-with-a-specific-value">
+<h3>Validating that the XPath Has Some Attribute With a Specific Value<a class="headerlink" href="#validating-that-the-xpath-has-some-attribute-with-a-specific-value" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Validate&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;XPath&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.SignInButton }}&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;AttributeHasValue&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;class&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;mr-3&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="validating-that-the-xpath-does-not-have-some-attribute-with-a-specific-value">
+<h3>Validating that the XPath Does Not Have Some Attribute With a Specific Value<a class="headerlink" href="#validating-that-the-xpath-does-not-have-some-attribute-with-a-specific-value" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Validate&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;XPath&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.SignInButton }}&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;NotAttributeHasValue&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;class&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;mr-3&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="performing-visualparity-validation">
+<h2>Performing VisualParity Validation<a class="headerlink" href="#performing-visualparity-validation" title="Permalink to this headline">¶</a></h2>
+<p>Although it is a form of XPath validation, VisualParity require additional setup.</p>
+<p>It is <em>not</em> required to give a specific target the same name in a Definition file/section and in the Baseline ID used for the target. However, doing so makes it easier to navigate the resulting images.</p>
+<p>Performing VisualParity validation on a page element</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Validate&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;XPath&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.HomePageContentContainer }}&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;VisualParity&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;baselineID&quot;</span><span class="p">:</span> <span class="s2">&quot;HomePageContentContainer&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Performing VisualParity validation on a page element while ignoring some sub-elements</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Validate&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;XPath&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;${{ Definitions.HomePageContentContainer }}&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;VisualParity&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;baselineID&quot;</span><span class="p">:</span> <span class="s2">&quot;HomePageContentContainer&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;excludeXPaths&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;${{ Definitions.TodaysDateLabel }}&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;${{ Definitions.TodaysWeatherIcon }}&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="performing-url-validations">
+<h2>Performing URL Validations<a class="headerlink" href="#performing-url-validations" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="validating-url-constains-some-text">
+<h3>Validating URL Constains Some Text<a class="headerlink" href="#validating-url-constains-some-text" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Validate&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;URL&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;Contains&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;?q=${{ Validation.SearchQuery }}&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="validating-url-does-not-contain-some-text">
+<h3>Validating URL Does Not Contain Some Text<a class="headerlink" href="#validating-url-does-not-contain-some-text" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Validate&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;URL&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;NotContains&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;?q=${{ Validation.SearchQuery }}&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="validating-url-matches-some-text-exactly">
+<h3>Validating URL Matches Some Text Exactly<a class="headerlink" href="#validating-url-matches-some-text-exactly" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Validate&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;URL&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;Equals&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;https://www.bing.com&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="validating-url-does-not-match-some-text-exactly">
+<h3>Validating URL Does Not Match Some Text Exactly<a class="headerlink" href="#validating-url-does-not-match-some-text-exactly" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Validate&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;URL&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;NotEquals&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;http://www.bing.com&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="visual_parity.html" class="btn btn-neutral float-right" title="Visual Parity" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="validation_files.html" class="btn btn-neutral float-left" title="Validation Files" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Microsoft.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

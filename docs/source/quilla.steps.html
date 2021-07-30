@@ -95,6 +95,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../usage.html">Command-Line Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../validation_files.html">Validation Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cookbook.html">Quilla Step Cookbook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visual_parity.html">Visual Parity</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../context_expressions.html">Context Expressions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../plugins.html">Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../hooks.html">Quilla Plugin Hooks</a></li>
@@ -211,6 +213,12 @@
 <li><p><strong>ctx</strong> (<a class="reference internal" href="quilla.html#quilla.ctx.Context" title="quilla.ctx.Context"><em>Context</em></a>) – The runtime context for the application</p></li>
 <li><p><strong>action_type</strong> (<a class="reference internal" href="quilla.common.html#quilla.common.enums.UITestActions" title="quilla.common.enums.UITestActions"><code class="xref py py-class docutils literal notranslate"><span class="pre">UITestActions</span></code></a>) – Enum defining which of the supported actions this class represents</p></li>
 <li><p><strong>driver</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">WebDriver</span></code>]) – An optional argument to allow the driver to be bound at object creation.</p></li>
+<li><p><strong>target</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – Some form of locator for what this step will target. This is passed as a
+string, but what that string represents is specific to the step that is being
+performed. This can be a URL, XPath, or something else.</p></li>
+<li><p><strong>parameters</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>]) – A dictionary with any other auxiliary parameter that the step might
+require. Not all steps require extra data, but a specific step type could
+have some actions that require parameters and other actions that don’t.</p></li>
 </ul>
 </dd>
 </dl>
@@ -224,6 +232,22 @@
 <dt class="sig sig-object py" id="quilla.steps.base_steps.BaseStep.action">
 <span class="sig-name descname"><span class="pre">action</span></span><a class="headerlink" href="#quilla.steps.base_steps.BaseStep.action" title="Permalink to this definition">¶</a></dt>
 <dd><p>Enum defining which of the supported actions this class represents</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="quilla.steps.base_steps.BaseStep.target">
+<span class="sig-name descname"><span class="pre">target</span></span><a class="headerlink" href="#quilla.steps.base_steps.BaseStep.target" title="Permalink to this definition">¶</a></dt>
+<dd><p>Some form of locator for what this step will target. This is passed as a
+string, but what that string represents is specific to the step that is being
+performed. This can be a URL, XPath, or something else.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="quilla.steps.base_steps.BaseStep.parameters">
+<span class="sig-name descname"><span class="pre">parameters</span></span><a class="headerlink" href="#quilla.steps.base_steps.BaseStep.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>A dictionary with any other auxiliary parameter that the step might
+require. Not all steps require extra data, but a specific step type could
+have some actions that require parameters and other actions that don’t.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -255,8 +279,8 @@
 </dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="quilla.steps.base_steps.BaseStep.parameters">
-<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">parameters</span></span><a class="headerlink" href="#quilla.steps.base_steps.BaseStep.parameters" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id0">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">parameters</span></span><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parameters for an action, if applicable. Will resolve all context
 expressions before being returned</p>
 </dd></dl>
@@ -277,8 +301,8 @@ ValidationReport</p>
 </dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="quilla.steps.base_steps.BaseStep.target">
-<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">target</span></span><a class="headerlink" href="#quilla.steps.base_steps.BaseStep.target" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id1">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">target</span></span><a class="headerlink" href="#id1" title="Permalink to this definition">¶</a></dt>
 <dd><p>The target for an action, if applicable. Will resolve all context
 expressions before being returned</p>
 </dd></dl>

@@ -94,6 +94,8 @@
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Command-Line Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="validation_files.html">Validation Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cookbook.html">Quilla Step Cookbook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visual_parity.html">Visual Parity</a></li>
 <li class="toctree-l1"><a class="reference internal" href="context_expressions.html">Context Expressions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="plugins.html">Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hooks.html">Quilla Plugin Hooks</a></li>
@@ -214,6 +216,74 @@
 <li class="toctree-l2"><a class="reference internal" href="validation_files.html#examples">Examples</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="validation_files.html#searching-bing-for-puppies">Searching Bing for puppies</a></li>
 <li class="toctree-l3"><a class="reference internal" href="validation_files.html#signing-in-to-github">Signing In to Github</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cookbook.html">Quilla Step Cookbook</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cookbook.html#refreshing-the-page">Refreshing the page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbook.html#navigate-back-to-the-last-page">Navigate Back to the Last Page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbook.html#navigate-forward-to-the-next-page">Navigate Forward to the Next Page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbook.html#navigate-to-a-page-given-its-url">Navigate to a Page Given Its URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbook.html#clicking-on-a-page-element">Clicking on a Page Element</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbook.html#clearing-an-input-box">Clearing an Input Box</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbook.html#hovering-over-an-element">Hovering Over an Element</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbook.html#writing-text-into-an-input">Writing Text Into an Input</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cookbook.html#using-static-data">Using Static Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cookbook.html#using-environment-data">Using Environment Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cookbook.html#waiting">Waiting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cookbook.html#wait-for-an-element-to-exist">Wait for an Element to Exist</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cookbook.html#wait-for-an-element-to-be-visible">Wait for an Element to be Visible</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cookbook.html#setting-browser-size">Setting Browser Size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbook.html#creating-outputs">Creating Outputs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cookbook.html#creating-a-literal-output">Creating a Literal Output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cookbook.html#creating-output-from-xpath-text">Creating Output from XPath Text</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cookbook.html#creating-output-from-xpath-property">Creating output from XPath Property</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cookbook.html#xpath-validations">XPath Validations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cookbook.html#validating-an-element-exists-on-the-page">Validating an Element Exists on the Page</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cookbook.html#validating-an-element-does-not-exist-on-the-page">Validating an Element Does Not Exist on the Page</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cookbook.html#validating-an-element-is-visible-on-the-page">Validating an Element is Visible on the Page</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cookbook.html#validating-an-element-is-not-visisble-on-the-page">Validating an Element is Not Visisble on the Page</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cookbook.html#validating-the-xpath-text-matches-a-pattern">Validating the XPath Text Matches a Pattern</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cookbook.html#validating-that-the-xpath-text-does-not-match-a-pattern">Validating that the XPath Text Does Not Match a Pattern</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cookbook.html#validating-that-the-xpath-has-some-property">Validating that the XPath Has Some Property</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cookbook.html#validating-that-the-xpath-does-not-have-some-property">Validating that the XPath Does Not Have Some Property</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cookbook.html#validating-that-the-xpath-has-some-attribute">Validating that the XPath Has Some Attribute</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cookbook.html#validating-that-the-xpath-does-not-have-some-attribute">Validating that the XPath Does Not Have Some Attribute</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cookbook.html#validating-that-the-xpath-has-some-property-with-a-specific-value">Validating that the XPath Has Some Property With a Specific Value</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cookbook.html#validating-that-the-xpath-does-not-have-some-property-with-a-specific-value">Validating that the XPath Does Not Have Some Property With a Specific Value</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cookbook.html#validating-that-the-xpath-has-some-attribute-with-a-specific-value">Validating that the XPath Has Some Attribute With a Specific Value</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cookbook.html#validating-that-the-xpath-does-not-have-some-attribute-with-a-specific-value">Validating that the XPath Does Not Have Some Attribute With a Specific Value</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cookbook.html#performing-visualparity-validation">Performing VisualParity Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookbook.html#performing-url-validations">Performing URL Validations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cookbook.html#validating-url-constains-some-text">Validating URL Constains Some Text</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cookbook.html#validating-url-does-not-contain-some-text">Validating URL Does Not Contain Some Text</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cookbook.html#validating-url-matches-some-text-exactly">Validating URL Matches Some Text Exactly</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cookbook.html#validating-url-does-not-match-some-text-exactly">Validating URL Does Not Match Some Text Exactly</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="visual_parity.html">Visual Parity</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="visual_parity.html#what-is-visualparity">What is VisualParity?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visual_parity.html#writing-visualparity-validations">Writing VisualParity Validations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="visual_parity.html#using-exclusion-xpaths">Using Exclusion XPaths</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="visual_parity.html#configuring-a-storage-plugin">Configuring a Storage Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visual_parity.html#creating-updating-baseline-images">Creating/Updating Baseline Images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visual_parity.html#using-visualparity-in-ci-cd">Using VisualParity in CI/CD</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="visual_parity.html#localstorage-checking-in-images">LocalStorage - Checking In Images</a></li>
+<li class="toctree-l3"><a class="reference internal" href="visual_parity.html#blobstorage-storing-baselines-in-the-cloud">BlobStorage - Storing Baselines in the Cloud</a></li>
+<li class="toctree-l3"><a class="reference internal" href="visual_parity.html#limitations-considerations">Limitations / Considerations</a></li>
 </ul>
 </li>
 </ul>
