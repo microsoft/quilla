@@ -40,3 +40,10 @@ jobs:
 
       - name: Run tests
         run: pytest --quilla-opts="--image-directory ./images"
+
+      - name: Export docs as an artifact
+        uses: actions/upload-artifact@v2
+        if: ${{ failure() }}
+        with:
+          name: image_artifacts
+          path: ./images/runs
