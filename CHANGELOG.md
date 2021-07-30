@@ -1,3 +1,10 @@
+## 0.5 (2021-07-30)
+
+### New
+
+* Implemented exclusion XPath feature  and added cookbook (#56) [Natalia Maximo]
+
+
 ## 0.4 (2021-07-27)
 
 ### New
