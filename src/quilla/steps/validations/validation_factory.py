@@ -34,7 +34,7 @@ class Validation(BaseStepFactory):
     }
 
     @classmethod
-    def from_dict(
+    def from_dict(  # type: ignore
         cls,
         ctx: Context,
         validation_dict: ValidationDictionary,

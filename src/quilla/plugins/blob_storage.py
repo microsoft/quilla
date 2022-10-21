@@ -74,10 +74,12 @@ class BlobStorage(BaseStorage):
             retention_days: The maximum number of days a report should be allowed to have before
                 being cleaned up
         '''
-        self._container_client = client = ContainerClient.from_connection_string(
+        client: ContainerClient = ContainerClient.from_connection_string(
             connection_string,
             container_name=container_name
         )
+
+        self._container_client = client
 
         self.max_retention_days = retention_days
         try:

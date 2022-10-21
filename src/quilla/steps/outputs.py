@@ -24,7 +24,7 @@ class OutputValueStep(BaseStep, BaseStepFactory):
     ]
 
     @classmethod
-    def from_dict(
+    def from_dict(  # type: ignore
         cls,
         ctx: Context,
         action_dict: Dict,
