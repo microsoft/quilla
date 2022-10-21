@@ -12,9 +12,9 @@ jobs:
     outputs:
       run_deploy: ${{ steps.verify.outputs.run_deploy }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Setup python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: '3.9'
 
@@ -34,9 +34,9 @@ jobs:
     name: Testing Quilla with python ${{ matrix.python }}
     if: ${{ needs.version-check.outputs.run_deploy == 'yes' }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Setup python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python }}
 
