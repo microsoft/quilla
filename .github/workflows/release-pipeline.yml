@@ -23,7 +23,7 @@ jobs:
 
       - name: Verify that the version has been increased
         id: verify
-        run: echo "::set-output name=run_deploy::$(python scripts/version_verification.py $(python scripts/extract_version.py) $(cat VERSION))"
+        run: echo "run_deploy=$(python scripts/version_verification.py $(python scripts/extract_version.py) $(cat VERSION))" >> $GITHUB_OUTPUT
 
   build:
     needs: version-check
